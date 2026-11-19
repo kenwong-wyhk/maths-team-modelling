@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 2: A wrong model is a starting point</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 2 of 9 · <a href="02-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 2</p>
+  <h1>A wrong model is a starting point</h1>
+  <p class="lede">Last week your model said a relay team of four Bolts would take 38.32 s. The real record is 36.84 s. Today you find out why the model missed, fix it, and test it again.</p>
+
+  <div class="rule">
+    <p><strong>Today's rule is the same.</strong> Write down what you are assuming before you calculate. No AI and no searching. The Data lead may open Google Sheets.</p>
+  </div>
+
+  <div class="tile">
+    <span class="label">Roles today</span>
+    <p>Roles move on one place again.</p>
+    <ul>
+      <li><strong>Modeller:</strong> decides the top speed, and writes each assumption before it is used.</li>
+      <li><strong>Data lead:</strong> builds the sheet: ten times, ten speeds, then the four runners.</li>
+      <li><strong>Writer:</strong> notes why the relay is faster, and brings me the model's total.</li>
+      <li><strong>Team lead:</strong> checks three speeds by hand, and draws the handover for the team.</li>
+    </ul>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>New data</h2>
+  <p>Before today you tried to fit one speed to five world records, and no single speed worked. So "a runner's speed is always the same" is wrong. To see <em>where</em> it goes wrong, here is the same race with the clock read every 10 metres.</p>
+  <div class="tile">
+    <span class="label">Usain Bolt, 100 m, Berlin, 16 Aug, 2009</span>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Distance (m)</th><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td><td>70</td><td>80</td><td>90</td><td>100</td></tr>
+      <tr><th>Time (s)</th><td>1.89</td><td>2.88</td><td>3.78</td><td>4.64</td><td>5.47</td><td>6.29</td><td>7.10</td><td>7.92</td><td>8.75</td><td>9.58</td></tr>
+    </table>
+    </div>
+  </div>
+  <div class="tile">
+    <span class="label">Today's Maths Tool</span>
+    <p><strong>Speed over a stretch.</strong> Distance ÷ the time taken for that stretch. From 10 m to 20 m he takes 2.88 − 1.89 = 0.99 s, so his speed there is 10 ÷ 0.99.</p>
+    <p><strong>A model in stages.</strong> One speed for the whole race was last week's model. This week the race has stages, speeding up and then top speed, and each stage has its own rule. Mathematicians call this a piecewise model. Where one stage ends and the next begins is your decision, written down as an assumption.</p>
+  </div>
+  <p><strong>Team time: 35 minutes.</strong> Parts 1 to 5 below are one block of work. In class they are on your team's card, and I do not interrupt.</p>
+  <ol class="tasks">
+    <li><span class="tag">Data lead</span> In a new sheet put the distances in column A and the times in column B, starting with 0 m and 0 s in row 2, so that 10 m and 1.89 s are in row 3. In column C, find his speed over each 10 m: in C3 type <code>=10/(B3-B2)</code> and copy it down to C12.</li>
+    <li><span class="tag">Team</span> Check the first three speeds by hand. Then describe, in one sentence, how his speed changes during the race.</li>
+    <li><span class="tag">Modeller</span> From which point would you say he has stopped speeding up? What is his top speed?</li>
+  </ol>
+  <details>
+    <summary>Open only when your team's sheet is finished</summary>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Stretch (m)</th><td>0–10</td><td>10–20</td><td>20–30</td><td>30–40</td><td>40–50</td><td>50–60</td><td>60–70</td><td>70–80</td><td>80–90</td><td>90–100</td></tr>
+      <tr><th>Speed (m/s)</th><td>5.29</td><td>10.10</td><td>11.11</td><td>11.63</td><td>12.05</td><td>12.20</td><td>12.35</td><td>12.20</td><td>12.05</td><td>12.05</td></tr>
+    </table>
+    </div>
+    <p>He passes 10.44 m/s within the first 30 m and never runs at it again. That figure is the average of a slow start and a fast finish. The first 10 m takes 1.89 s. From 50 m on he holds about 12.2 m/s, because he covers the last 50 m in 9.58 − 5.47 = 4.11 s.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Back to the puzzle</h2>
+  <ol class="tasks">
+    <li><span class="tag">Writer</span> In a relay, how many runners have to start from standing still? Use the speeds in your sheet to say, in one sentence, why four runners are faster than four separate 100 m races.</li>
+  </ol>
+  <details>
+    <summary>Open only when your team has written its sentence</summary>
+    <p><strong>Only the first runner starts from standing still.</strong> The other three are already moving when the baton reaches them, so the slow first 10 metres happens once, not four times.</p>
+    <p>Our first model assumed every runner starts from rest. That assumption was wrong, and now we know which one to fix.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>The handover</h2>
+  <p>The rules give the next runner room to get moving. Around each 100 m line there is a zone 30 m long:</p>
+  <ul>
+    <li><strong>Start zone, 10 m</strong> (from 80 m to 90 m of the leg). The next runner may start running anywhere in here, but the baton may not change hands.</li>
+    <li><strong>Handover zone, 20 m</strong> (from 90 m to 110 m). The baton must change hands inside this zone, or the team is disqualified.</li>
+  </ul>
+  <p>So the baton can change hands as early as 90 m or as late as 110 m. The <a href="02-live.html#6">presentation version</a> shows both.</p>
+
+  <h2 class="wy-section-title"><span class="num">4</span>The second model</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Build a second model of the 4 × 100 m relay. Every runner is as fast as Bolt. Runners 2, 3 and 4 each start from standing still at the beginning of the start zone, timed so that the baton reaches them at the handover point. The baton changes hands <strong>early</strong>, at 90 m, 190 m and 290 m, and no time is lost in passing it.</p>
+    <p><strong>How long does the baton take to travel 400 m?</strong></p>
+  </div>
+  <p>No method is given. Decide first how far each runner carries the baton, and how fast he is moving when he gets it. Draw it.</p>
+  <details>
+  <summary>Hint card: open only after ten minutes of trying</summary>
+  <p>Runner 2 starts running at 80 m. The baton reaches him at 90 m. So when he takes it he has already run 10 m, and your sheet says he is 1.89 s into his own sprint.</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Runner</th><th>Carries the baton</th><th>How to time it</th></tr>
+    <tr><td>1</td><td>0 to 90 m</td><td>Straight from your sheet.</td></tr>
+    <tr><td>2 and 3</td><td>100 m each</td><td>He is 10 m into his own run when he gets the baton. Use the sheet for the rest of his speeding up, then your top speed for what is left.</td></tr>
+    <tr><td>4</td><td>110 m</td><td>The same, with 10 m more at top speed.</td></tr>
+  </table>
+  </div>
+  <p>Only the time the baton is moving counts.</p>
+  </details>
+  <ol class="tasks">
+    <li><span class="tag">Team</span> Modeller: write the assumptions first. Data lead: add the four times in the sheet. Writer: bring me the total.</li>
+    <li><span class="tag">Every team</span> Now hand over late, at 110 m, 210 m and 310 m. What is the total?</li>
+    <li><span class="tag">Every team</span> According to your model, where in the 20 m zone is the best place to hand over? Give a reason that needs no calculation. Then say why no real team does it.</li>
+  </ol>
+  <details>
+    <summary>Open only when your team has a total</summary>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Model</th><th>Relay time</th><th>Compared with the real 36.84 s</th></tr>
+      <tr><td>First model: four Bolts, each from rest</td><td>38.32 s</td><td>1.48 s too slow</td></tr>
+      <tr><td>Second model, early handover</td><td>35.11 s</td><td>1.73 s too fast</td></tr>
+      <tr><td>Second model, late handover</td><td>34.38 s</td><td>2.46 s too fast</td></tr>
+    </table>
+    </div>
+    <p>These totals use a top speed of 12.17 m/s (50 m in 4.11 s). If your team chose a different top speed, your total will differ a little, and that is a different assumption, not a mistake.</p>
+    <p>The first model was too slow. The second is too fast. Is that progress?</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Test the model</h2>
+  <ol class="tasks">
+    <li><span class="tag">Team</span> The real team was slower than your second model. List everything the model assumes that is not quite true of a real relay team. Aim for four.</li>
+    <li><span class="tag">Writer</span> Which one do you think costs the most time? Be ready to say why.</li>
+  </ol>
+  <details>
+    <summary>Open only when your team has its list</summary>
+    <ul>
+      <li><strong>Not every runner is Bolt.</strong> A real team has one, at most.</li>
+      <li><strong>Passing a baton takes care.</strong> Two runners at full speed must match each other, and that costs time.</li>
+      <li><strong>Nobody hands over at the very edge.</strong> One step late and the team is disqualified.</li>
+      <li><strong>Runners tire.</strong> Some legs are longer than 100 m, and the model keeps top speed to the end.</li>
+    </ul>
+    <p>Each of these is an assumption you could fix next. A model is finished when it is good enough for the question, not when it is perfect.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">The Maths Tool as formulas</span>
+    <p>Write T(d) for the time Bolt needs to cover d metres from the blocks. Your sheet gives T(10) = 1.89, T(20) = 2.88 and so on. The speed over one 10-metre stretch is</p>
+    <p class="sentence">10 ÷ (T(d) − T(d − 10))</p>
+    <p>and the model in stages says that from 50 m on he holds his top speed of 12.17 m/s:</p>
+    <p class="sentence">T(d) = 5.47 + (d − 50) ÷ 12.17 &nbsp; for d ≥ 50</p>
+  </div>
+  <p><strong>Go further.</strong> These are not needed for the session. They are for anyone who wants more mathematics.</p>
+  <ol class="tasks">
+    <li>Show that for d ≥ 50 the formula can be written T(d) = 1.36 + d ÷ 12.17. What does the 1.36 seconds mean? Check it with d = 100.</li>
+    <li>Use the 1.36 seconds to explain both models in one line each. The first model, four Bolts from the blocks, pays the 1.36 seconds four times. A perfect relay would pay it once: how long would the baton take? How much time does your second model lose at its three handovers, with the early handover and with the late one?</li>
+    <li>The real record, 36.84 s, is how far above the perfect relay of question 2? That gap is everything your model leaves out. Share it out among the four items on your list, with a reason for each share.</li>
+    <li>Let the baton change hands at x metres, where x is between 90 and 110. Show that the second model's total time is <span class="sentence">T(x) + 2 × T(x + 20) + T(120) − 3 × T(x − 80)</span> Check it gives 35.11 for x = 90.</li>
+    <li>Use question 4 to prove that, in this model, a later handover is always faster. A start: moving the handover 1 metre later adds 3 metres at top speed, and removes 3 metres that were run at the outgoing runner's speed when he has gone x − 80 metres.</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">6</span>The modelling cycle</h2>
+  <p>What you have done twice now has a name: the <strong>modelling cycle</strong>. It has five steps.</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Step</th><th>What it means</th><th>Today</th></tr>
+    <tr><td>1 Analyse</td><td>Understand the real problem.</td><td>Why is a relay faster than four sprints?</td></tr>
+    <tr><td>2 Formulate</td><td>Make assumptions and build a model.</td><td>Every runner is Bolt; the baton changes hands at 90 m.</td></tr>
+    <tr><td>3 Solve</td><td>Work the model out.</td><td>Your spreadsheet.</td></tr>
+    <tr><td>4 Interpret</td><td>Say what the number means in the real world.</td><td>A relay time of 35.11 s.</td></tr>
+    <tr><td>5 Evaluate</td><td>Compare with reality and find what to fix.</td><td>1.73 s too fast: what did we leave out?</td></tr>
+  </table>
+  </div>
+  <p>Evaluating is not the end. It sends you back to step 2, to change an assumption and go round again. From now on I will use these five names.</p>
+
+  <h2 class="wy-section-title"><span class="num">7</span>Paper study: how a winning team changes its model</h2>
+  <p>This is question B from our first meeting: plan a season for a global sports league. The team built a league for 20 countries. Then the problem asked what happens if four more join.</p>
+  <figure class="tile paper">
+    <span class="label">From the paper · page 22</span>
+    <img src="../assets/papers/immc2025-team2025006-added-teams.png" alt="Section 4.2.2 of the paper, Details of the model after the addition of teams: a paragraph on how the tournament format is adjusted, a table of results, and a paragraph comparing them with the original.">
+    <figcaption>Section 4.2.2, "Details of the model after the addition of teams", from the paper of Team 2025006, International Mathematical Modeling Challenge 2025. Shown for study in class.</figcaption>
+  </figure>
+  <ol class="tasks">
+    <li><span class="tag">Team · 3 min</span> <strong>Find the sentence</strong> that compares the new model with the old one. You do not need to follow the symbols.</li>
+    <li><span class="tag">Team</span> What did the team change in its model, and what did it keep?</li>
+  </ol>
+  <p>They did not start again. They said what changed, kept the rest, and reported the new result the same way as the old.</p>
+
+  <h2 class="wy-section-title"><span class="num">8</span>Team Paper: this week's paragraph</h2>
+  <ol class="tasks">
+    <li><span class="tag">Team · 7 min</span> Back to the Hall Problem. Your first estimate used one rate for the whole hall, like last week's runner at one speed. I give you the time I measured. The Writer types and the others say what to write: <strong>your estimate, the measured time, the percentage error, and the stages your second model of the hall will need.</strong> A frame to start from: <span class="sentence">"Our first model assumed … It gave … The measured time was …, an error of … %. A second model needs these stages: …"</span> Use the names of the five steps where they fit.</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">9</span>Before Session 3</h2>
+  <p id="hall">About 30 minutes, before next Thursday, on the Hall Problem. Work in your Team Paper and one shared sheet.</p>
+  <ol class="tasks">
+    <li><span class="tag">Modeller</span> Use today's Maths Tool: a model in stages. Split the dismissal into stages, for example leaving the seats, passing an exit, and walking the corridor to the classroom. The diagram on <a href="../hall.html">the Hall Problem page</a> shows how far each class has to go. For each stage write what you assume and why.</li>
+    <li><span class="tag">Data lead</span> Build the second model in a sheet: one row for each stage, with its time. Which stage is the slowest? That stage decides the total.</li>
+    <li><span class="tag">Team</span> Compare the second model with the measured time. Is it closer than the first? Say which assumption you would fix next.</li>
+    <li><span class="tag">Extra</span> Count something real this week: how many students pass one door, or one staircase, in a minute. You will need it in Session 4.</li>
+  </ol>
+  <p><strong>Extra, if you have time.</strong> Use the model explorer below on the relay.</p>
+
+  <div class="tile demo" id="demo">
+    <h3>Model explorer: the second model</h3>
+    <p>This is your second model. You can change where the baton changes hands, and how fast the runners are compared with Bolt.</p>
+    <div id="explorer"></div>
+  </div>
+
+  <ol class="tasks">
+    <li>Leave the runners at 100% of Bolt's speed. Where does the model say the baton should change hands? Why does a later handover give a faster time?</li>
+    <li>No real team hands over at that point. Give two reasons.</li>
+    <li>Put the handover at 100 m. How fast, compared with Bolt, do the runners have to be for the model to match the real record? Does that seem believable for a real team?</li>
+    <li>Write two assumptions of the second model in the Assumption / Justification form. For each, say whether fixing it would make the model's time longer or shorter.</li>
+    <li>In three or four sentences: was refining the model worth it? The second model is further from the record than the first. What did you gain?</li>
+    <li><span class="tag">Extra</span> The second model is too fast, and you have listed four things it leaves out. Choose one and change the model to include it. What time do you get now?</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 3: which sport suits you best, and what does "best" mean? Roles move on one place again. Then go on to <a href="03.html">Session 3</a>.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 2</span></div></footer>
+
+<script src="../assets/relay-explorer.js"></script>
+<script>RelayExplorer(document.getElementById("explorer"));</script>
+</body>
+</html>

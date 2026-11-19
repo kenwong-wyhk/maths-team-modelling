@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 5 Live: A real problem, and a new teammate</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input, .board textarea { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board textarea { height: 9rem; resize: none; font-size: 1.45rem; line-height: 1.35; }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .under { display: block; margin: .5rem 0 0; white-space: normal; }
+.meter .low { color: var(--blue); font-weight: 500; min-height: 1.9rem; }
+#batonMeter { transition: opacity .3s; }
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.code { font-family: Consolas, "Courier New", monospace; font-size: 1.25rem; border: 0.07rem solid var(--frame); padding: 0 .5rem; white-space: nowrap; }
+.five { display: grid; grid-template-columns: repeat(5, 1fr); }
+.five .node h3 { font-size: 2rem; }
+.five .node p { font-size: 1.1rem; }
+/* the loop runs from under the 5 to under the 2, with an arrowhead at the 2 */
+.five + .loop i { left: calc(20% + .8rem); right: calc(20% - .8rem); }
+.five + .loop i::before { content: ""; position: absolute; left: -.57rem; top: -.1rem; border: .5rem solid transparent; border-top: 0; border-bottom: .8rem solid var(--red); }
+@media (max-width: 800px) { .board, .five, .tool { grid-template-columns: 1fr; } }
+.explore { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.tight .row { padding: .65rem 0; }
+.tight .row .who { font-size: 2rem; }
+.two.wide { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: center; }
+.two.wide .stack p { font-size: 1.3rem; margin: 0; }
+.two.wide .stack p.expr { font-family: var(--font-display); font-size: 1.9rem; color: var(--blue); margin-top: .2rem; }
+.pairnum { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.pairnum .count { margin: 0; }
+.explore .stack p { font-size: 1.35rem; margin: 0 0 .9rem; }
+table.data { font-size: 1.5rem; border-collapse: collapse; width: 100%; }
+table.data th, table.data td { text-align: left; padding: .45rem 1rem; border-bottom: 0.07rem solid var(--frame); font-weight: 300; }
+table.data thead th, table.data tbody th { font-weight: 400; color: var(--blue); }
+</style>
+</head>
+<body data-reading="05.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 5</p>
+    <h1 class="display huge in" style="--i:7">A real problem, and a new teammate</h1>
+    <p class="in" style="--i:9">Forty minutes on a competition problem, with no help. Then AI joins the team.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 The rules of the Mini Competition -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">This is a Mini Competition. It runs like the real one, only shorter.</p>
+    <div class="row" data-step="1"><div><div class="who">Rules</div></div><p>Forty minutes. No AI, no searching, and no help from me: I will not answer questions about the problem.</p></div>
+    <div class="row" data-step="2"><div><div class="who">First</div></div><p>The Team lead writes a time plan in the first three minutes: who does what, and by when. Leave eight minutes to write.</p></div>
+    <div class="row" data-step="3"><div><div class="who">Hand in</div></div><p>One page, starting with a three-sentence summary: what you were asked, what you did, what you found. Then the problem restated, your assumptions, your model, your answer with a "plus or minus", and one weakness.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Mini Competition</h2></div>
+</section>
+
+<!-- 4 The problem, the clock, and the board -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Mini Competition</div><button class="timer" data-sec="2400"></button></div><p>The data sheet is on your table. The clock starts when I press it.</p></div>
+    <p class="display big blue-text in" style="--i:3">Estimate the percentage of electric vehicles among all vehicles in Hong Kong at the end of 2030.</p>
+    <p class="in" style="--i:5">Writers: when your page is handed in, bring me your answer.</p>
+    <div class="board in" style="--i:6" id="answer"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Mini Competition</h2></div>
+</section>
+
+<!-- 5 Every team's answer -->
+<section class="scene blue" data-enter="results">
+  <div class="body">
+    <p class="in" style="--i:1">One problem. One data sheet. Forty minutes.</p>
+    <p class="display big in" style="--i:3" id="answers"></p>
+    <p class="in" style="--i:5" id="answersSay"></p>
+    <p class="display big" data-step="1">Why are they so far apart?</p>
+    <p data-step="2">Writers: in one sentence, how did your team continue the curve after 2026?</p>
+  </div>
+  <div class="foot"><h2>2 | What you found</h2></div>
+</section>
+
+<!-- 6 Maths Tool: growth with a ceiling -->
+<section class="scene">
+  <div class="body">
+    <div class="two wide">
+      <div class="in" style="--i:1"><img src="../assets/ev-curves.svg" alt="The share of electric vehicles in Hong Kong from 2020, with three models continued to 2035: a straight line, compound growth, and growth with a ceiling. The second passes 100 per cent in 2031." style="display:block;width:100%"></div>
+      <div class="stack">
+        <p class="in" style="--i:2">Three ways to continue the same dots. P is the share in per cent, t years after September 2026.</p>
+        <div data-step="1"><p><strong>Straight line</strong>, like simple interest: 38%.</p><p class="expr">P = 20.1 + 4.25t</p></div>
+        <div data-step="2"><p><strong>Compound growth</strong>, like compound interest: 81%, and over 100% during 2031.</p><p class="expr">P = 20.1 × 1.39<sup>t</sup></p></div>
+        <div data-step="3"><p><strong>Today's Maths Tool: growth with a ceiling.</strong> Let the ratio of electric to non-electric vehicles have the growth factor: 56%.</p><p class="expr">P ÷ (100 − P) = 0.252 × 1.46<sup>t</sup></p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | What you found</h2></div>
+</section>
+
+<!-- 7 An AI-written answer to the same problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Here is an answer to the same problem. An AI wrote it in about ten seconds.</p>
+    <p class="display big blue-text" data-step="1">It says 84.0%. Would it win?</p>
+    <div class="row" data-step="2"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>Read it as judges, with the Rubric. <strong>Find three things a judge would hold against it.</strong> Mark them on the sheet.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | AI joins the team</h2></div>
+</section>
+
+<!-- 8 What the AI answer left out -->
+<section class="scene">
+  <div class="body tight">
+    <p class="in" style="--i:1">What a judge would see. How many did your team find?</p>
+    <div class="row" data-step="1"><div><div class="who">1</div></div><p><strong>No assumptions.</strong> Nothing it takes for granted is stated, so nothing can be checked.</p></div>
+    <div class="row" data-step="2"><div><div class="who">2</div></div><p><strong>A number from nowhere.</strong> "105,000 at the end of 2024" has no source.</p></div>
+    <div class="row" data-step="3"><div><div class="who">3</div></div><p><strong>Two percentages mixed.</strong> 11.2% is the share of private cars, not of all vehicles.</p></div>
+    <div class="row" data-step="4"><div><div class="who">4</div></div><p><strong>Growth for ever.</strong> The same method passes 100% a year later, and the 2026 tax change is ignored.</p></div>
+    <div class="row" data-step="5"><div><div class="who">5</div></div><p><strong>No test, no weakness, and "84.0%".</strong> Three figures from a model that was never checked.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | AI joins the team</h2></div>
+</section>
+
+<!-- 9 The AI Teammate Rule -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">It is fluent, fast and sure of itself. From today you may use AI, as a teammate with named jobs.</p>
+    <div class="tool">
+      <div data-step="1">
+        <h3>AI may</h3>
+        <p>Attack your assumptions. Help you find data, which you then trace to its source. Help with a formula or code. Check your English. Typeset your finished paper.</p>
+      </div>
+      <div data-step="2">
+        <h3>AI never</h3>
+        <p>Chooses your model. Writes your paper. Those are yours, in your own words.</p>
+      </div>
+    </div>
+    <p class="note" data-step="3">Every use goes in your team's AI Log: what you asked, what it gave, and what you did with it. In a competition the log is printed in your paper.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | The AI Teammate Rule</h2></div>
+</section>
+
+<!-- 10 Practise one allowed job -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Try the first job now, on the model you built today.</p>
+    <p class="serif in" style="--i:3">"Here are the assumptions of our model: … What are the three weakest, and why?"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="360"></button></div><p>Type your own assumptions into the AI and ask it to attack them. <strong>Decide which of its criticisms you accept, and which you reject, with a reason.</strong> The Writer makes the first entry in your AI Log.</p></div>
+    <p class="note" data-step="2">You are the judge of what it says. If you cannot tell whether a criticism is right, it does not go in your paper.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | The AI Teammate Rule</h2></div>
+</section>
+
+<!-- 11 Paper study: one extract, one task -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" style="height:auto"><div class="page">
+          <img style="max-height:56vh;width:auto;display:block;margin:0 auto" src="../assets/papers/immc2025-team2025006-ai-report.png" alt="The Report on Use of AI from the paper: AI tools were used in two ways, an autocomplete feature while coding and a question about formatting, with the exact question and the start of the answer printed.">
+        </div></div>
+        <p class="cap">Team 2025006, International Mathematical Modeling Challenge 2025: scheduling a global sports league. Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">The league paper from Session 2. Every paper in this competition must end with a report on its use of AI.</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="150"></button></div><p><strong>Find what this team used AI for,</strong> and what it did not use it for.</p></div>
+        <p data-step="1">Two small jobs: completing lines of code, and how to draw a box. It prints its exact question and the answer. The model and the writing were the team's own.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>5 | Paper study</h2></div>
+</section>
+
+<!-- 12 Exit slip and before Session 6 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>For the Hall Problem: restate the problem, then find one outside source and judge it. You may use AI to help you search, with a log. The steps are on the <a href="05.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 6: you test today's model until it breaks, and find out which assumption your answer depends on most.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Before Session 6</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  $("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  $("lineWho").textContent = LINE.who;
+  $("lineWhy").textContent = LINE.why || "Listen for what makes it good: it compares two plans by a measure the team chose and can calculate.";
+
+  /* ---------- The board: each team's answer and its "plus or minus" ---------- */
+  function num(text) { var v = parseFloat(String(text).replace(/[%, ]/g, "")); return isFinite(v) && String(text).trim() !== "" ? v : null; }
+  var values = TEAMS.map(function () { return { p: null, pm: null }; });
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    var name = document.createElement("input");
+    name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+    name.addEventListener("input", function () { TEAMS[i] = name.value; try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {} });
+    cell.appendChild(name);
+    var row = document.createElement("div"); row.className = "fields";
+    [{ key: "p", label: "End of 2030 (%)" }, { key: "pm", label: "Plus or minus" }].forEach(function (f) {
+      var lab = document.createElement("label"), box = document.createElement("input");
+      box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+      box.addEventListener("input", function () { values[i][f.key] = num(box.value); });
+      lab.appendChild(document.createTextNode(f.label)); lab.appendChild(box); row.appendChild(lab);
+    });
+    cell.appendChild(row); $("answer").appendChild(cell);
+  });
+
+  Live.onEnter("results", function () {
+    var parts = [], given = [];
+    values.forEach(function (v, i) {
+      if (v.p === null) return;
+      given.push(v.p);
+      parts.push((TEAMS[i] || "Team " + (i + 1)) + ": " + v.p + "%" + (v.pm !== null ? " ± " + v.pm : ""));
+    });
+    $("answers").textContent = parts.length ? parts.join("  ·  ") : "Writers: your team's answer for the end of 2030?";
+    $("answersSay").textContent = given.length < 2 ? "" : "From " + Math.min.apply(null, given) + "% to " + Math.max.apply(null, given) + "%.";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 4: Data and trend</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>.years td, .years th { padding: .1rem .7rem; font-variant-numeric: tabular-nums; }</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 4 of 9 · <a href="04-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 4</p>
+  <h1>Data and trend</h1>
+  <p class="lede">Today you have thirty-five years of real data, and a question about a year that has not happened yet. You will decide what makes one line better than another, find the best line, use it to predict, and then test whether the prediction deserves to be believed.</p>
+
+  <div class="rule">
+    <p><strong>Today's rule is the same.</strong> Write down what you are assuming before you calculate. No AI and no searching. One device per team, for the spreadsheet. From today I show you the problem and step back: the method is yours.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Cold start</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p><strong>What will be the highest temperature recorded in Hong Kong in 2036?</strong></p>
+  </div>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> No card and no hint. Restate the problem in your own words. Say exactly which number you are predicting, what data you would ask for, and what you will have to assume. The Modeller writes.</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">2</span>The data</h2>
+  <p>The highest temperature recorded in Hong Kong in each year, in °C: the single hottest reading of the year, not an average. Source: Hong Kong Observatory, as printed in the worksheet.</p>
+  <div class="table-wrap">
+  <table class="years">
+    <tr><th>Year</th><th>°C</th><th>Year</th><th>°C</th><th>Year</th><th>°C</th><th>Year</th><th>°C</th><th>Year</th><th>°C</th></tr>
+    <tr><td>1990</td><td>36.1</td><td>1997</td><td>33.2</td><td>2004</td><td>34.6</td><td>2011</td><td>35.0</td><td>2018</td><td>35.4</td></tr>
+    <tr><td>1991</td><td>34.3</td><td>1998</td><td>34.4</td><td>2005</td><td>35.4</td><td>2012</td><td>34.5</td><td>2019</td><td>35.1</td></tr>
+    <tr><td>1992</td><td>34.5</td><td>1999</td><td>35.1</td><td>2006</td><td>34.2</td><td>2013</td><td>34.9</td><td>2020</td><td>35.3</td></tr>
+    <tr><td>1993</td><td>34.2</td><td>2000</td><td>34.2</td><td>2007</td><td>34.7</td><td>2014</td><td>34.6</td><td>2021</td><td>36.1</td></tr>
+    <tr><td>1994</td><td>34.6</td><td>2001</td><td>34.0</td><td>2008</td><td>34.6</td><td>2015</td><td>36.3</td><td>2022</td><td>36.1</td></tr>
+    <tr><td>1995</td><td>33.7</td><td>2002</td><td>34.3</td><td>2009</td><td>34.9</td><td>2016</td><td>35.6</td><td>2023</td><td>36.1</td></tr>
+    <tr><td>1996</td><td>34.3</td><td>2003</td><td>34.5</td><td>2010</td><td>34.6</td><td>2017</td><td>36.6</td><td>2024</td><td>35.7</td></tr>
+  </table>
+  </div>
+
+  <p>Which line is best? In Session 3 you had to say what "best" means for a sport. Today you have to say it for a line.</p>
+  <p><strong>Team time: 35 minutes.</strong> The card gives the data and the rules. The method is yours. You will not finish every question; the proof and the test on hidden years matter most.</p>
+  <ol class="tasks">
+    <li><span class="tag">Modeller</span> Say exactly which number you are predicting, and write what your model assumes about the future.</li>
+    <li><span class="tag">Data lead</span> Open the sheet I shared: years since 1990 are in column A and temperatures in column B. Draw a scatter chart to the <a href="../standards.html">Paper Standards</a>: a numbered title, both axes labelled with units, and the source underneath.</li>
+    <li><span class="tag">Team</span> Find the straight line that fits the data best. <strong>First decide what "best" means for a line.</strong> Write your rule in one sentence, so that another team could use it to check your line. Then find the line.</li>
+    <li><span class="tag">Writer</span> Write the prediction as a sentence: <span class="sentence">"Based on our model, the highest temperature in Hong Kong in 2036 will be about … °C, plus or minus …"</span> To choose the "plus or minus", look at how far real years have been from your line. Bring me the slope and the prediction.</li>
+    <li><span class="tag">Every team</span> Mathematicians use this rule: for each year take the gap between the real temperature and the line, square it, and add the 35 squares. The best line makes the total as small as possible. Find the total for your line. Then, in the sheet, keep your slope and change only the height of the line. Which height gives the smallest total?</li>
+    <li><span class="tag">Every team</span> <strong>A proof.</strong> With the best height, your line passes through the point (mean year, mean temperature). Check it. Then prove that this must happen for any slope. A start: for numbers d<sub>1</sub>, d<sub>2</sub>, …, the sum of (d − c)² is smallest when c is their mean. Why?</li>
+    <li><span class="tag">Every team</span> Now the line must pass through the mean point, so only the slope is left to choose. Try four or five slopes and find the total for each. Where is the smallest? Can you find it exactly from three of your trials?</li>
+    <li><span class="tag">Every team</span> <strong>Test your model on years it has not seen.</strong> Fit a line to 1990–2014 only. What does it predict for 2015–2024? Compare with what happened. What does this tell you about your prediction for 2036?</li>
+    <li><span class="tag">Every team</span> Join the first point to the last point. What does that line predict for 2036, and what is wrong with choosing a line this way? Then leave 1990 out of your best line. How much does the prediction change, and are you allowed to leave a year out?</li>
+    <li><span class="tag">Extra</span> Fit a curve that is not a straight line. Its prediction for 2036 may surprise you. Use the test on hidden years to decide which to put in a paper, the line or the curve.</li>
+  </ol>
+  <details>
+    <summary>Hint card: open only after ten minutes of trying</summary>
+    <p>Years since 1990 are in column A (0 to 34) and temperatures in column B, from row 2 to row 36.</p>
+    <ul>
+      <li><strong>A rule for "best".</strong> For each year take the gap between the real temperature and the line. Square it. Add all 35 squares. The best line has the smallest total.</li>
+      <li><strong>The line's value for a year:</strong> slope × (years since 1990) + the height at 1990. For 2036, years since 1990 is 46.</li>
+      <li><strong>The slope, from the sheet:</strong> <code>=SLOPE(B2:B36,A2:A36)</code></li>
+      <li><strong>The height at 1990, from the sheet:</strong> <code>=INTERCEPT(B2:B36,A2:A36)</code></li>
+    </ul>
+    <p>Or, on the chart in Google Sheets: open the chart editor, choose Customise, then Series, tick "Trend line", and under Label choose "Use Equation".</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you found</h2>
+  <details>
+    <summary>Open only when your team has a line and a prediction</summary>
+    <p>The least-squares line rises by 0.049 °C a year, which is about half a degree every ten years. Its value for 2036 is <strong>36.3 °C</strong>.</p>
+    <p>The record is 36.6 °C, set in 2017. The model is not saying the record will stand. The line gives the middle of where 2036 is likely to fall, and single years have been a degree or more above it.</p>
+    <p><strong>Plus or minus what?</strong> Divide the total of the squared gaps by the 35 years and take the square root: √(12.76 ÷ 35) = 0.6. That is the size of a typical gap. Of the 35 years, 26 were within 0.6 °C of the line, and three were more than 1 °C above it. So a fair statement is "36.3 °C, plus or minus about 0.6".</p>
+  </details>
+  <div class="tile">
+    <span class="label">Today's Maths Tool: the mathematicians' rule for "best"</span>
+    <p><strong>The line of best fit, by least squares.</strong> Draw a straight line through the dots. For each dot, measure the gap between the dot and the line. Square each gap and add the squares. The best line is the one that makes this total as small as it can be.</p>
+    <p><strong>The slope means something.</strong> Here it is degrees per year: how fast the hottest day of the year is warming.</p>
+  </div>
+
+  <div class="tile demo" id="demo">
+    <h3>Line explorer</h3>
+    <p>Each dot is the hottest reading of one year. Move the two sliders to set the line. The grey strokes are the gaps.</p>
+    <div id="fit"></div>
+  </div>
+  <ol class="tasks">
+    <li>Join the first dot to the last: set 36.1 at 1990 and 35.6 at 2036. The line goes down. What went wrong?</li>
+    <li>Show the least-squares line. Can you make the total smaller than 12.76?</li>
+    <li>1990 was a very unusual year. If it is left out, the least-squares prediction for 2036 rises from 36.3 °C to 36.6 °C. Are you allowed to leave a year out?</li>
+  </ol>
+
+  <div class="tile">
+    <span class="label">The Maths Tool as formulas</span>
+    <p>Write x for the years since 1990 and y for the temperature, and x̄ and ȳ for their means. For the line y = mx + c the total of the squared gaps is</p>
+    <p class="sentence">(y<sub>1</sub> − (mx<sub>1</sub> + c))² + (y<sub>2</sub> − (mx<sub>2</sub> + c))² + … + (y<sub>35</sub> − (mx<sub>35</sub> + c))²</p>
+    <p>and it is smallest when</p>
+    <p class="sentence">c = ȳ − m x̄ &nbsp; and &nbsp; m = [the sum of (x − x̄)(y − ȳ)] ÷ [the sum of (x − x̄)²]</p>
+    <p>The size of a typical gap is √(total ÷ 35).</p>
+  </div>
+  <p><strong>Go further.</strong> These are not needed for the session. They are for anyone who wants more mathematics.</p>
+  <ol class="tasks">
+    <li>Once the line passes through the mean point, show that the total of the squared gaps is a quadratic in the slope m: <span class="sentence">total = Q − 2mR + m²P</span> where P is the sum of (x − x̄)², R is the sum of (x − x̄)(y − ȳ), and Q is the sum of (y − ȳ)². Complete the square to show the smallest total is at m = R ÷ P.</li>
+    <li>For the years 0, 1, 2, …, 34, P = 3570. Prove that for any n whole numbers in a row, the sum of (x − x̄)² is n(n² − 1) ÷ 12.</li>
+    <li>From question 1, show that the smallest total is Q − R² ÷ P. A flat line at the mean has total Q, which here is 21.40. The best line has 12.76. So the line removes 40% of the total. Can a best-fit line ever be worse than the flat line?</li>
+    <li>Why squares? For three numbers a ≤ b ≤ c, find the value k that makes |a − k| + |b − k| + |c − k| smallest, and the value that makes (a − k)² + (b − k)² + (c − k)² smallest. One is the median and the other is the mean. Which rule lets one unusual year, such as 1990, pull harder?</li>
+    <li>Which years steer the slope? Show that raising one year's temperature by 1 °C changes the least-squares slope by (x − x̄) ÷ P. Which years have the most influence, and which has none at all?</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Test the model</h2>
+  <p>You cannot wait until 2036 to find out whether the model is right. But you can hide the last ten years, fit a line to 1990–2014 only, and ask that line about 2015–2024.</p>
+  <details>
+    <summary>Open only when your team has tried this</summary>
+    <div class="table-wrap">
+    <table>
+      <tr><th></th><th>Average for 2015–2024</th></tr>
+      <tr><td>What the line fitted to 1990–2014 predicted</td><td>34.7 °C</td></tr>
+      <tr><td>What really happened</td><td>35.8 °C</td></tr>
+    </table>
+    </div>
+    <p>The model was a full degree too cool. Part of that is 1990: one very hot year at the start flattens the line. If 1990 is left out, the model is still 0.85 °C too cool. So a straight line is likely to be too low for 2036 as well, and a paper should say so.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Paper study: how far can a prediction be trusted?</h2>
+  <p>The pet paper predicts the number of pets in three cities, fifteen years ahead.</p>
+  <figure class="tile paper">
+    <span class="label">From the paper · page 19</span>
+    <img src="../assets/papers/immc2024-team2024030-prediction.png" alt="Section 6.2 of the paper, Predicting Total Pet Numbers: a formula, a paragraph on long-term predictions, and three graphs of the predicted number of pets in Shanghai, Shenzhen and New York over fifteen years.">
+    <figcaption>Section 6.2, "Predicting Total Pet Numbers", from the paper of Team 2024030, International Mathematical Modeling Challenge 2024. Shown for study in class.</figcaption>
+  </figure>
+  <ol class="tasks">
+    <li><span class="tag">Team · 3 min</span> <strong>Find the sentence</strong> that tells you how far to trust this prediction. Is it enough? What would you add?</li>
+  </ol>
+  <p>The nearest is an assumption: the model "assumes that the pet retention rate remains constant or changes at a predictable rate". The page promises sensitivity analyses, but it shows no test against past data and no range around the prediction. A winning paper still has weak places, and today you did what this page left out.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Team Paper: this week's section</h2>
+  <p>Last week, for <a href="../hall.html">the Hall Problem</a>, you said what "best" means for a dismissal and how you would measure it. Today you use that measure. You also need a rate: how many students pass one exit each second.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 7 min</span> The Writer types and the others say what to write: <strong>your rate and where it comes from, then two plans.</strong> Plan A: each floor leaves by its own exit. Plan B: your own idea. Start comparing them by the measure you chose last week. A frame to start from: <span class="sentence">"Our rate is … students a second, which we counted at … (or: which we assume because …). Plan A is … Plan B is … By our measure, the better plan is … because …"</span></li>
+  </ol>
+  <p>If your team has not counted yet, use one student a second at each exit and write it down as an assumption.</p>
+
+  <h2 class="wy-section-title"><span class="num">7</span>Before Session 5</h2>
+  <p id="hall">About 30 minutes, before next Thursday, on the Hall Problem.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team</span> Finish the comparison. For each plan, work out a number for each of your measures, in a small table in your sheet. The diagram on <a href="../hall.html">the Hall Problem page</a> shows how many classes use each exit under Plan A.</li>
+    <li><span class="tag">Team</span> Write three or four sentences in your Team Paper: which plan is better by your measure, by how much, and which assumption the answer depends on most.</li>
+    <li><span class="tag">Extra</span> If there is a crowd at an exit or a staircase this week, count properly. One person counts aloud and another writes down the running total every ten seconds, for at least a minute. Plot the total against the time and fit a line: the slope is the rate, in students per second. Is the rate steady, or does the crowd start slowly, as a sprinter does?</li>
+    <li><span class="tag">Extra</span> Use today's temperature line to predict the hottest day of the year 3000. Write two sentences on why the answer is absurd, and what that says about a straight line.</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 5: a real competition problem, forty minutes, no help. Then AI joins the team. Roles move on one place again. Then go on to <a href="05.html">Session 5</a>.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 4</span></div></footer>
+
+<script src="../assets/line-fit.js"></script>
+<script>LineFit(document.getElementById("fit"), { reveal: true });</script>
+</body>
+</html>

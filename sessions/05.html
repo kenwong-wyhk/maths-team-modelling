@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 5: A real problem, and a new teammate</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>.years td, .years th { padding: .1rem .9rem; font-variant-numeric: tabular-nums; } .ai p { margin: .5em 0; }</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 5 of 9 · <a href="05-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 5</p>
+  <h1>A real problem, and a new teammate</h1>
+  <p class="lede">Today has two halves. First, a Mini Competition: forty minutes on a problem of the kind set in the Hong Kong competition, with no help from anyone. Then you read an answer to the same problem written by AI, and AI joins your team under a rule.</p>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Mini Competition</h2>
+  <div class="rule">
+    <p><strong>Rules.</strong> Forty minutes. No AI, no searching, and no help from me: I will not answer questions about the problem.</p>
+    <p><strong>First,</strong> the Team lead writes a time plan in the first three minutes: who does what, and by when. Leave eight minutes to write.</p>
+    <p><strong>Hand in one page.</strong> Start with a three-sentence summary: what you were asked, what you did, and what you found. Then: the problem restated in your own words; your assumptions, each with a reason; your model; your answer, with a "plus or minus"; and one weakness of your model.</p>
+  </div>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Hong Kong aims to have no vehicle emissions before 2050. One way to follow its progress is the share of vehicles that are electric.</p>
+    <p><strong>Estimate the percentage of electric vehicles among all vehicles in Hong Kong at the end of 2030.</strong></p>
+  </div>
+
+  <p><strong>Data sheet.</strong> Electric vehicles in Hong Kong at the end of each year, read from a chart in the Government's <em>Hong Kong Roadmap on Popularisation of Electric Vehicles</em> (2021), to the nearest hundred.</p>
+  <div class="table-wrap">
+  <table class="years">
+    <tr><th>Year</th><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td><td>2015</td><td>2016</td><td>2017</td><td>2018</td><td>2019</td><td>2020</td></tr>
+    <tr><th>Electric vehicles</th><td>200</td><td>300</td><td>500</td><td>600</td><td>1,600</td><td>4,300</td><td>7,300</td><td>11,200</td><td>11,600</td><td>13,900</td><td>18,500</td></tr>
+  </table>
+  </div>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Date</th><th>Later figures, from Government sources</th></tr>
+    <tr><td>End of 2020</td><td>More than 18,100 of the 18,500 electric vehicles were private cars. They were 2.7% of all private cars.</td></tr>
+    <tr><td>End of October 2023</td><td>70,701 electric vehicles: about 7.7% of all vehicles.</td></tr>
+    <tr><td>End of November 2023</td><td>72,011 electric private cars: about 11.2% of the 645,490 private cars.</td></tr>
+    <tr><td>End of September 2026</td><td>About 186,000 electric vehicles: about 20.1% of all vehicles.</td></tr>
+  </table>
+  </div>
+  <ul>
+    <li>The Government's target is to stop registering new petrol and diesel private cars in 2035 or earlier.</li>
+    <li>Buyers of electric private cars paid a reduced first registration tax for some years. That reduction ended on 31 March 2026.</li>
+  </ul>
+
+  <h2 class="wy-section-title"><span class="num">2</span>What you found</h2>
+  <p>The three teams had one problem and one data sheet, and their answers were far apart. The reason is how each team continued the curve after 2026.</p>
+  <figure class="tile paper">
+    <span class="label">Three ways to continue the same three dots</span>
+    <img src="../assets/ev-curves.svg" alt="The share of electric vehicles in Hong Kong from 2020, with three models continued to 2035: a straight line, compound growth, and growth with a ceiling. The second passes 100 per cent in 2031.">
+  </figure>
+  <p>In each formula P is the share of electric vehicles in per cent, and t is the number of years after September 2026. The end of 2030 is t = 4.25.</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Model</th><th>What it assumes</th><th>Formula</th><th>End of 2030</th></tr>
+    <tr><td>Straight line</td><td>The share rises by the same amount each year, as simple interest does.</td><td>P = 20.1 + 4.25t</td><td>38%</td></tr>
+    <tr><td>Compound growth</td><td>The number of electric vehicles has the same growth factor each year, as compound interest does.</td><td>P = 20.1 × 1.39<sup>t</sup></td><td>81%, and more than 100% during 2031</td></tr>
+    <tr><td>Growth with a ceiling</td><td>The ratio of electric to non-electric vehicles has the same growth factor each year.</td><td>P ÷ (100 − P) = 0.252 × 1.46<sup>t</sup></td><td>56%</td></tr>
+  </table>
+  </div>
+  <div class="tile">
+    <span class="label">Today's Maths Tool: growth with a ceiling</span>
+    <p>A share cannot pass 100%. Compound growth, P = 20.1 × 1.39<sup>t</sup>, has no ceiling, so it must go wrong in the end: here during 2031.</p>
+    <p><strong>The idea.</strong> Do not let the share itself grow by a constant factor. Take the <strong>ratio of electric vehicles to non-electric vehicles</strong>, P : (100 − P), and let that ratio grow by a constant factor. The ratio can grow for ever while P stays below 100: a ratio of 1 : 1 is 50%, 9 : 1 is 90%, and 99 : 1 is 99%.</p>
+    <p><strong>Finding the growth factor.</strong> In October 2023 the ratio was 7.7 ÷ 92.3 = 0.083. In September 2026 it was 20.1 ÷ 79.9 = 0.252. So in 2.92 years it was multiplied by 0.252 ÷ 0.083 = 3.02, and the growth factor for one year is 3.02<sup>1 ÷ 2.92</sup> = 1.46. This is the calculation you do for compound interest, run backwards.</p>
+    <p><strong>The model.</strong> P ÷ (100 − P) = 0.252 × 1.46<sup>t</sup>. At t = 4.25 the right-hand side is 1.26, so P = 100 × 1.26 ÷ 2.26 = 56.</p>
+    <p><strong>Solved for P.</strong> Rearranging gives</p>
+    <p class="sentence">P = 100 ÷ (1 + 3.98 × 1.46<sup>−t</sup>)</p>
+    <p>As t grows, 1.46<sup>−t</sup> shrinks towards 0 and P climbs towards 100 without reaching it. Mathematicians call this logistic growth.</p>
+  </div>
+  <p><strong>Go further.</strong> These are not needed for the session. They are for anyone who wants them.</p>
+  <ol class="tasks">
+    <li>Rearrange P ÷ (100 − P) = 0.252 × 1.46<sup>t</sup> to get the formula for P above. Where does the 3.98 come from?</li>
+    <li>Use the model to find when half of all vehicles are electric. You need to solve 0.252 × 1.46<sup>t</sup> = 1.</li>
+    <li>In which year does the model say the share rises fastest? Calculate the rise from one year to the next for several years, find the largest, and say what the share is in that year. Can you explain why?</li>
+    <li>A second way to build a ceiling, as a spreadsheet does compound interest year by year. With compound interest, each year you add r% of what you have. Now add r% of what you have, multiplied by the fraction still to go:
+      <span class="sentence">P<sub>next</sub> = P + r × P × (100 − P) ÷ 100</span>
+      Start at P = 20.1 with r = 0.38 and fill down four years and a quarter. You should get about 54%, not 56%. Why are the two answers different?</li>
+    <li>The pet paper used this second form to predict the number of households: look at equation 6.2 on page 18 of the paper I handed out. What plays the part of the ceiling there?</li>
+  </ol>
+  <p>Which of the three is right? Nobody knows yet. A paper should say which it chose and why, and what the others would give.</p>
+
+  <h2 class="wy-section-title"><span class="num">3</span>AI joins the team</h2>
+  <p>An AI model wrote this answer to the same problem in about ten seconds.</p>
+  <div class="tile ai">
+    <span class="label">The AI's answer</span>
+    <p><strong>Estimating the share of electric cars in Hong Kong in 2030</strong></p>
+    <p>Electric cars are becoming increasingly popular in Hong Kong thanks to strong government support and growing environmental awareness. This analysis estimates what percentage of cars will be electric by 2030.</p>
+    <p><strong>Step 1: Current situation.</strong> In 2023, electric vehicles made up 11.2% of vehicles in Hong Kong. There were 105,000 electric vehicles at the end of 2024, and about 186,000 by September 2026. Hong Kong has approximately 925,000 vehicles in total.</p>
+    <p><strong>Step 2: Growth rate.</strong> The number of electric vehicles has been growing at roughly 40% per year. This strong growth is expected to continue as more models become available and charging infrastructure improves.</p>
+    <p><strong>Step 3: Projection.</strong> From September 2026 to the end of 2030 is 4.25 years. Applying 40% annual growth:</p>
+    <p>186,000 × 1.4<sup>4.25</sup> ≈ 777,000 electric vehicles</p>
+    <p><strong>Step 4: Result.</strong> 777,000 ÷ 925,000 = 84.0%</p>
+    <p><strong>Conclusion.</strong> By the end of 2030, electric vehicles will account for 84.0% of all vehicles in Hong Kong. This demonstrates that Hong Kong is firmly on track to achieve its zero-emission goals well ahead of schedule.</p>
+  </div>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> Read it as judges, with <a href="../rubric.html">the Rubric</a>. Find three things a judge would hold against it.</li>
+  </ol>
+  <details>
+    <summary>Open only when your team has found three</summary>
+    <ul>
+      <li><strong>No assumptions.</strong> It never says what it takes for granted, so nothing can be checked.</li>
+      <li><strong>A number from nowhere.</strong> "105,000 at the end of 2024" has no source and is not on the data sheet.</li>
+      <li><strong>Two different percentages mixed.</strong> 11.2% is the share of private cars, not of all vehicles.</li>
+      <li><strong>Growth for ever.</strong> The same method gives more than 100% a year later, and it says nothing about the tax change in 2026.</li>
+      <li><strong>No test, no weakness, and "84.0%".</strong> Three figures of certainty from a model that was never checked.</li>
+    </ul>
+    <p>It is fluent, fast and sure of itself. A paper like this is what a judge sees when a team lets AI do the thinking.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">4</span>The AI Teammate Rule</h2>
+  <p>From today you may use AI, as a teammate with named jobs.</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>AI may</th><th>AI never</th></tr>
+    <tr><td>Attack your assumptions.<br>Help you find data, which you then trace to its source.<br>Help with a formula or code.<br>Check your English.<br>Typeset your finished paper.</td><td>Chooses your model.<br>Writes your paper.<br><br>Those are yours, in your own words.</td></tr>
+  </table>
+  </div>
+  <p><strong>The AI Log.</strong> Every use goes in your team's log: the date and tool, the job, what you asked in your exact words, what it gave you, and what you did with it and how you checked it. In a competition the log is printed at the end of your paper.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 6 min</span> Try the first job on the model you built today. Type your own assumptions into the AI and ask: <span class="sentence">"Here are the assumptions of our model: … What are the three weakest, and why?"</span> Decide which of its criticisms you accept and which you reject, with a reason. The Writer makes the first entry in your AI Log.</li>
+  </ol>
+  <p>You are the judge of what it says. If you cannot tell whether a criticism is right, it does not go in your paper.</p>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Paper study: an honest AI report</h2>
+  <p>The league paper from Session 2. Every paper in the international competition must end with a report on its use of AI.</p>
+  <figure class="tile paper">
+    <span class="label">From the paper · page 28</span>
+    <img src="../assets/papers/immc2025-team2025006-ai-report.png" alt="The Report on Use of AI from the paper: AI tools were used in two ways, an autocomplete feature while coding and a question about formatting, with the exact question and the start of the answer printed.">
+    <figcaption>"Report on Use of AI", from the paper of Team 2025006, International Mathematical Modeling Challenge 2025. Shown for study in class.</figcaption>
+  </figure>
+  <ol class="tasks">
+    <li><span class="tag">Team · 2 min</span> <strong>Find what this team used AI for,</strong> and what it did not use it for.</li>
+  </ol>
+  <p>Two small jobs: completing lines of code, and how to draw a box in a document. The team prints its exact question and the answer it received. The model and the writing were the team's own, and the paper won.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Before Session 6</h2>
+  <p id="hall">About 30 minutes, before next Thursday, on <a href="../hall.html">the Hall Problem</a>. AI is now allowed for its named jobs, with a log.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team</span> Write the opening section of your Team Paper: the Hall Problem restated in your own words. Say what is being decided, for whom, what "best" means in your paper, and what you leave out.</li>
+    <li><span class="tag">Team</span> Find one outside source that gives a number your model needs, for example how many people can pass through a doorway each second. Write down who made it, when, and for what purpose, and say whether you trust it more or less than your own count. You may use AI to help you search, but you must open the source yourselves, and the search goes in your AI Log.</li>
+    <li><span class="tag">Team</span> At the very top of your Team Paper, write a summary of 50 words or fewer: the question, your approach so far, and your best answer so far. Update it every week from now on. Judges often decide from the summary whether to read on.</li>
+    <li><span class="tag">Extra</span> Give the AI your team's assumptions for the Hall Problem and ask for the three weakest. Log it. Change your paper only where you agree.</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 6: you test today's electric-vehicle model until it breaks, and find out which assumption your answer depends on most. Roles move on one place again. Then go on to <a href="06.html">Session 6</a>.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 5</span></div></footer>
+</body>
+</html>

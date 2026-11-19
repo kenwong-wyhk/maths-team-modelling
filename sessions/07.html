@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 7: From paragraphs to a paper</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 7 of 9 · <a href="07-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 7</p>
+  <h1>From paragraphs to a paper</h1>
+  <p class="lede">For six weeks you have written one section of the Hall Problem a week. Today they become one paper. First you see what judges do with a whole paper: they check that every part of the question is answered, and they read the summary before anything else.</p>
+
+  <div class="rule">
+    <p><strong>Roles move on one place for the last time.</strong> At the end of today each team proposes the roles it will keep for the Mock Competition and the competitions after it.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Cold start: a real problem with several parts</h2>
+  <p>This is the problem from the MathWorks Math Modeling Challenge 2023, a competition for school teams in the United States and the United Kingdom: <a href="https://m3challenge.siam.org/resources/archives/2023-year-at-a-glance/2023-problem-remote-work-fad-or-future/">Ride Like the Wind Without Getting Winded: the growth of e-bike use</a>. I hand each team a printed copy.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> Read every sentence, not only the questions. <strong>List everything a judge will check that you did.</strong> Beside each, write the words in the problem that ask for it.</li>
+  </ol>
+  <details>
+    <summary>The list: open only when your team has made its own</summary>
+    <ol>
+      <li>A model that predicts the growth of e-bike sales (Q1).</li>
+      <li>Two numbers from it: the sales two years from now, and five years from now (Q1).</li>
+      <li>A choice of country, the United States or the United Kingdom or both, stated.</li>
+      <li>One or more factors behind the growth, and an argument, using a model, for whether each was a significant reason (Q2).</li>
+      <li>The effect on carbon emissions, traffic congestion, health, or other factors you choose, as numbers (Q3).</li>
+      <li>A one-page executive summary, written as a brief to the head of the transport department of the United Kingdom or the United States.</li>
+      <li>At most 20 pages, not counting the code and the references.</li>
+      <li>Every source cited, including the competition's data file if you use it.</li>
+      <li>Any code you wrote, as an appendix. This is needed only for the computing prize.</li>
+    </ol>
+    <p>The problem numbers three questions, but a judge checks nine things. Number 6 is the one teams forget: the summary is written to a person, who must be able to act on it. A task with no section in your paper is a task you have not answered.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Paper study: two summaries of one problem</h2>
+  <p>The competition publishes sample papers on this problem, each with a cover sheet saying what the judges liked and what could be better. I hand you the summary page of two of them, Summary A and Summary B, with nothing to say which the judges rated higher.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 4 min</span> <strong>Which would a judge rate higher?</strong> Write the first sentence of the judges' note on the weaker one.</li>
+  </ol>
+  <details>
+    <summary>What the judges wrote: open only when your team has decided</summary>
+    <p><strong>Summary A</strong> is from the paper the judges rated "excellent", and <strong>Summary B</strong> from one they rated "average". Both are on the competition's <a href="https://m3challenge.siam.org/resources/archives/2023-year-at-a-glance/2023-sample-papers/">sample papers page</a>; the judges' notes are on page 1 of each, and the summaries on page 2.</p>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th></th><th>What the judges liked</th><th>What could be better</th></tr>
+      <tr><td>A (excellent)</td><td>The summary gives the results and shows how they were found. The team looked at the pattern in the gaps between its curve and the data (the residuals of Session 4), not only at one score of fit. Its graphs are well labelled, and so are its sensitivity analysis and its strengths and weaknesses.</td><td>The rules of the simulation in Q3 are not stated, so nobody could repeat it. Citations are not used consistently.</td></tr>
+      <tr><td>B (average)</td><td>The summary describes the context and the problem well.</td><td>The summary has no results, and no idea of how they were found. The three parts disagree with each other. Formulas appear with little reason, the units are unclear, there is no sensitivity analysis, and no source is cited in the text.</td></tr>
+    </table>
+    </div>
+    <p><strong>Excellent is not flawless.</strong> Check A against our <a href="../standards.html">Paper Standards</a>. It forecasts "1,922,281 e-bikes" for 2025: seven figures for a forecast (Standards, section 5). And neither summary is written as a brief to the head of the department, which the problem asked for.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">The map of paper A</span>
+    <p>The section numbers of paper A, placed under the steps of the modelling cycle.</p>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th></th><th>Analyse</th><th>Formulate</th><th>Solve</th><th>Interpret</th><th>Evaluate</th></tr>
+      <tr><td>Part I: sales</td><td>3.1 Restatement</td><td>3.2 Assumptions, 3.3.1 Variables</td><td>3.3.2 Regression</td><td>3.4 Results</td><td>3.4.1 Validation, 3.4.2 Sensitivity, 3.5 Strengths and weaknesses</td></tr>
+      <tr><td>Part II: factors</td><td>4.1 Restatement</td><td>4.2 Assumptions, 4.3 Variables and factors</td><td>4.4 Model</td><td>4.5 Results</td><td>4.5.1 Validation, 4.5.2 Sensitivity, 4.6 Strengths and weaknesses</td></tr>
+      <tr><td>Part III: impact</td><td>5.1 Restatement</td><td>5.2 Assumptions, 5.3.1 Variables</td><td>5.3.2 Simulation</td><td>5.4 Results</td><td>5.4.1 Sensitivity, 5.5 Strengths and weaknesses</td></tr>
+    </table>
+    </div>
+    <p>The rest is for the reader: 1 Executive Summary, 6 Conclusion, 7 References and code. <strong>A paper with three tasks runs the cycle three times.</strong></p>
+  </div>
+
+  <p>The judge's commentary on this problem makes a point no team found: the sales figures run through the 2020 lockdowns, so a model could be split into two parts, before and after. That is the piecewise model from Session 2. The judge also warns that many teams used complicated methods where a simple model would do, and that the analysis of a model matters as much as the model itself. The full commentary is on the competition's <a href="https://m3challenge.siam.org/resources/archives/2023-year-at-a-glance/2023-judge-commentary/">judge commentary page</a>.</p>
+
+  <p><strong>Go further.</strong> These are not needed for the session. They use the competition's own data: e-bikes sold in the United States, in thousands.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Year</th><td>2018</td><td>2019</td><td>2020</td><td>2021</td><td>2022</td></tr>
+    <tr><th>Thousands sold</th><td>369</td><td>423</td><td>416</td><td>750</td><td>928</td></tr>
+  </table>
+  </div>
+  <ol class="tasks">
+    <li>Find the growth factor for each year, for example 423 ÷ 369 for 2019. Which year breaks the pattern, and what happened that year?</li>
+    <li>Split the model at 2020, as the judge suggested. Use the growth factor from 2021 to 2022 alone to predict the sales in 2025 and 2028. Then use one growth factor for the whole of 2018 to 2022, (928 ÷ 369)<sup>1/4</sup>. Compare both with paper A's 1.92 million and 3.97 million. What does each of the three assume about 2020?</li>
+    <li>Paper A predicts 5.27 million e-bikes sold in the United Kingdom in 2028: 7.8% of the population in one year, when about 3.4% buy a car. The judges called its claim that compound growth suits the long term "problematic". Use growth with a ceiling, from Session 5, to say why.</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">3</span>Team time: finish your paper</h2>
+  <p><strong>35 minutes.</strong> Your Team Paper has gained a heading every week. Today put the sections in the order a judge expects, and fill the gaps.</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>In this order</th><th>What you already have</th></tr>
+    <tr><td>1. Summary</td><td>The 50-word summary from Session 5, now up to one page. Written first.</td></tr>
+    <tr><td>2. The problem, and what "best" means</td><td>Your problem restated (Session 5) and "What 'best' means" (Session 3).</td></tr>
+    <tr><td>3. Assumptions and variables</td><td>"Assumptions and justifications" (Session 1), each with its four parts (Session 6), and a new table of symbols.</td></tr>
+    <tr><td>4. The model</td><td>"Testing and refining the model" (Session 2: the model in stages) and "Our data" (Session 4: your rate).</td></tr>
+    <tr><td>5. Results</td><td>Your best plan against Plan A, found with the two tools (Session 6).</td></tr>
+    <tr><td>6. Testing the model</td><td>Your estimate against the time measured (Session 2), and the sensitivity analysis from "Testing the model" (Session 6).</td></tr>
+    <tr><td>7. Strengths and weaknesses</td><td>Session 6.</td></tr>
+    <tr><td>8. Conclusion, and a letter to the Principal</td><td>New today.</td></tr>
+    <tr><td>9. References, and the report on AI use</td><td>Your sources, and your AI Log from Session 5.</td></tr>
+  </table>
+  </div>
+  <ol class="tasks">
+    <li><span class="tag">Team lead</span> Write a time plan for the 35 minutes, and move the sections into this order. At minute 25, do the last check from the <a href="../standards.html">Paper Standards</a>: read the summary with the body open beside it, and tick every number.</li>
+    <li><span class="tag">Writer</span> <strong>Write the summary first.</strong> Up to one page: the problem, what you did, what you found with its numbers and range, and what you recommend. Someone who reads nothing else must know your answer.</li>
+    <li><span class="tag">Modeller</span> <strong>Map the tasks.</strong> List every part of the Hall Problem (the seating plan, the exit for each class, the order of leaving, what "best" means, your recommendation) and the section that answers each. Then check that every assumption has its four parts and is used somewhere. Delete any that is not.</li>
+    <li><span class="tag">Data lead</span> Bring every chart and table up to the Paper Standards: a number and a title, labelled axes with units, the source, and a sentence in the text that refers to it. Then make the table of symbols, and number the references, with a citation in the text wherever each is used.</li>
+    <li><span class="tag">Team</span> In the last two minutes, agree the roles you will keep. The Team lead writes them on the slip, with one reason for each.</li>
+  </ol>
+  <p>You do not need LaTeX: judges give no marks for typesetting. If your team wants it, AI may typeset your finished text, and you check the result.</p>
+  <details>
+    <summary>Hint card: open only after ten minutes of trying</summary>
+    <p>A summary in four parts, one short paragraph each:</p>
+    <ol>
+      <li><strong>The question.</strong> What is being decided, and for whom.</li>
+      <li><strong>What we did.</strong> The model in one or two sentences, with the assumption it rests on most.</li>
+      <li><strong>What we found.</strong> The plan, the number that shows it is better than Plan A, and a range.</li>
+      <li><strong>What we recommend.</strong> The plan, and the one thing to check before trusting it.</li>
+    </ol>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">4</span>What you found: the summary test</h2>
+  <ol class="tasks">
+    <li><span class="tag">Team · 3 min</span> Swap summaries with another team, and read only the summary. Write down: <strong>the plan it recommends, the number behind it, and the first place you got lost.</strong> Hand it back.</li>
+  </ol>
+  <p>If the readers wrote a different plan or a different number from the one you meant, your summary has failed its test, however good your model is. Then one team defends its summary for three minutes; I choose who answers.</p>
+  <div class="tile">
+    <span class="label">Today's habit: the judge's first five minutes</span>
+    <p>There is no new Maths Tool this week. This is what a judge does before reading closely:</p>
+    <ol>
+      <li>Read the summary. What was found, and with what numbers?</li>
+      <li>Check the tasks. Is every part of the question answered?</li>
+      <li>Pick one number in the summary and find it in the body. Is it the same?</li>
+      <li>Look at the charts. Is each titled and labelled, with a source?</li>
+      <li>Turn to the references. Are they cited in the text, or only listed at the end?</li>
+    </ol>
+    <p>A paper that fails here is read with suspicion from then on. The Team lead does these five checks before every hand-in.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Team Paper: a letter to the Principal</h2>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> Start a one-page letter to the Principal: what you recommend, the number that shows it is better, what it changes for students and teachers, and how it could be tried at one assembly and timed. A frame to start from: <span class="sentence">"Dear Principal, We recommend … At present the hall takes … With our plan … We would like to try it at …, and we would measure …"</span></li>
+  </ol>
+  <p>A judge reads the summary. The Principal reads the letter. Neither reads your model first.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Before Session 8</h2>
+  <p id="hall">About 45 minutes this week, in two parts, because your paper is finished this week.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team, by Monday evening</span> Fix what the summary test found. Finish the letter to the Principal. The Team lead does the last check from the Paper Standards. Then share your Team Paper with the team that will score it.</li>
+    <li><span class="tag">Team, by Wednesday evening</span> Score the next team's paper: Junior Team A scores Junior Team B, Junior Team B scores the Senior Team, and the Senior Team scores Junior Team A. Each member takes one or two rows of the <a href="../rubric.html">Rubric</a>; together, go through the <a href="../standards.html">Paper Standards</a>; and write down the first place you got lost. Feedback, not marks.</li>
+    <li><span class="tag">Senior Team</span> Work through the <a href="../senior.html">Senior study pack</a> before Session 8.</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 8: the Mock Competition starts, with an unseen problem with several tasks and a week to answer it. The rules: a time plan on day 1; a rough draft of every section, however short, by day 3; a ten-minute check-in every day; and the Team lead's last check before you hand in. Your roles are fixed from now on.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 7</span></div></footer>
+</body>
+</html>

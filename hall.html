@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hall Problem</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>The problem for your Team Paper</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Team Paper · Phase One</p>
+  <h1>The Hall Problem</h1>
+  <p class="lede">Every team writes one paper on this question, from the first meeting to Session 7. Each week you learn one tool on a small problem, then use it here.</p>
+
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>After an assembly, the whole school leaves the hall and every class returns to its own classroom.</p>
+    <p><strong>What is the best way to dismiss the school from the hall?</strong></p>
+  </div>
+  <p>There is no answer key. You decide what "best" means, you build the model, and you defend it. If a team's plan is convincing, I will ask the school to try it.</p>
+
+  <h2 class="wy-section-title"><span class="num">1</span>What you are given</h2>
+  <ul>
+    <li><strong>The hall</strong> is in the Wu Jieh Yee Building, on the second floor.</li>
+    <li><strong>It has three main exits.</strong> One leads down to the ground floor, past the chapel, and arrives near room C04. One leads to the first floor, near room C11. One stays on the second floor and leads towards room C21.</li>
+    <li><strong>There are 25 classes</strong>, with about 36 students in each.</li>
+    <li><strong>Every class goes back to its own classroom.</strong> The classrooms are on three floors of the Classroom Wing, shown below. Staircase A joins the three floors.</li>
+  </ul>
+  <figure class="tile paper">
+    <span class="label">The Classroom Wing and the hall, 2026–2027</span>
+    <img src="assets/hall-map.svg" alt="A side view of the Classroom Wing. Second floor, from the far end: C28 5K, C27 5H, C26 5Y, C25 5W, C24 4K, C23 4H, Staircase A, C22 4Y, C21 4W. First floor: L13 6K, C18 6H, C17 6Y, C16 6W, C15 1K, C14 1H, C13 1C, Staircase A, C12 1Y, C11 1W. Ground floor: C08 3K, C07 3H, C06 3Y, C05 3W, C04 2K, C03 2H, Staircase A, C02 2Y, C01 2W. The hall is on the second floor, with one exit to each floor: to the ground floor near C04, to the first floor near C11, and to the second floor towards C21.">
+    <figcaption>A diagram, not a plan: it is not to scale. Walk the routes yourselves before you trust it.</figcaption>
+  </figure>
+
+  <h2 class="wy-section-title"><span class="num">2</span>What you may change</h2>
+  <p>At present the discipline head calls the dismissal. Your paper may propose something different. You are free to design:</p>
+  <ul>
+    <li><strong>The seating plan:</strong> where each class sits in the hall.</li>
+    <li><strong>The exits:</strong> which exit each class uses.</li>
+    <li><strong>The order:</strong> who leaves first, who waits, and how the call is given.</li>
+  </ul>
+  <p>You may not change the building, the classrooms or the number of students.</p>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you must find out yourselves</h2>
+  <p>Nobody will give you these. A model is only as good as the numbers in it, so measure what you can and write down the rest as assumptions.</p>
+  <ul>
+    <li>How wide each exit is, and how many students pass through it in a minute.</li>
+    <li>How long it takes to walk each route, including the stairs.</li>
+    <li>Where the crowd slows down or stops, and why.</li>
+    <li>How long a dismissal takes now.</li>
+  </ul>
+  <div class="rule">
+    <p><strong>How to collect data.</strong> Count and time only. Do not record names, do not photograph or film anyone, and do not hold anyone up. Ask me before you go into the hall to measure.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Two tools for the decision</h2>
+  <p>Comparing two plans tells you which is better. These two tools help you find the best one. Use them after Session 6.</p>
+  <div class="tile">
+    <span class="label">The bottleneck rule</span>
+    <p>A stream of students passes through several stages in a row: out of the seats, through an exit, down the stairs, along a corridor. However fast the other stages are, the stream can go no faster than its slowest stage. If the slowest stage lets r students through each second, and N students must pass it, then the time for the stream is about</p>
+    <p class="sentence">T ≈ N ÷ r + w</p>
+    <p>where w is the time the last student then takes to walk to his room. So find the slowest stage first: speeding up any other stage changes almost nothing.</p>
+  </div>
+  <div class="tile">
+    <span class="label">The ordering rule</span>
+    <p>Several classes leave one after another through the same exit. Class i takes p<sub>i</sub> seconds to pass the exit, then walks for w<sub>i</sub> seconds to its room. If you want the <strong>last class to be seated as early as possible</strong>, send the classes in order of <strong>longest walk first</strong>.</p>
+    <p>Why: take any two classes next to each other in the queue, where the one with the shorter walk goes first. Swap them. The class now going first finishes its walk no later than the second class did before, and the class now going second finishes at the same moment as the pair did before, but has a shorter walk. So the swap never makes the last arrival later. Keep swapping until the order is longest walk first.</p>
+  </div>
+  <p><strong>Go further.</strong></p>
+  <ol class="tasks">
+    <li>Write the proof above with symbols. Start the pair at time S, with walks w<sub>i</sub> &lt; w<sub>j</sub>, and compare the larger of the two finishing times before and after the swap.</li>
+    <li>If every class has the same size, show that the <em>average</em> time a class is seated is the same for every order. So "best" must mean the last class, not the average class, for the order to matter. Which does your paper use?</li>
+    <li>When might "longest walk first" be a bad plan in the real building? What would your model need to include to see it?</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">5</span>How your Team Paper grows</h2>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>When</th><th>What you add</th></tr>
+    <tr><td>Before Session 1</td><td>At the assembly on 25 Nov, watch the dismissal. Write down three things that slow it down.</td></tr>
+    <tr><td>Session 1</td><td>Your assumptions, each with its justification. Then a first estimate of how long the hall takes to empty.</td></tr>
+    <tr><td>Session 2</td><td>Your estimate against the measured time. A second model, in stages.</td></tr>
+    <tr><td>Session 3</td><td>What "best" means, and how you will measure it.</td></tr>
+    <tr><td>Session 4</td><td>A rate, from your own count if you can make one, and two plans compared by your measure of "best".</td></tr>
+    <tr><td>Session 5</td><td>The problem restated in your own words, one outside source found and judged, and a summary of 50 words at the top, updated every week from now on.</td></tr>
+    <tr><td>Session 6</td><td>A test of your model: what changes the answer most, and where the model is weak. Then the best plan, found with the two tools above.</td></tr>
+    <tr><td>Session 7</td><td>The complete paper, checked against the <a href="standards.html">Paper Standards</a>, with a one-page summary and a letter to the Principal.</td></tr>
+  </table>
+  </div>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>The Hall Problem</span></div></footer>
+</body>
+</html>

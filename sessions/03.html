@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 3: What does "best" mean?</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 3 of 9 · <a href="03-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 3</p>
+  <h1>What does "best" mean?</h1>
+  <p class="lede">The runners gave you numbers to work with. Today's problem has no number in it at all. Before you can calculate anything, you have to decide what to measure and how much each thing matters.</p>
+
+  <div class="rule">
+    <p><strong>Today's rule is the same.</strong> Write down what you are assuming before you calculate. No AI and no searching. One device per team, for the spreadsheet.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Cold start</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p><strong>How can a student's body measurements tell him which sport suits him best?</strong></p>
+  </div>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> No card and no hint. Restate the problem in your own words. Then list what your team must decide before any number can appear. The Modeller writes.</li>
+    <li><span class="tag">Writer</span> Say what "best" means in your team's version. The sport he would win at? Enjoy most? Be least likely to be hurt in? Each is a different problem.</li>
+  </ol>
+  <p>This is how a competition begins: a question, your team, and nothing else. Choosing what "best" means, and writing it down, is the Analyse step.</p>
+
+  <h2 class="wy-section-title"><span class="num">2</span>The student</h2>
+  <p>One Form 2 student. Three sports: basketball, gymnastics and distance running. The numbers are made up for this exercise; they are not real fitness figures.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th></th><th>His measurement</th><th>Lowest in his form</th><th>Highest in his form</th></tr>
+    <tr><th>Height</th><td>168 cm</td><td>145 cm</td><td>180 cm</td></tr>
+    <tr><th>Vertical jump</th><td>38 cm</td><td>20 cm</td><td>55 cm</td></tr>
+    <tr><th>Reaction time</th><td>0.24 s</td><td>0.18 s</td><td>0.35 s</td></tr>
+    <tr><th>Flexibility (sit and reach)</th><td>30 cm</td><td>5 cm</td><td>40 cm</td></tr>
+    <tr><th>1 km run</th><td>5.0 min</td><td>3.5 min</td><td>7.0 min</td></tr>
+  </table>
+  </div>
+  <p>168 + 0.24 means nothing. You cannot add centimetres to seconds, so finding a way to combine the five measurements is your first job.</p>
+
+  <p><strong>Team time: 35 minutes.</strong> The card gives the data and the rules. The method is yours.</p>
+  <ol class="tasks">
+    <li><span class="tag">Modeller</span> Write what "best fit" means for your team, and two things your model will leave out.</li>
+    <li><span class="tag">Data lead</span> In a sheet, put all five measurements on one scale from 0 to 10, so that they can be combined. Take care where a smaller number is the better one.</li>
+    <li><span class="tag">Team</span> For each sport, decide how much each measurement matters: a weight from 0 to 10. <span class="tag">Writer</span> For each sport, write the reason for its largest weight and its smallest.</li>
+    <li><span class="tag">Team</span> Build a suitability score for each sport, and rank the three sports for this student. No method is given.</li>
+    <li><span class="tag">Every team</span> Is a taller athlete always better? For which of the three sports is that doubtful, and what will your model do about it?</li>
+    <li><span class="tag">Every team</span> Look at your top two sports. Choose one weight. <strong>Find exactly how far it must change before the winner changes.</strong> An equation gives the exact answer; trying numbers does not.</li>
+    <li><span class="tag">Every team</span> Add up the five weights for each sport. Are the three totals equal? If they are not, is the comparison fair? Change your model so that it is.</li>
+    <li><span class="tag">Extra</span> A different model. An ideal basketball player scores (9, 8, 7, 5, 6) on the five measurements, an ideal gymnast (2, 8, 7, 10, 5) and an ideal distance runner (5, 4, 5, 5, 10). Find how far this student is from each ideal: take the five differences, square them, add them, and take the square root, as Pythagoras' theorem does with two. Does the nearest ideal agree with your ranking?</li>
+  </ol>
+  <details>
+    <summary>Hint card: open only after ten minutes of trying</summary>
+    <p><strong>Normalising.</strong> Score out of 10 = 10 × (value − lowest) ÷ (highest − lowest). Height: 10 × (168 − 145) ÷ (180 − 145) = 6.6.</p>
+    <p><strong>When smaller is better,</strong> measure from the other end: 10 × (highest − value) ÷ (highest − lowest). Reaction time: 10 × (0.35 − 0.24) ÷ (0.35 − 0.18) = 6.5.</p>
+    <p><strong>One score for a sport.</strong> Multiply each score by its weight and add the five results. In a sheet: <code>=SUMPRODUCT(B2:B6,C2:C6)</code>.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you found</h2>
+  <p>There is no answer to open here. The three teams had the same student and the same five measurements, and they did not have to agree. Each team's answer is right for its own weights, so the weights, and the reasons for them, are where a judge will look.</p>
+  <div class="tile">
+    <span class="label">Today's Maths Tool: what you built has a name</span>
+    <p><strong>Normalising.</strong> (value − lowest) ÷ (highest − lowest). For height: (168 − 145) ÷ (180 − 145) = 0.66. Every measurement becomes a number from 0 to 1 with no units. Multiply by 10 for a score out of 10.</p>
+    <p><strong>A weighted sum.</strong> S = k<sub>1</sub>x<sub>1</sub> + k<sub>2</sub>x<sub>2</sub> + k<sub>3</sub>x<sub>3</sub> + … Each x is a score. Each k is a weight: how much that score matters for this sport. A weight is your judgement, so it needs a reason.</p>
+    <p>Did your team meet the two traps? For some measurements, smaller is better. And for some sports, so is a smaller athlete.</p>
+  </div>
+
+  <div class="tile demo" id="demo">
+    <h3>Weights explorer</h3>
+    <p>The same student, with my weights. The number beside each measurement is his score out of 10, rounded to one decimal place. Choose a sport and move its weights.</p>
+    <div id="weights"></div>
+  </div>
+  <ol class="tasks">
+    <li>With my weights basketball wins by 0.1. Would you tell him to choose basketball? What does a close score mean?</li>
+    <li>Lower the weight of height for basketball. At what weight does the winner change?</li>
+    <li>Untick the box. Why is running suddenly last, and which way of scoring is fair?</li>
+  </ol>
+  <p>Changing one input to see whether the answer survives is called sensitivity analysis. You saw it with the basketballs.</p>
+
+  <div class="tile">
+    <span class="label">The Maths Tool as formulas</span>
+    <p>Write m for a measurement, and L and H for the lowest and highest in the form. The normalised score is</p>
+    <p class="sentence">x = (m − L) ÷ (H − L), &nbsp; or (H − m) ÷ (H − L) when smaller is better</p>
+    <p>With weights k<sub>1</sub>, k<sub>2</sub>, … the weighted sum and the weighted average are</p>
+    <p class="sentence">S = k<sub>1</sub>x<sub>1</sub> + k<sub>2</sub>x<sub>2</sub> + … + k<sub>5</sub>x<sub>5</sub> &nbsp; and &nbsp; A = S ÷ (k<sub>1</sub> + k<sub>2</sub> + … + k<sub>5</sub>)</p>
+    <p>and the distance from an ideal with scores p<sub>1</sub>, p<sub>2</sub>, … is</p>
+    <p class="sentence">D = √((x<sub>1</sub> − p<sub>1</sub>)² + (x<sub>2</sub> − p<sub>2</sub>)² + … + (x<sub>5</sub> − p<sub>5</sub>)²)</p>
+  </div>
+  <p><strong>Go further.</strong> These are not needed for the session. They are for anyone who wants more mathematics.</p>
+  <ol class="tasks">
+    <li>Show that a normalised score always lies between 0 and 1, and that the "smaller is better" score is 1 minus the ordinary one.</li>
+    <li>Prove that a weighted average of scores always lies between the smallest score and the largest. So with any weights at all, no sport can score this student above 7.1 out of 10. Why does that fail for the weighted sum?</li>
+    <li>If every weight of one sport is doubled, what happens to its weighted sum? To its weighted average? Prove both.</li>
+    <li>The exact tipping point, in general. Sport B has score B. Sport A has weighted average (a + kx) ÷ (w + k), where k is the one weight you change and x is the student's score on that measurement. Show that the two sports tie when <span class="sentence">k = (a − Bw) ÷ (B − x)</span> What happens when x = B, and what does that mean?</li>
+    <li>Multiply instead of add. For two measurements with equal weights, compare the average (x<sub>1</sub> + x<sub>2</sub>) ÷ 2 with the product score √(x<sub>1</sub> × x<sub>2</sub>). Prove that the product score is never the larger. What does the product score do to a student who scores 0 on one measurement, and is that what you want?</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">4</span>The Rubric</h2>
+  <p>From today there is <a href="../rubric.html">a Rubric</a>: one page, six rows, no marks. Today you use two of them.</p>
+  <ul>
+    <li><strong>Analyse.</strong> The problem is restated in the team's own words, and it says what "best" means.</li>
+    <li><strong>Formulate.</strong> Every assumption and every weight has a reason that someone who disagrees could accept.</li>
+  </ul>
+  <ol class="tasks">
+    <li><span class="tag">Team · 4 min</span> Pass your working to the next team. Read theirs as a judge would. Using these two rows only, write one thing they did well and one question you would ask them.</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Paper study: where do the weights come from?</h2>
+  <p>The pet paper from Session 1 again. Its readiness score is a weighted sum of five factors, like yours: space, time, money, the ages of the household, and experience with pets.</p>
+  <figure class="tile paper">
+    <span class="label">From the paper · page 8</span>
+    <img src="../assets/papers/immc2024-team2024030-weights.png" alt="Part of section 4 of the paper: a five by five matrix comparing the factors two at a time, followed by a list of statements such as 'Space is slightly more important than Time'.">
+    <figcaption>From section 4 of the paper of Team 2024030, International Mathematical Modeling Challenge 2024. Shown for study in class.</figcaption>
+  </figure>
+  <ol class="tasks">
+    <li><span class="tag">Team · 3 min</span> <strong>Find where the weights come from.</strong> Did the team simply choose five numbers? You do not need to follow the matrix.</li>
+  </ol>
+  <p>They compare the factors two at a time, saying they draw on a published source, and every comparison is a sentence a reader can disagree with. From those comparisons they work out the weights, on the next page of the paper. The largest, 0.43 of the total, goes to money.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Team Paper: this week's section</h2>
+  <p><a href="../hall.html">The Hall Problem</a> asks for "the best way to dismiss the school". It is unclear in the same way as "the best sport".</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 7 min</span> The Writer types and the others say what to write: <strong>what "best" means for a dismissal, two or three things you will measure, and which matters most and why.</strong> A frame to start from: <span class="sentence">"By the best dismissal we mean … We measure it by … We give the most weight to … because …"</span></li>
+  </ol>
+  <p>Fastest for the whole school? Shortest wait for the last class? Fewest people on a staircase at once? You choose, and you give the reason.</p>
+
+  <h2 class="wy-section-title"><span class="num">7</span>Before Session 4</h2>
+  <p id="hall">About 30 minutes, before next Thursday.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team</span> Finish this week's section of the Team Paper. For each thing you will measure, say what would score 0 and what would score 1, so that your measures can be combined.</li>
+    <li><span class="tag">Alone</span> Read the Hall Problem section of the next team's paper: Junior Team A reads Junior Team B's, Junior Team B reads the Senior Team's, and the Senior Team reads Junior Team A's. Using the Analyse and Formulate rows of <a href="../rubric.html">the Rubric</a>, leave one comment on something done well and one question.</li>
+    <li><span class="tag">Extra</span> Skim the two papers I handed out: a real competition problem, and the whole of the winning paper we have been studying. Do not try to follow the mathematics. List the paper's section headings, and beside each write which of the five steps it belongs to.</li>
+    <li><span class="tag">Extra</span> If you see a crowd passing one of the hall's exits or staircases this week, count how many students pass in a minute. Count and time only: no names, no photographs.</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 4: how hot will Hong Kong's hottest day be in 2036? Roles move on one place again. Then go on to <a href="04.html">Session 4</a>.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 3</span></div></footer>
+
+<script src="../assets/sport-weights.js"></script>
+<script>SportWeights(document.getElementById("weights"));</script>
+</body>
+</html>

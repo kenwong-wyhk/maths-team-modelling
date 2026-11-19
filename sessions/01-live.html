@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 1 Live: No right answer</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+/* Boards: the coach types each team's answer, and the whole room sees them side by side. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.splits { display: flex; flex-direction: column; gap: .6rem; min-height: 11rem; }
+.splitrow { display: grid; grid-template-columns: 14rem 1fr; gap: 1.2rem; align-items: center; }
+.splitrow .who2 { font-weight: 400; color: var(--blue); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.splitbar { display: flex; height: 2.6rem; }
+.splitbar span { display: flex; align-items: center; padding: 0 .6rem; font-size: 1.15rem; font-weight: 400; white-space: nowrap; min-width: 4.6rem; border: 0.1rem solid var(--blue); margin-right: -0.1rem; }
+.key { display: flex; gap: 1.5rem; font-size: 1rem; font-weight: 400; margin-left: 15.2rem; }
+.key span { display: flex; align-items: center; gap: .4rem; }
+.key i { display: block; width: 1.1rem; height: 1.1rem; border: 0.1rem solid var(--blue); }
+.key .amy { background: var(--blue); } .key .betty { background: var(--white); } .key .ceci { background: var(--ink); border-color: var(--ink); }
+.splitbar .amy { background: var(--blue); color: var(--white); }
+.splitbar .betty { background: var(--white); color: var(--blue); }
+.splitbar .ceci { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.say { font-family: var(--font-display); font-size: 2.4rem; color: var(--blue); min-height: 3.2rem; }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 800px) { .tool, .board { grid-template-columns: 1fr; } .splitrow { grid-template-columns: 1fr; } .key { margin-left: 0; } }
+</style>
+</head>
+<body data-reading="01.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 1</p>
+    <h1 class="display huge in" style="--i:7">No right answer</h1>
+    <p class="in" style="--i:9">Two problems. No answer key. Give an answer you can defend.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 Recall of the first meeting, and today's rule -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Last week: three teams, three different numbers of basketballs, and nobody could say which was right.</p>
+    <p class="display big blue-text narrow" data-step="1">Before you calculate anything, write down what you are assuming.</p>
+    <p data-step="2">No AI. No searching. Not yet. Roles move on one place from last week.</p>
+    <p class="note" data-step="3">Today I will not tell you whether an answer is right. I will ask you what you assumed.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>Today's one rule</h2></div>
+</section>
+
+<!-- 3 Taxi -->
+<section class="scene" data-enter="taxi">
+  <div class="body">
+    <p class="in" style="--i:1">Amy, Betty and Ceci share one taxi home after a concert. They live along the same road.</p>
+    <div class="split in" style="--i:2">
+      <svg id="taxi" viewBox="0 0 1000 210" role="img" aria-label="A taxi drives along a road. Amy gets out when the meter shows 20 dollars, Betty at 60 dollars, Ceci at 80 dollars."></svg>
+      <div class="meter"><span id="fare">$0</span><small>on the meter</small></div>
+    </div>
+    <div class="btns in" style="--i:3"><button class="btn" onclick="Live.replay('taxi')">Drive again</button></div>
+    <p class="display big blue-text" data-step="1">How much should each of them pay?</p>
+    <div class="row" data-step="2"><div><div class="who">Team</div><button class="timer" data-sec="360"></button></div><p>Choose one split for the team. If you disagree, do not vote: find out <strong>why</strong> each person thinks his way is fair. Modeller: <span class="serif">"Our split is fair because we assume that …"</span></p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | The taxi</h2></div>
+</section>
+
+<!-- 4 Taxi board -->
+<section class="scene" data-enter="taxiBoard">
+  <div class="body">
+    <p class="in" style="--i:1">Writers: your team's three amounts, and the sentence that goes with them.</p>
+    <div class="board in" style="--i:2" id="taxiIn"></div>
+    <div class="splits in" style="--i:3" id="splits"></div>
+    <p class="say in" style="--i:4" id="taxiSay"></p>
+    <p class="note" data-step="1">One fare and the same arithmetic. What differed was what each team assumed "fair" means. Change the assumption and the answer changes, so it has to be written down.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | The taxi</h2></div>
+</section>
+
+<!-- 5 Bolt: the problem for team time -->
+<section class="scene" data-enter="bolt">
+  <div class="body">
+    <p class="in" style="--i:1">Berlin, 16 Aug, 2009. Usain Bolt runs the 100 m. It is still the world record.</p>
+    <div class="split in" style="--i:2">
+      <svg id="track" viewBox="0 0 1000 150" role="img" aria-label="A runner covers a 100 metre track in 9.58 seconds, shown in real time."></svg>
+      <div class="meter"><span id="clock">0.00</span><small>seconds</small></div>
+    </div>
+    <div class="btns in" style="--i:3"><button class="btn" onclick="Live.replay('sprint')">Run it in real time</button></div>
+    <p class="display big blue-text narrow" data-step="1">Using only this number, estimate three world records.</p>
+    <p data-step="2">The 200 m. The 400 m. And the 4 × 100 m relay: four runners, each as fast as Bolt, passing a baton.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | The fastest human</h2></div>
+</section>
+
+<!-- 6 Maths Tool -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Today's Maths Tool</p>
+    <div class="tool">
+      <div class="in" style="--i:2">
+        <h3>Proportion as a model</h3>
+        <p class="formula">time = distance ÷ speed</p>
+        <p>If the speed stays the same, twice the distance takes twice the time. That "if" is an assumption, and you chose it.</p>
+      </div>
+      <div data-step="1">
+        <h3>Percentage error</h3>
+        <p class="formula">(model − real) ÷ real × 100%</p>
+        <p>A model says 42 s. The real time is 40 s. The error is +5%: the model is too slow.</p>
+      </div>
+    </div>
+    <p class="note" data-step="2">Why a percentage and not seconds? Being 1 second out matters far more over 100 m than over 1500 m.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | Maths Tool</h2></div>
+</section>
+
+<!-- 7 Team time, with the board the coach fills as teams bring their estimates -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes, and I will not interrupt. Every role has a job.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Writes every assumption before any number appears.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Finds Bolt's speed, then the three estimates.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>Brings me the three estimates and collects the envelope.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>For each record: will the real one be faster or slower? Why?</p></div>
+    </div>
+    <p data-step="1">The envelope holds the real records and five questions. Behind it is a challenge card, with a question that has an exact answer.</p>
+    <div class="board" data-step="1" id="runIn"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | Team time</h2></div>
+</section>
+
+<!-- 8 Records. Bar lengths are each time as a share of the longest (43.03 s = 62% of the row). -->
+<section class="scene blue" data-enter="records">
+  <div class="body">
+    <div class="reveal-row in" style="--i:1">
+      <div class="ev">200 m</div>
+      <div>
+        <div class="bar est"><i data-w="27.61"></i><b>19.16</b><span>2 × Bolt's 100 m</span></div>
+        <div class="bar rec"><i data-w="27.65"></i><b data-count="19.19">0.00</b><span>world record · Usain Bolt, 2009</span></div>
+        <p class="mine" id="mine200"></p>
+      </div>
+    </div>
+    <div class="reveal-row in" style="--i:3">
+      <div class="ev">400 m</div>
+      <div>
+        <div class="bar est"><i data-w="55.21"></i><b>38.32</b><span>4 × Bolt's 100 m</span></div>
+        <div class="bar rec"><i data-w="62"></i><b data-count="43.03">0.00</b><span>world record · Wayde van Niekerk, 2016</span></div>
+        <p class="mine" id="mine400"></p>
+      </div>
+    </div>
+    <p class="display big" style="font-size:2.9rem" data-step="1">Same method. One hit, one miss. Which assumption failed?</p>
+    <p data-step="2">Writers: your team's answer, in one sentence. Is "very close" proof that the assumption was true?</p>
+  </div>
+  <div class="foot"><h2>5 | The real records</h2></div>
+</section>
+
+<!-- 9 Relay record -->
+<section class="scene blue" data-enter="relayRecord">
+  <div class="body">
+    <p class="in" style="--i:1">Four world-record runs, one after another: 4 × 9.58 = <strong>38.32 s</strong></p>
+    <p class="count in" style="--i:3"><span data-count="36.84" data-from="38.32" data-ms="2600" data-delay="1900">38.32</span> s</p>
+    <p class="in" style="--i:4">World record · Jamaica, London, 2012</p>
+    <p class="mine in" style="--i:5" id="mineRelay"></p>
+    <p class="display big" data-step="1">1.48 seconds faster than four Bolts.</p>
+    <p data-step="2">Writers: your team's best explanation. I will not say who is right. Session 2 starts here.</p>
+  </div>
+  <div class="foot"><h2>5 | The real records</h2></div>
+</section>
+
+<!-- 10 Paper study: one extract, one task -->
+<section class="scene" data-enter="paper">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" id="sheet"><div class="page">
+          <img src="../assets/papers/immc2024-team2024030-assumptions.png" alt="Section 2 of the paper, Assumptions and Justifications: five numbered and named assumptions, each followed by its justification.">
+          <span class="focus"></span>
+        </div></div>
+        <p class="cap">Team 2024030, International Mathematical Modeling Challenge 2024: is a household ready to own a pet? Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">Question A from the first meeting, answered. This is a real award-winning paper.</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="180"></button></div><p><strong>Find the pattern.</strong> What does every assumption on this page have, and in what order?</p></div>
+        <div class="btns choice" data-step="1">
+          <button class="btn on" id="whole" data-focus="none" data-sheet="sheet">Whole section</button>
+          <button class="btn" data-focus="16.6,18.0" data-sheet="sheet">Assumption 1</button>
+          <button class="btn" data-focus="35.6,15.4" data-sheet="sheet">Assumption 2</button>
+        </div>
+        <p data-step="1">One of these two justifications is about how the real world behaves. The other says mainly that it makes the model simpler. Which is stronger?</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Paper study</h2></div>
+</section>
+
+<!-- 11 Team Paper: this week's paragraph -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Your Team Paper is about the Hall Problem: the best way to dismiss the whole school from the hall. Today it gets its first section, set out like this.</p>
+    <p class="serif in" style="--i:3"><strong>Assumption:</strong> A runner's average speed is the same over any distance.</p>
+    <p class="serif" data-step="1"><strong>Justification:</strong> It lets us use direct proportion, and it should be roughly true when the distances are similar.</p>
+    <div class="row" data-step="2"><div><div class="who">Team</div><button class="timer" data-sec="420"></button></div><p>Writer types, the others say what to write: <strong>three assumptions you need before you can estimate how long the hall takes to empty, each with its justification.</strong> Borrow the layout, not my words.</p></div>
+    <p class="note" data-step="3">Next week opens with the best sentence I find in the three Team Papers.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>7 | Team Paper</h2></div>
+</section>
+
+<!-- 12 Exit slip and before Session 2 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>About 30 minutes: use today's tool on the Hall Problem. Estimate how long the hall takes to empty. The steps are on the <a href="01.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 2: why is the relay faster than four Bolts? And I will bring a real time for the hall, to test your estimate.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>8 | Before Session 2</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  var S = Live.svg, C = Live.color, $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  /* ---------- Boards ----------
+     board(id, fields) builds, for each team, a name box and one number box per field.
+     It returns values[team][field], kept up to date as the coach types. */
+  var nameBoxes = [], redraws = [];
+  function redrawAll() { redraws.forEach(function (f) { f(); }); }
+  function num(text) { var v = parseFloat(String(text).replace(/[$, ]/g, "")); return isFinite(v) && v >= 0 && String(text).trim() !== "" ? v : null; }
+  function board(id, fields) {
+    var values = TEAMS.map(function () { return {}; });
+    TEAMS.forEach(function (team, i) {
+      var cell = document.createElement("div"); cell.className = "cell";
+      var name = document.createElement("input");
+      name.type = "text"; name.value = team; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+      name.addEventListener("input", function () {
+        TEAMS[i] = name.value;
+        nameBoxes.forEach(function (b) { if (b.i === i && b.el !== name) b.el.value = name.value; });
+        try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {}
+        redrawAll();
+      });
+      nameBoxes.push({ i: i, el: name }); cell.appendChild(name);
+      var row = document.createElement("div"); row.className = "fields";
+      fields.forEach(function (f) {
+        var lab = document.createElement("label"), box = document.createElement("input");
+        box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+        box.addEventListener("input", function () { values[i][f.key] = num(box.value); redrawAll(); });
+        lab.appendChild(document.createTextNode(f.label)); lab.appendChild(box); row.appendChild(lab);
+        values[i][f.key] = null;
+      });
+      cell.appendChild(row); $(id).appendChild(cell);
+    });
+    return values;
+  }
+  function name(i) { return TEAMS[i] || "Team " + (i + 1); }
+  function money(v) { return "$" + (Math.round(v * 100) / 100).toFixed(v % 1 ? 2 : 0); }
+  /* "Team · 19.20 s (+0.1%)" for every team that gave an estimate; an empty string if none did. */
+  function estimates(values, key, record) {
+    var parts = [];
+    values.forEach(function (v, i) {
+      if (v[key] === null || v[key] === undefined) return;
+      var err = (v[key] - record) / record * 100;
+      parts.push(name(i) + " " + v[key].toFixed(2) + " (" + (Math.abs(err) < 0.05 ? "0.0" : (err > 0 ? "+" : "−") + Math.abs(err).toFixed(1)) + "%)");
+    });
+    return parts.length ? "You said:  " + parts.join("  ·  ") : "";
+  }
+
+  var taxiV = board("taxiIn", [{ key: "a", label: "Amy $" }, { key: "b", label: "Betty $" }, { key: "c", label: "Ceci $" }]);
+  var runV = board("runIn", [{ key: "r200", label: "200 m (s)" }, { key: "r400", label: "400 m (s)" }, { key: "relay", label: "Relay (s)" }]);
+
+  /* ---------- Taxi board: each team's split as one bar, all to the same scale ---------- */
+  function drawSplits() {
+    var box = $("splits"), done = [];
+    box.innerHTML = '<div class="key"><span><i class="amy"></i>Amy</span><span><i class="betty"></i>Betty</span><span><i class="ceci"></i>Ceci</span></div>';
+    taxiV.forEach(function (v, i) {
+      if (v.a === null || v.b === null || v.c === null) return;
+      var sum = v.a + v.b + v.c;
+      var row = document.createElement("div"); row.className = "splitrow";
+      var who = document.createElement("span"); who.className = "who2"; who.textContent = name(i) + (Math.abs(sum - 80) > 0.05 ? " (adds to " + money(sum) + ")" : "");
+      var bar = document.createElement("div"); bar.className = "splitbar"; bar.style.width = Math.min(100, sum / 80 * 100) + "%";
+      [["amy", "Amy", v.a], ["betty", "Betty", v.b], ["ceci", "Ceci", v.c]].forEach(function (p) {
+        var seg = document.createElement("span"); seg.className = p[0]; seg.style.flex = Math.max(p[2], 0.001) + " 1 0";
+        seg.textContent = money(p[2]); seg.title = p[1]; bar.appendChild(seg);
+      });
+      row.appendChild(who); row.appendChild(bar); box.appendChild(row);
+      done.push([v.a, v.b, v.c].map(function (x) { return x.toFixed(1); }).join("/"));
+    });
+    var kinds = done.filter(function (d, k) { return done.indexOf(d) === k; }).length;
+    $("taxiSay").textContent = done.length < 2 ? "" : (kinds === 1 ? "Every team split it the same way. Did you assume the same thing?" : done.length + " teams, " + kinds + " different ways to split one fare.");
+  }
+  redraws.push(drawSplits);
+  Live.onEnter("taxiBoard", drawSplits);
+
+  /* ---------- Taxi: drives the road, pausing where each friend gets out ---------- */
+  (function () {
+    var svg = $("taxi"), X0 = 60, X1 = 940, Y = 120;
+    var stops = [{ name: "Amy", fare: 20 }, { name: "Betty", fare: 60 }, { name: "Ceci", fare: 80 }];
+    function x(fare) { return X0 + (X1 - X0) * fare / 80; }
+    svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+    var done = S("line", { x1: X0, x2: X0, y1: Y, y2: Y, stroke: C.blue, "stroke-width": 4 });
+    svg.appendChild(done);
+    svg.appendChild(S("text", { x: X0, y: Y + 40, "text-anchor": "middle", "font-size": 20, style: "fill:" + C.muted }, "Concert"));
+    var marks = stops.map(function (s) {
+      var g = S("g", { opacity: 0 });
+      g.appendChild(S("line", { x1: x(s.fare), x2: x(s.fare), y1: Y - 14, y2: Y + 14, stroke: C.blue, "stroke-width": 3 }));
+      g.appendChild(S("text", { x: x(s.fare), y: Y + 44, "text-anchor": "middle", "font-size": 24, "font-weight": 500 }, s.name));
+      g.appendChild(S("text", { x: x(s.fare), y: Y + 74, "text-anchor": "middle", "font-size": 22, style: "fill:" + C.blue }, "$" + s.fare));
+      g.style.transition = "opacity .6s";
+      svg.appendChild(g); return g;
+    });
+    var car = S("g", {});
+    car.appendChild(S("rect", { x: -34, y: -40, width: 68, height: 26, fill: C.blue }));
+    var riders = [0, 1, 2].map(function (k) {
+      var c = S("circle", { cx: -20 + k * 20, cy: -54, r: 8, fill: C.blue });
+      c.style.transition = "opacity .5s"; car.appendChild(c); return c;
+    });
+    car.appendChild(S("circle", { cx: -20, cy: -12, r: 7, fill: C.ink }));
+    car.appendChild(S("circle", { cx: 20, cy: -12, r: 7, fill: C.ink }));
+    svg.appendChild(car);
+    function place(fare) {
+      car.setAttribute("transform", "translate(" + x(fare) + "," + Y + ")");
+      done.setAttribute("x2", x(fare));
+      $("fare").textContent = "$" + Math.round(fare);
+    }
+    Live.onEnter("taxi", function (alive) {
+      marks.forEach(function (g) { g.setAttribute("opacity", 0); });
+      riders.forEach(function (c) { c.style.opacity = 1; });
+      place(0);
+      var from = 0;
+      Live.wait(900, alive).then(function leg(i) {
+        i = i || 0;
+        if (i >= stops.length || !alive()) return;
+        var a = from, b = stops[i].fare;
+        return Live.tween((b - a) * 45 + 500, function (p) { place(a + (b - a) * Live.ease(p)); }, alive).then(function () {
+          if (!alive()) return;
+          from = b; marks[i].setAttribute("opacity", 1); riders[i].style.opacity = 0;
+          return Live.wait(800, alive).then(function () { return leg(i + 1); });
+        });
+      });
+    });
+    place(0);
+  })();
+
+  /* ---------- Bolt: 100 m in 9.58 s of real time.
+     The motion is an approximation with a slow start, not Bolt's measured split times. ---------- */
+  (function () {
+    var svg = $("track"), X0 = 40, X1 = 960, Y = 80, T = 9.58, TAU = 1.3;
+    var VMAX = 100 / (T - TAU * (1 - Math.exp(-T / TAU)));
+    function dist(t) { return VMAX * (t - TAU * (1 - Math.exp(-t / TAU))); }
+    function x(m) { return X0 + (X1 - X0) * m / 100; }
+    svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+    for (var m = 0; m <= 100; m += 10) {
+      svg.appendChild(S("line", { x1: x(m), x2: x(m), y1: Y - 8, y2: Y + 8, stroke: C.frame, "stroke-width": 1.5 }));
+      svg.appendChild(S("text", { x: x(m), y: Y + 36, "text-anchor": "middle", "font-size": 18, style: "fill:" + C.muted }, m === 100 ? "100 m" : m));
+    }
+    var trail = S("line", { x1: X0, x2: X0, y1: Y, y2: Y, stroke: C.blue, "stroke-width": 4 });
+    var dot = S("circle", { cx: X0, cy: Y, r: 13, fill: C.blue });
+    svg.appendChild(trail); svg.appendChild(dot);
+    function place(t) {
+      var px = x(Math.min(100, dist(t)));
+      dot.setAttribute("cx", px); trail.setAttribute("x2", px);
+      $("clock").textContent = t.toFixed(2);
+    }
+    Live.onEnter("bolt", function () { place(0); });            /* opening the scene resets the track */
+    Live.onEnter("sprint", function (alive) {                    /* the button runs the sprint */
+      place(0);
+      Live.wait(700, alive).then(function () {
+        return Live.tween(T * 1000, function (p) { place(T * p); }, alive);
+      }).then(function () { if (alive()) place(T); });
+    });
+    place(0);
+  })();
+
+  /* ---------- Reveals: show each team's own estimate beside the real record ---------- */
+  Live.onEnter("records", function () {
+    $("mine200").textContent = estimates(runV, "r200", 19.19);
+    $("mine400").textContent = estimates(runV, "r400", 43.03);
+  });
+  Live.onEnter("relayRecord", function () { $("mineRelay").textContent = estimates(runV, "relay", 36.84); });
+
+
+  /* ---------- Paper study: open on the whole section each time ---------- */
+  Live.onEnter("paper", function () { $("whole").click(); });
+})();
+</script>
+</body>
+</html>

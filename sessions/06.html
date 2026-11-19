@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 6: Refine and test your model</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Session 6 of 9 · <a href="06-live.html">Presentation version</a></div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Session 6</p>
+  <h1>Refine and test your model</h1>
+  <p class="lede">Last week you built a model of electric vehicles in forty minutes and gave a number for 2030. Today you try to break that model: you test it on a figure it has not seen, you change its inputs one at a time, and you turn your number into a range you can defend.</p>
+
+  <div class="rule">
+    <p><strong>From today you may search, and use AI for its named jobs.</strong> Every source is written down, with who published it and when. Every use of AI goes in your team's AI Log. An AI's word is not a source: open the source yourselves.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Cold start</h2>
+  <ol class="tasks">
+    <li><span class="tag">Team · 5 min</span> No card and no hint. You gave a number for 2030. How could you find out today whether to believe it? Plan two tests you could carry out with what you have. The Team lead writes them down.</li>
+  </ol>
+  <p>You cannot wait until 2030. A judge cannot either.</p>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Team time</h2>
+  <p><strong>35 minutes.</strong> You have your page from the Mini Competition and <a href="05.html">last week's data sheet</a>. Three of these jobs can run at the same time. You will not finish every question; the test on a hidden figure and the table of changes matter most.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team lead</span> Write a time plan for the 35 minutes: who does which job, and by when.</li>
+    <li><span class="tag">Modeller</span> <strong>Test on a figure the model has not seen.</strong> Cover the September 2026 figure. Using only the end of 2020 (18,500 electric vehicles, about 2.0% of all vehicles) and October 2023 (7.7%), make your model predict September 2026. The real figure was 20.1%. How far out was your model, and in which direction? Do the same for one other kind of model.</li>
+    <li><span class="tag">Data lead</span> <strong>Change one input at a time.</strong> List every number your answer for 2030 depends on. In a sheet, raise one of them by 10% and keep the rest as they were. Write down the new answer. Lower it by 10% and do the same. Repeat for each input.</li>
+    <li><span class="tag">Writer</span> <strong>Find one more figure yourselves</strong> that would make your model better: for example, the total number of vehicles in Hong Kong now and five years ago. Write down who published it, the date, and exactly what is counted.</li>
+    <li><span class="tag">Team</span> Give your answer for the end of 2030 as a range, with a reason for each end, and name the one input your answer depends on most.</li>
+    <li><span class="tag">Every team</span> Give each input a number: <strong>the percentage change in the answer, divided by the percentage change in the input.</strong> Which inputs score above 1? What does a score above 1 mean for someone who has to measure that input?</li>
+    <li><span class="tag">Every team</span> For the straight-line model, show that the answer for the end of 2030 is exactly 2.455b − 1.455a, where a is the share in October 2023 and b is the share in September 2026. Use this to explain why raising b by 10% and lowering it by 10% move the line's answer by the same amount, while for the ceiling model they do not.</li>
+    <li><span class="tag">Extra</span> Raise two inputs by 10% at once. Is the change in the answer the sum of the two changes you found separately? Try it for the straight line and for one other model.</li>
+  </ol>
+  <details>
+    <summary>Hint card: open only after ten minutes of trying</summary>
+    <p>Write a for the earlier share and b for the later share, both in per cent. Write d for the years between them, and t for the years from the later one to the date you want.</p>
+    <ul>
+      <li><strong>Straight line:</strong> P = b + (b − a) × t ÷ d</li>
+      <li><strong>Compound growth:</strong> P = b × (b ÷ a)<sup>t ÷ d</sup></li>
+      <li><strong>Growth with a ceiling:</strong> first R = [b ÷ (100 − b)] × {[b ÷ (100 − b)] ÷ [a ÷ (100 − a)]}<sup>t ÷ d</sup>, then P = 100 × R ÷ (1 + R)</li>
+    </ul>
+    <p><strong>For the end of 2030:</strong> a = 7.7, b = 20.1, d = 2.92, t = 4.25. <strong>For the test on a hidden figure:</strong> a = 2.0, b = 7.7, d = 2.83, t = 2.92.</p>
+    <p><strong>A table of changes in a sheet.</strong> Put each input in its own cell, and write the answer as one formula that uses those cells. Then you can change one cell and read the new answer.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you found</h2>
+  <p>Last week each team gave one number. This week each gives a range. A range is not a weaker answer: it is a number that tells the reader how far to trust it.</p>
+  <details>
+    <summary>The test on a hidden figure: open only when your team has tried it</summary>
+    <p>Each model is fitted to the end of 2020 and October 2023 only, then asked about September 2026.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Model</th><th>Predicted for September 2026</th><th>Against the real 20.1%</th></tr>
+      <tr><td>Straight line</td><td>13.6%</td><td>6.5 points too low</td></tr>
+      <tr><td>Growth with a ceiling</td><td>26.2%</td><td>6.1 points too high</td></tr>
+      <tr><td>Compound growth</td><td>30.8%</td><td>10.7 points too high</td></tr>
+    </table>
+    </div>
+    <p>No model passed. The truth fell between the straight line and the ceiling, and compound growth was the furthest out. So for 2030, "between 38% and 56%" is an honest answer, and 81% is not.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">Today's Maths Tool: sensitivity analysis</span>
+    <p>Change one input, and only one, and see how far the answer moves. Give each input a number:</p>
+    <p class="sentence">sensitivity = (percentage change in the answer) ÷ (percentage change in the input)</p>
+    <p>Above 1, the model magnifies a mistake in that input. Below 1, it shrinks it. For the ceiling model, whose answer is 56%:</p>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>Input raised by 10%</th><th>The answer</th><th>Sensitivity</th></tr>
+      <tr><td>Share in September 2026</td><td>rises by 13%, to 62.8%</td><td>1.3</td></tr>
+      <tr><td>Total vehicles by the end of 2030</td><td>falls by 9%, to 50.6%</td><td>0.9</td></tr>
+      <tr><td>Share in October 2023</td><td>falls by 7%, to 51.9%</td><td>0.7</td></tr>
+    </table>
+    </div>
+    <p>The newest figure matters most, so it is the one to check first. And the choice of model matters more than any input: the three models give 38%, 56% and 81% from exactly the same figures.</p>
+  </div>
+
+  <div class="tile demo" id="demo">
+    <h3>Sensitivity explorer</h3>
+    <p>Three inputs and three models. Each slider changes one input by up to 20%. The dark edge on the right of each bar is 100%.</p>
+    <div id="sens"></div>
+  </div>
+  <ol class="tasks">
+    <li>Move one slider at a time. Which input moves the answers most?</li>
+    <li>Reset, and read down the column: 38, 81, 56. Why does the choice of model move the answer more than any input does?</li>
+    <li>The October 2023 figure came from a news report, not from the Government's own page. How much does our answer depend on it?</li>
+  </ol>
+
+  <p><strong>Go further.</strong> These are not needed for the session. They are for anyone who wants more mathematics.</p>
+  <ol class="tasks">
+    <li>For the model "answer = k × input", show that the sensitivity is exactly 1 whatever k is. For "answer = k ÷ input", show that raising the input by 10% lowers the answer by 9.1%, not 10%. Which of the three inputs in the table behaves like this?</li>
+    <li>For "answer = k × input<sup>n</sup>", show that a small percentage change in the input gives about n times that percentage change in the answer. Check it with the basketballs from the first meeting, where the ball's width is cubed.</li>
+    <li>For the straight-line model, P = 2.455b − 1.455a. Find its sensitivity to b and to a exactly. Show that the two add up to exactly 1.</li>
+    <li>Raise both a and b by 10%. Show that the answer rises by exactly 10% in the straight-line model, and also in the compound-growth model, P = b × (b ÷ a)<sup>1.455</sup>. Explain why this is the same fact as question 3. Then notice that for compound growth the two separate changes, +21.5 and −10.5 points, do not add up to the joint change of +8.1. Why does adding work for the line and not for the curve?</li>
+  </ol>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Paper study: an honest weakness</h2>
+  <p>Another winning paper on the league problem from Session 2. It ends by listing the strengths and the weaknesses of its own model.</p>
+  <figure class="tile paper">
+    <span class="label">From the paper · page 26</span>
+    <img src="../assets/papers/immc2025-team2025017-weaknesses.png" alt="Four weaknesses listed by the team: dependence on assumptions, limited validation of viewer interest, lack of stakeholder perspective, and a static skill assumption in the simulation.">
+    <figcaption>Four of the five weaknesses in section 10.1.2 of the paper of Team 2025017, International Mathematical Modeling Challenge 2025. Shown for study in class.</figcaption>
+  </figure>
+  <ol class="tasks">
+    <li><span class="tag">Team · 2 min</span> <strong>Find the weakness that admits something was never checked</strong> against real data. Did admitting it help the team or hurt it?</li>
+  </ol>
+  <p>It is the second: the model of viewer interest was built "without empirical validation from actual viewership data". The paper still won. A judge trusts a team that knows where its model is thin, and distrusts one that claims no weaknesses at all.</p>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Team Paper: this week's section</h2>
+  <p>Now do to your own model of <a href="../hall.html">the Hall Problem</a> what you have just done to the electric vehicles.</p>
+  <ol class="tasks">
+    <li><span class="tag">Team · 7 min</span> Change the rate by 10%, then the number of students, then one input of your own. The Writer types <strong>which input matters most, one strength of your model and one weakness, each with evidence.</strong> A frame to start from: <span class="sentence">"Our answer depends most on … If it is 10% out, our answer changes by … A strength of our model is … because … A weakness is … because …"</span></li>
+  </ol>
+  <p>"Our model is simple" is not evidence. "Our estimate was within 15% of the time I measured" is.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Before Session 7</h2>
+  <p id="hall">About 40 minutes this week, on the Hall Problem: your paper is nearly complete.</p>
+  <ol class="tasks">
+    <li><span class="tag">Data lead</span> Finish the table of changes for your hall model in your sheet: each input raised and lowered by 10%, with the new answer and the sensitivity.</li>
+    <li><span class="tag">Team</span> <strong>Find your best plan.</strong> Read "Two tools for the decision" on <a href="../hall.html">the Hall Problem page</a>. Use the bottleneck rule to find the slowest stage of each stream, and the ordering rule to choose the order of leaving. By your own measure of "best", how much better is your plan than Plan A?</li>
+    <li><span class="tag">Team</span> Finish this week's section of the Team Paper: a short sensitivity analysis, then two strengths and two weaknesses, each with evidence. Go back to your assumptions and add two lines to each: where it is used in the model, and what would happen if it were wrong. Update the 50-word summary at the top.</li>
+    <li><span class="tag">Extra</span> Think about which role you should keep for the competitions, and why. Each team proposes its fixed roles next week.</li>
+  </ol>
+
+  <p class="note">Next Thursday, Session 7: your six sections become one paper. Roles move on one place for the last time.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 6</span></div></footer>
+
+<script src="../assets/ev-sensitivity.js"></script>
+<script>EvSensitivity(document.getElementById("sens"));</script>
+</body>
+</html>

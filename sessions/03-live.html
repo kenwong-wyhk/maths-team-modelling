@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 3 Live: What does "best" mean?</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input, .board textarea { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board textarea { height: 9rem; resize: none; font-size: 1.45rem; line-height: 1.35; }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .under { display: block; margin: .5rem 0 0; white-space: normal; }
+.meter .low { color: var(--blue); font-weight: 500; min-height: 1.9rem; }
+#batonMeter { transition: opacity .3s; }
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.code { font-family: Consolas, "Courier New", monospace; font-size: 1.25rem; border: 0.07rem solid var(--frame); padding: 0 .5rem; white-space: nowrap; }
+.five { display: grid; grid-template-columns: repeat(5, 1fr); }
+.five .node h3 { font-size: 2rem; }
+.five .node p { font-size: 1.1rem; }
+/* the loop runs from under the 5 to under the 2, with an arrowhead at the 2 */
+.five + .loop i { left: calc(20% + .8rem); right: calc(20% - .8rem); }
+.five + .loop i::before { content: ""; position: absolute; left: -.57rem; top: -.1rem; border: .5rem solid transparent; border-top: 0; border-bottom: .8rem solid var(--red); }
+@media (max-width: 800px) { .board, .five, .tool { grid-template-columns: 1fr; } }
+.explore { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+#weights { font-size: 1.45rem; }
+.explore .stack p { font-size: 1.35rem; margin: 0 0 .9rem; }
+table.data { font-size: 1.5rem; border-collapse: collapse; width: 100%; }
+table.data th, table.data td { text-align: left; padding: .45rem 1rem; border-bottom: 0.07rem solid var(--frame); font-weight: 300; }
+table.data thead th, table.data tbody th { font-weight: 400; color: var(--blue); }
+</style>
+</head>
+<body data-reading="03.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 3</p>
+    <h1 class="display huge in" style="--i:7">What does "best" mean?</h1>
+    <p class="in" style="--i:9">Today's problem has no number in it at all. You have to decide what to measure.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 Cold start: the problem, with no card and no hint -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Cold start · no card, no hint</p>
+    <p class="display big blue-text in" style="--i:3">How can a student's body measurements tell him which sport suits him best?</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>Restate the problem in your own words. Then list what your team must decide before any number can appear. The Modeller writes.</p></div>
+    <p class="note" data-step="2">This is how a competition begins: a question, your team, and nothing else.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 4 What "best" means to each team -->
+<section class="scene">
+  <div class="body">
+    <p class="display big blue-text in" style="--i:1">Writers: what does "best" mean in your team's version?</p>
+    <div class="board in" style="--i:2" id="best"></div>
+    <p class="note" data-step="1">The sport he would win at? Enjoy most? Be least likely to be hurt in? Each is a different problem. Choosing one, and writing it down, is the Analyse step.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 5 The data. The measurements and ranges are made up for the exercise. -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">One Form 2 student, three sports: basketball, gymnastics, distance running. Five measurements.</p>
+    <table class="data in" style="--i:2">
+      <thead><tr><th></th><th>His measurement</th><th>Lowest in his form</th><th>Highest in his form</th></tr></thead>
+      <tbody>
+        <tr><th>Height</th><td>168 cm</td><td>145 cm</td><td>180 cm</td></tr>
+        <tr><th>Vertical jump</th><td>38 cm</td><td>20 cm</td><td>55 cm</td></tr>
+        <tr><th>Reaction time</th><td>0.24 s</td><td>0.18 s</td><td>0.35 s</td></tr>
+        <tr><th>Flexibility (sit and reach)</th><td>30 cm</td><td>5 cm</td><td>40 cm</td></tr>
+        <tr><th>1 km run</th><td>5.0 min</td><td>3.5 min</td><td>7.0 min</td></tr>
+      </tbody>
+    </table>
+    <p class="display big blue-text" style="font-size:2.9rem" data-step="1">168 + 0.24 means nothing. How do you combine centimetres with seconds?</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | The student</h2></div>
+</section>
+
+<!-- 7 Team time, with the board the coach fills as teams bring their scores -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes, and I will not interrupt. The card gives the data and the rules. Finding a way to combine the measurements is your first job.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Decides what "best" means, and what the model leaves out.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Puts all five measurements on one scale, in a sheet.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>Writes the reason for every weight. Brings me the three scores.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>Tests the result: change one weight. Does the winner change?</p></div>
+    </div>
+    <p data-step="1">Stuck after ten minutes of trying? The Writer may collect a hint card. Still no AI and no searching.</p>
+    <div class="board" data-step="1" id="scores"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | Team time</h2></div>
+</section>
+
+<!-- 8 Every team's winner, side by side -->
+<section class="scene blue" data-enter="results">
+  <div class="body">
+    <p class="in" style="--i:1">One student. The same five measurements.</p>
+    <p class="display big in" style="--i:3" id="winners"></p>
+    <p class="in" style="--i:5" id="winnersSay"></p>
+    <p class="display big" data-step="1">Which team is right?</p>
+    <p data-step="2">Each is right for its own weights. So the weights, and the reasons for them, are where a judge will look.</p>
+  </div>
+  <div class="foot"><h2>4 | What you found</h2></div>
+</section>
+
+<!-- The Maths Tool, named after the teams have built it -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Today's Maths Tool · what you just built has a name</p>
+    <div class="tool">
+      <div class="in" style="--i:2">
+        <h3>Normalising</h3>
+        <p class="formula">(value − lowest) ÷ (highest − lowest)</p>
+        <p>Height: (168 − 145) ÷ (180 − 145) = 0.66. Every measurement becomes a number from 0 to 1 with no units, so the five can be combined.</p>
+      </div>
+      <div data-step="1">
+        <h3>A weighted sum</h3>
+        <p class="formula">S = k₁x₁ + k₂x₂ + k₃x₃ + …</p>
+        <p>Each x is a score. Each k is a weight: how much that score matters for this sport. A weight is your judgement, so it needs a reason.</p>
+      </div>
+    </div>
+    <p class="note" data-step="2">Which teams met the two traps? For some measurements, smaller is better. And for some sports, so is a smaller athlete.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 9 The weights explorer -->
+<section class="scene">
+  <div class="body">
+    <div class="explore">
+      <div class="in" style="--i:1" id="weights"></div>
+      <div class="stack">
+        <p class="in" style="--i:2">The same student, with my weights. The number beside each measurement is his score out of 10, rounded to one decimal place.</p>
+        <p data-step="1">Basketball wins by 0.1. Would you tell him to choose basketball?</p>
+        <p data-step="2">Lower the weight of height for basketball. At what weight does the winner change?</p>
+        <p data-step="3">Untick the box. Why is running suddenly last?</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 10 The Rubric -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">From today there is a Rubric: one page, six rows, no marks. Today you use two of them.</p>
+    <div class="row" data-step="1"><div><div class="who">Analyse</div></div><p>The problem is restated in the team's own words, and it says what "best" means.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Formulate</div></div><p>Every assumption and every weight has a reason that someone who disagrees could accept.</p></div>
+    <div class="row" data-step="3"><div><div class="who">Team</div><button class="timer" data-sec="240"></button></div><p>Pass your working to the next team. Read theirs as a judge would. Using these two rows only, write <strong>one thing they did well and one question you would ask them.</strong></p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>5 | The Rubric</h2></div>
+</section>
+
+<!-- 11 Paper study: one extract, one task -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" style="height:auto"><div class="page">
+          <img src="../assets/papers/immc2024-team2024030-weights.png" alt="Part of section 4 of the paper: a five by five matrix comparing the factors two at a time, followed by a list of statements such as 'Space is slightly more important than Time'.">
+        </div></div>
+        <p class="cap">Team 2024030, International Mathematical Modeling Challenge 2024: is a household ready to own a pet? Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">The pet paper again. Its readiness score is a weighted sum of five factors, like yours.</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="180"></button></div><p><strong>Find where the weights come from.</strong> Did the team simply choose five numbers?</p></div>
+        <p data-step="1">They compare the factors two at a time, saying they draw on a published source, and every comparison is a sentence a reader can disagree with. On the next page the largest weight, 0.43 of the total, goes to money.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Paper study</h2></div>
+</section>
+
+<!-- 12 Team Paper: the Hall Problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Now the Hall Problem. "The best way to dismiss the school" is unclear in the same way as "the best sport".</p>
+    <p class="serif in" style="--i:3">"By the best dismissal we mean … We measure it by … We give the most weight to … because …"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="420"></button></div><p>Writer types, the others say what to write: <strong>what "best" means for a dismissal, two or three things you will measure, and which matters most and why.</strong></p></div>
+    <p class="note" data-step="2">Fastest for the whole school? Shortest wait for the last class? Fewest people on a staircase at once? You choose, and you give the reason.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>7 | Team Paper</h2></div>
+</section>
+
+<!-- 13 Exit slip and before Session 4 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>Finish this week's section of your Team Paper, then comment on another team's section, using the Rubric. The steps are on the <a href="03.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 4: how hot will Hong Kong's hottest day be in 2036? If you see a crowd at one of the hall's exits this week, count how many pass in a minute.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>8 | Before Session 4</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script src="../assets/sport-weights.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  $("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  $("lineWho").textContent = LINE.who;
+  $("lineWhy").textContent = LINE.why || "Listen for what makes it good: it compares the model with the real time, and says what to change.";
+
+  /* ---------- Boards (the same pattern as Sessions 1 and 2) ---------- */
+  var nameBoxes = [];
+  function nameBox(i, cell) {
+    var name = document.createElement("input");
+    name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+    name.addEventListener("input", function () {
+      TEAMS[i] = name.value;
+      nameBoxes.forEach(function (b) { if (b.i === i && b.el !== name) b.el.value = name.value; });
+      try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {}
+    });
+    nameBoxes.push({ i: i, el: name }); cell.appendChild(name);
+  }
+  function num(text) { var v = parseFloat(String(text).replace(/[, ]/g, "")); return isFinite(v) && String(text).trim() !== "" ? v : null; }
+
+  /* What "best" means: a name and a text box for each team. */
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    nameBox(i, cell);
+    var box = document.createElement("textarea");
+    box.setAttribute("aria-label", "Team " + (i + 1) + ": what best means"); box.placeholder = "Best means …";
+    cell.appendChild(box); $("best").appendChild(cell);
+  });
+
+  /* The scores: one number for each sport from each team. */
+  var SPORTS = [{ key: "b", label: "Basketball" }, { key: "g", label: "Gymnastics" }, { key: "r", label: "Running" }];
+  var scores = TEAMS.map(function () { return {}; });
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    nameBox(i, cell);
+    var row = document.createElement("div"); row.className = "fields";
+    SPORTS.forEach(function (s) {
+      var lab = document.createElement("label"), box = document.createElement("input");
+      box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+      box.addEventListener("input", function () { scores[i][s.key] = num(box.value); });
+      lab.appendChild(document.createTextNode(s.label)); lab.appendChild(box); row.appendChild(lab);
+      scores[i][s.key] = null;
+    });
+    cell.appendChild(row); $("scores").appendChild(cell);
+  });
+
+  /* Each team's winner is the sport with its highest score. Teams use different scales, so only the winners are compared. */
+  Live.onEnter("results", function () {
+    var parts = [], kinds = {};
+    scores.forEach(function (v, i) {
+      var best = null;
+      SPORTS.forEach(function (s) { if (v[s.key] !== null && (best === null || v[s.key] > v[best.key])) best = s; });
+      if (!best) return;
+      parts.push((TEAMS[i] || "Team " + (i + 1)) + ": " + best.label.toLowerCase());
+      kinds[best.key] = true;
+    });
+    var n = Object.keys(kinds).length;
+    $("winners").textContent = parts.length ? parts.join("  ·  ") : "Writers: which sport won in your model?";
+    $("winnersSay").textContent = parts.length < 2 ? "" : (n === 1 ? "Every team chose the same sport. Did you choose it for the same reasons?" : parts.length + " teams, " + n + " different best sports.");
+  });
+
+  SportWeights($("weights"));
+})();
+</script>
+</body>
+</html>

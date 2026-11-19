@@ -1,0 +1,153 @@
+/* WYHK Design System applied to the Maths Team companion site.
+   Layout: the guide's document page on screen. White ground, a blue hairline rule
+   over each section title, square corners, no shadows, no gradients.
+   Single theme: the identity defines one palette, for print and screen. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;700&display=swap");
+
+@font-face { font-family: Garamond; src: url("fonts/Garamond-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Garamond; src: url("fonts/Garamond-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: Garamond; src: url("fonts/Garamond-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  /* colour tokens */
+  --blue: #004898;
+  --red: #d7000f;
+  --black: #000000;
+  --white: #ffffff;
+  --ink: #231f20;
+  --ink-muted: #6d6e71;
+  --frame: #a7a9ac;
+  --rule-grey: #808285;
+  /* type tokens */
+  --font-sans: "Noto Sans HK", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --font-serif: Garamond, "Adobe Garamond Pro", Georgia, serif;
+  /* line and shape tokens */
+  --border-hairline: 0.67px;
+  --border-cross: 1.33px;
+  --radius-none: 0;
+}
+
+* { box-sizing: border-box; border-radius: var(--radius-none); }
+/* Type grows with the screen so the pages can be read from the back of a room on a television. */
+html { font-size: clamp(17px, 1.25vw, 44px); }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.6;
+}
+strong, b { font-weight: 500; }
+a { color: var(--blue); }
+a:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.wrap { max-width: 56rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main.wrap { padding-block: 8px 80px; }
+
+/* Page head: the signature as placed artwork, with clear space, over the header rule. */
+header.site .wrap {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;
+  padding-block: 24px 16px;
+  border-bottom: var(--border-hairline) solid var(--blue);
+}
+.wy-signature { display: block; width: 11.8rem; min-width: 189px; height: auto; opacity: 1; }
+header.site .running { color: var(--blue); font-size: 0.82rem; font-weight: 400; text-align: right; }
+header.site .running a { color: var(--blue); text-decoration: none; }
+header.site .running a:hover { text-decoration: underline; }
+
+@media (max-width: 520px) { header.site .running { text-align: left; } }
+
+/* Titles */
+.kicker { color: var(--blue); font-size: 0.85rem; font-weight: 400; margin: 32px 0 0; }
+h1 { color: var(--blue); font-size: 2rem; font-weight: 500; line-height: 1.2; margin: 4px 0 8px; text-wrap: balance; }
+.lede { font-size: 1.1rem; margin-top: 0; }
+h2.wy-section-title {
+  color: var(--blue); font-size: 1.3rem; font-weight: 500; line-height: 1.2;
+  margin: 56px 0 12px; padding-top: 6px;
+  border-top: var(--border-hairline) solid var(--blue);
+  text-wrap: balance;
+}
+h2.wy-section-title .num::after { content: " | "; font-weight: 300; }
+h3 { color: var(--blue); font-size: 1rem; font-weight: 500; margin: 0 0 4px; }
+
+/* Framed tiles, as the guide frames its examples. */
+.tile { border: var(--border-hairline) solid var(--frame); background: var(--white); padding: 16px 20px; margin: 16px 0; }
+.tile > :first-child { margin-top: 0; }
+.tile > :last-child { margin-bottom: 0; }
+.label { display: block; color: var(--blue); font-size: 0.82rem; font-weight: 400; margin-bottom: 4px; }
+
+/* The one rule of the session: set under a red cross line. */
+.rule { border-top: var(--border-cross) solid var(--red); padding: 10px 0 0; margin: 24px 0 8px; }
+.rule p { margin: 0; }
+
+.tag {
+  display: inline-block; font-size: 0.76rem; font-weight: 400; line-height: 1.5;
+  padding: 0 8px; margin-right: 6px;
+  color: var(--blue); border: var(--border-hairline) solid var(--blue);
+}
+ol.tasks { padding-left: 1.3em; }
+ol.tasks li { margin: 8px 0; }
+
+details { border: var(--border-hairline) solid var(--frame); padding: 12px 20px; margin: 16px 0; }
+details summary { cursor: pointer; font-weight: 500; color: var(--blue); }
+details[open] summary { margin-bottom: 8px; }
+
+.sentence { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.4; font-weight: 400; }
+.sentence strong { font-weight: 700; }
+em.latin { font-family: var(--font-serif); font-style: italic; font-size: 1.12em; }
+
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 6px 10px; border-bottom: var(--border-hairline) solid var(--frame); }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: 0.82rem; color: var(--blue); font-weight: 400; }
+.table-wrap { overflow-x: auto; }
+table.left th, table.left td { text-align: left; vertical-align: top; }
+td.near { color: var(--blue); font-weight: 500; }
+td.far { font-weight: 700; }
+
+/* Home */
+.cover { display: grid; grid-template-columns: minmax(0, 1fr) 8.2rem; gap: 1.5rem; align-items: start; margin-top: 32px; }
+.cover img { width: 8.2rem; height: 8.2rem; display: block; }
+@media (max-width: 520px) { .cover { grid-template-columns: 1fr; } .cover img { width: 96px; height: 96px; } }
+.sessions { list-style: none; padding: 0; margin: 0; }
+.sessions li { display: flex; gap: 12px; padding: 10px 0; border-bottom: var(--border-hairline) solid var(--frame); align-items: baseline; max-width: none; }
+.sessions .n { width: 2em; color: var(--blue); font-weight: 400; font-variant-numeric: tabular-nums; }
+.sessions .soon { color: var(--ink-muted); }
+
+/* Demonstration */
+.demo svg { width: 100%; height: auto; display: block; }
+.demo label { display: block; font-weight: 400; margin-top: 8px; }
+.demo input[type=range] { width: 100%; accent-color: var(--blue); }
+.demo .readout { font-size: 1.4rem; font-weight: 500; color: var(--blue); font-variant-numeric: tabular-nums; }
+
+footer.site .wrap {
+  margin-top: 0; padding-block: 8px 32px;
+  border-top: var(--border-hairline) solid var(--blue);
+  color: var(--blue); font-size: 0.78rem; font-weight: 400;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.note { color: var(--ink-muted); font-size: 0.85rem; margin-top: 48px; }
+
+/* Paper Study: a section of a real paper, shown as the page itself. */
+figure.paper { margin: 16px 0; }
+figure.paper img { display: block; width: 100%; max-width: 100%; height: auto; }
+figure.paper figcaption { color: var(--ink-muted); font-size: 0.82rem; margin-top: 12px; padding-top: 8px; border-top: var(--border-hairline) solid var(--frame); }
+
+/* Coach documents built from Markdown (see tools/build_pages.py). */
+.doc th, .doc td { text-align: left; vertical-align: top; }
+.doc table { font-size: 0.9rem; }
+.doc td:first-child { white-space: nowrap; }
+.doc h3.sub { margin: 28px 0 4px; }
+.doc code { font-family: Consolas, "Courier New", monospace; font-size: 0.88em; border: var(--border-hairline) solid var(--frame); padding: 0 4px; }
+.record h3 .num::after { content: " | "; font-weight: 300; }
+.record dl { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 0.25rem 1rem; margin: 8px 0 0; }
+.record dt { color: var(--blue); font-size: 0.82rem; font-weight: 400; padding-top: 2px; }
+.record dd { margin: 0; }
+@media (max-width: 520px) { .record dl { grid-template-columns: 1fr; } .record dd { margin-bottom: 6px; } .doc td:first-child { white-space: normal; } }
+
+@media print {
+  .demo { display: none; }
+  html { font-size: 11pt; }
+}

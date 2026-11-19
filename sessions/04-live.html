@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 4 Live: Data and trend</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input, .board textarea { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board textarea { height: 9rem; resize: none; font-size: 1.45rem; line-height: 1.35; }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .under { display: block; margin: .5rem 0 0; white-space: normal; }
+.meter .low { color: var(--blue); font-weight: 500; min-height: 1.9rem; }
+#batonMeter { transition: opacity .3s; }
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.code { font-family: Consolas, "Courier New", monospace; font-size: 1.25rem; border: 0.07rem solid var(--frame); padding: 0 .5rem; white-space: nowrap; }
+.five { display: grid; grid-template-columns: repeat(5, 1fr); }
+.five .node h3 { font-size: 2rem; }
+.five .node p { font-size: 1.1rem; }
+/* the loop runs from under the 5 to under the 2, with an arrowhead at the 2 */
+.five + .loop i { left: calc(20% + .8rem); right: calc(20% - .8rem); }
+.five + .loop i::before { content: ""; position: absolute; left: -.57rem; top: -.1rem; border: .5rem solid transparent; border-top: 0; border-bottom: .8rem solid var(--red); }
+@media (max-width: 800px) { .board, .five, .tool { grid-template-columns: 1fr; } }
+.explore { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+#fit1, #fit2 { font-size: 1.3rem; }
+.pairnum { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.pairnum .count { margin: 0; }
+.explore .stack p { font-size: 1.35rem; margin: 0 0 .9rem; }
+table.data { font-size: 1.5rem; border-collapse: collapse; width: 100%; }
+table.data th, table.data td { text-align: left; padding: .45rem 1rem; border-bottom: 0.07rem solid var(--frame); font-weight: 300; }
+table.data thead th, table.data tbody th { font-weight: 400; color: var(--blue); }
+</style>
+</head>
+<body data-reading="04.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 4</p>
+    <h1 class="display huge in" style="--i:7">Data and trend</h1>
+    <p class="in" style="--i:9">Thirty-five years of real data, and a question about a year that has not happened yet.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 Cold start: the problem, with no card and no hint -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Cold start · no card, no hint</p>
+    <p class="display big blue-text in" style="--i:3">What will be the highest temperature recorded in Hong Kong in 2036?</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>Restate the problem in your own words. Say exactly which number you are predicting, what data you would ask for, and what you will have to assume. The Modeller writes.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 4 The data, and today's Maths Tool -->
+<section class="scene">
+  <div class="body">
+    <div class="explore">
+      <div class="in" style="--i:1" id="fit1"></div>
+      <div class="stack">
+        <p class="in" style="--i:2">Hong Kong Observatory. Each dot is the single hottest reading of one year, from 1990 to 2024.</p>
+        <p data-step="1">Going up, staying level, or going down?</p>
+        <p data-step="2">Move the line. Which line is best? Last week you had to say what "best" means for a sport. Today you have to say it for a line.</p>
+        <p data-step="3">The slope of a line has a meaning here: degrees per year.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | The data</h2></div>
+</section>
+
+<!-- 5 A guess by eye, before any calculation -->
+<section class="scene">
+  <div class="body">
+    <p class="display big blue-text in" style="--i:1">Before you calculate: your team's guess for 2036, by eye.</p>
+    <div class="board in" style="--i:2" id="eye"></div>
+    <p class="note" data-step="1">From today I show you the problem and step back. The card has the data and the rules. The method is yours.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | The data</h2></div>
+</section>
+
+<!-- 6 Team time, with the board the coach fills as teams bring their results -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes, and I will not interrupt. One device per team, for the spreadsheet only.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Says exactly what is predicted, and writes what the model assumes.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Builds the sheet and the chart, and finds the line.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>Writes the prediction as a sentence, with a "plus or minus". Brings it to me.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>Writes the team's rule for "best", and tests the line against it.</p></div>
+    </div>
+    <p data-step="1">Stuck after ten minutes of trying? The Writer may collect a hint card. Still no AI and no searching.</p>
+    <div class="board" data-step="1" id="model"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | Team time</h2></div>
+</section>
+
+<!-- 7 The least-squares result beside every team's -->
+<section class="scene blue" data-enter="results">
+  <div class="body">
+    <p class="in" style="--i:1">The least-squares line rises by 0.049 °C a year: about half a degree every ten years.</p>
+    <p class="count in" style="--i:3"><span data-count="36.3" data-from="34.1" data-dp="1" data-ms="2400" data-delay="900">34.1</span> °C in 2036</p>
+    <p class="mine in" style="--i:5" id="mineEye"></p>
+    <p class="mine in" style="--i:5" id="mineModel"></p>
+    <p class="display big" data-step="1">The record is 36.6 °C. Does the model say the record will not be broken?</p>
+    <p data-step="2">No. The line gives the middle of where 2036 is likely to fall. A typical year is 0.6 °C away from it, and three years out of 35 were more than 1 °C above. So: 36.3 °C, plus or minus about 0.6.</p>
+  </div>
+  <div class="foot"><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 8 Which line is best -->
+<section class="scene">
+  <div class="body">
+    <div class="explore">
+      <div class="in" style="--i:1" id="fit2"></div>
+      <div class="stack">
+        <p class="in" style="--i:2">Writers: what was your team's rule for the best line? Would it pick out one line only?</p>
+        <p data-step="1"><strong>Today's Maths Tool: least squares.</strong> Square each gap, add the squares, and make the total as small as possible. Can you get below 12.76?</p>
+        <p data-step="2">Join the first dot to the last: 36.1 at 1990, 35.6 at 2036. The line goes down. Which rule would allow that?</p>
+        <p data-step="3">1990 was a very unusual year. Leave it out and the prediction rises to 36.6 °C. Are you allowed to?</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 9 Testing the model on years it has not seen -->
+<section class="scene blue">
+  <div class="body">
+    <p class="in" style="--i:1">A test. Hide the last ten years. Fit a line to 1990–2014 only, then ask it about 2015–2024.</p>
+    <div class="pairnum in" style="--i:3">
+      <div><p class="count"><span data-count="34.7" data-from="33" data-dp="1" data-ms="1800" data-delay="700">33.0</span> °C</p><p>what the model predicted, on average</p></div>
+      <div><p class="count"><span data-count="35.8" data-from="33" data-dp="1" data-ms="2600" data-delay="700">33.0</span> °C</p><p>what really happened, on average</p></div>
+    </div>
+    <p class="display big" data-step="1">The model was a full degree too cool.</p>
+    <p data-step="2">Part of that is 1990: one very hot year at the start flattens the line. Leave it out and the model is still 0.85 °C too cool. So is a straight line likely to be too low for 2036 as well?</p>
+  </div>
+  <div class="foot"><h2>5 | Test the model</h2></div>
+</section>
+
+<!-- 10 Paper study: one extract, one task -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" style="height:auto"><div class="page">
+          <img style="max-height:50vh;width:auto;display:block;margin:0 auto" src="../assets/papers/immc2024-team2024030-prediction.png" alt="Section 6.2 of the paper, Predicting Total Pet Numbers: a formula, a paragraph on long-term predictions, and three graphs of the predicted number of pets in Shanghai, Shenzhen and New York over fifteen years.">
+        </div></div>
+        <p class="cap">Team 2024030, International Mathematical Modeling Challenge 2024: is a household ready to own a pet? Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">The pet paper predicts the number of pets in three cities, fifteen years ahead.</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="180"></button></div><p><strong>Find the sentence</strong> that tells you how far to trust this prediction. Is it enough?</p></div>
+        <p data-step="1">The nearest is an assumption: the retention rate "remains constant or changes at a predictable rate". There is no test against past data, and no range. You have just done what this page left out.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Paper study</h2></div>
+</section>
+
+<!-- 11 Team Paper: the Hall Problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Now the Hall Problem. Last week you said what "best" means for a dismissal. Today you use it, with a rate: students per second through one exit.</p>
+    <p class="serif in" style="--i:3">"Our rate is … students a second, which we counted at … / which we assume because … Plan A is … Plan B is … By our measure, the better plan is … because …"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="420"></button></div><p>Writer types, the others say what to write: <strong>your rate and where it comes from, then two plans.</strong> Plan A: each floor leaves by its own exit. Plan B: your own idea. Start comparing them by the measure you chose last week.</p></div>
+    <p class="note" data-step="2">No count yet? Use one student a second at each exit, and write it down as an assumption.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>7 | Team Paper</h2></div>
+</section>
+
+<!-- 12 Exit slip and before Session 5 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>Finish comparing your two plans for the hall, by your own measure. The steps are on the <a href="04.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 5: a real competition problem, forty minutes, no help. Then AI joins the team.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>8 | Before Session 5</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script src="../assets/line-fit.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  $("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  $("lineWho").textContent = LINE.who;
+  $("lineWhy").textContent = LINE.why || "Listen for what makes it good: it says what “best” means, and how it would be measured.";
+
+  /* ---------- Boards (the same pattern as earlier sessions) ---------- */
+  var nameBoxes = [];
+  function num(text) { var v = parseFloat(String(text).replace(/[, ]/g, "")); return isFinite(v) && String(text).trim() !== "" ? v : null; }
+  function board(id, fields) {
+    var values = TEAMS.map(function () { return {}; });
+    TEAMS.forEach(function (team, i) {
+      var cell = document.createElement("div"); cell.className = "cell";
+      var name = document.createElement("input");
+      name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+      name.addEventListener("input", function () {
+        TEAMS[i] = name.value;
+        nameBoxes.forEach(function (b) { if (b.i === i && b.el !== name) b.el.value = name.value; });
+        try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {}
+      });
+      nameBoxes.push({ i: i, el: name }); cell.appendChild(name);
+      var row = document.createElement("div"); row.className = "fields";
+      fields.forEach(function (f) {
+        var lab = document.createElement("label"), box = document.createElement("input");
+        box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+        box.addEventListener("input", function () { values[i][f.key] = num(box.value); });
+        lab.appendChild(document.createTextNode(f.label)); lab.appendChild(box); row.appendChild(lab);
+        values[i][f.key] = null;
+      });
+      cell.appendChild(row); $(id).appendChild(cell);
+    });
+    return values;
+  }
+  function said(values, key, label, dp) {
+    var parts = [];
+    values.forEach(function (v, i) { if (v[key] !== null && v[key] !== undefined) parts.push((TEAMS[i] || "Team " + (i + 1)) + " " + v[key].toFixed(dp)); });
+    return parts.length ? label + "  " + parts.join("  ·  ") : "";
+  }
+  var eye = board("eye", [{ key: "t", label: "2036, by eye (°C)" }]);
+  var model = board("model", [{ key: "m", label: "°C per year" }, { key: "t", label: "2036 (°C)" }]);
+
+  Live.onEnter("results", function () {
+    $("mineEye").textContent = said(eye, "t", "By eye, you said:", 1);
+    $("mineModel").textContent = said(model, "t", "Your models said:", 1);
+  });
+
+  LineFit($("fit1"));
+  LineFit($("fit2"), { reveal: true });
+})();
+</script>
+</body>
+</html>

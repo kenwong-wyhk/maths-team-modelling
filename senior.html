@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senior study pack</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Senior Team · before Session 8</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Senior Team · before Session 8</p>
+  <h1>Senior study pack</h1>
+  <p class="lede">In the senior division you meet teams who use epidemic models and simulations. This pack gives you one of each, built in a sheet, in about an hour. Both are small on purpose. The judges of a real competition warn that the simplest model that answers the question wins, and that a simulation is worth nothing unless its rules are stated.</p>
+
+  <h2 class="wy-section-title"><span class="num">1</span>An epidemic in a spreadsheet</h2>
+  <p>Flu reaches our school: 25 classes of 36, so 900 students. On day 0 one student is ill.</p>
+  <div class="tile">
+    <span class="label">The model: three groups, updated once a day</span>
+    <p><strong>S</strong> can still catch it. <strong>I</strong> is ill and can pass it on. <strong>R</strong> has recovered and cannot catch it again. N = S + I + R = 900.</p>
+    <ul>
+      <li>new cases today = β × S × I ÷ N</li>
+      <li>recoveries today = γ × I</li>
+      <li>tomorrow: S − new cases, I + new cases − recoveries, R + recoveries</li>
+    </ul>
+    <p>Take β = 0.5 and γ = 0.25: an ill student is ill for four days on average, and passes it on at a rate of half a student a day while almost everyone can still catch it.</p>
+  </div>
+  <p><strong>The assumptions,</strong> which you should be able to defend or attack: every student is equally likely to meet every other; nobody catches it twice; ill students still come to school; nobody from outside brings it in again.</p>
+  <ol class="tasks">
+    <li><span class="tag">Build</span> Columns for the day (0 to 120), S, I, R, new cases and recoveries. Day 0 is 899, 1, 0. Check that S + I + R is 900 on every row, and say why it must be.</li>
+    <li><span class="tag">Read</span> On which day are most students ill, and how many? How many have been ill by day 120?</li>
+    <li><span class="tag">Explain</span> I rises when new cases are more than recoveries, that is when β × S ÷ N &gt; γ. Show this means S &gt; 450. Check in your sheet that the peak comes on the first day S falls below 450. Why does the number R<sub>0</sub> = β ÷ γ = 2 decide whether an outbreak grows at all?</li>
+    <li><span class="tag">Use</span> Before day 0, vaccinate V students: move them from S to R. Find the smallest V for which the number ill never rises. How does it compare with N × (1 − 1 ÷ R<sub>0</sub>)?</li>
+    <li><span class="tag">Test</span> Raise β by 10%. By what percentage does the peak rise? Give the sensitivity, as in Session 6. Which input would you most want to measure well?</li>
+  </ol>
+  <details>
+    <summary>My figures: open only when your sheet is built</summary>
+    <p>The peak is on day 29, with about 147 ill. By day 120 about 731 have been ill. On day 28 S is still above 450; on day 29 it is about 428. With 449 vaccinated, S starts at exactly 450: new cases equal recoveries, and the outbreak never grows. Raising β by 10% lifts the peak to about 181, a rise of 23%: a sensitivity of 2.3.</p>
+  </details>
+  <p><strong>Go further.</strong> For the smooth version of this model, the fraction z of the school ever ill satisfies z = 1 − e<sup>−R<sub>0</sub> z</sup>, where e ≈ 2.718. Solve it for R<sub>0</sub> = 2 by trying values, and compare with your sheet. Then change your sheet to steps of half a day (halve both the new cases and the recoveries in each step). Which way does the answer move, and why?</p>
+  <p class="note">A warning from a judge. In the 2023 MathWorks Math Modeling Challenge some teams used this model for the sales of e-bikes. The judge's commentary calls it a bit problematic there: it assumes that people buy an e-bike because they "catch" it from others, which is the very question the problem asked them to answer. A model that suits flu does not suit everything that spreads.</p>
+
+  <h2 class="wy-section-title"><span class="num">2</span>One simulation</h2>
+  <p>Back to the hall. One stream of 8 classes of 36 leaves through one exit, farthest room first. These walking times from the exit are invented: 62, 55, 47, 40, 32, 25, 12 and 5 seconds. At exactly one student a second, every class takes 36 seconds to pass the exit, and the last class is seated at 288 + 5 = 293 seconds.</p>
+  <p>But no class moves at exactly one student a second. A simulation asks: if the rate varies, what range of times should we expect?</p>
+  <div class="tile">
+    <span class="label">The rules, stated so that anyone could repeat them</span>
+    <ol>
+      <li>Each class's rate is r = 0.8 + 0.4 × RAND(): any value from 0.8 to 1.2 students a second, all equally likely, each class independent of the others.</li>
+      <li>A class takes 36 ÷ r seconds to pass the exit.</li>
+      <li>Classes pass one after another, farthest room first. Each starts when the one before has passed.</li>
+      <li>A class is seated when it has passed the exit and walked to its room.</li>
+      <li>One run's result is the time the last class is seated: the largest of the eight.</li>
+    </ol>
+  </div>
+  <ol class="tasks">
+    <li><span class="tag">Build</span> One row for each run: eight rates, eight passing times, the running total, the total plus each walk, and the largest. Copy the row down to make 500 runs.</li>
+    <li><span class="tag">Report</span> Give the median and the middle 90% (from the 5th to the 95th percentile), and draw a histogram. Your figures will not match mine or your teammates' exactly, because RAND() gives different numbers each time. Recalculate and watch how much they move.</li>
+    <li><span class="tag">Explain</span> The rate averages 1 a second, yet the median is above 293. Why? Dividing 36 by a slow rate costs more than dividing by a fast rate saves.</li>
+    <li><span class="tag">Prove</span> Run the same classes, with the same rates, nearest room first. Show that farthest first wins in every run, by exactly 57 seconds. A start: every pass takes at least 30 seconds.</li>
+  </ol>
+  <details>
+    <summary>My figures: open only when your simulation runs</summary>
+    <p>From 100,000 runs: median about 297 seconds, middle 90% from about 277 to 317 seconds. The average time for a class to pass is about 36.5 seconds, not 36. (Exactly, it is 36 × ln 1.5 ÷ 0.4, for those who know logarithms.)</p>
+  </details>
+  <p class="note">What the judge's commentary asks of every simulation: state each rule and each random distribution in the paper, so that a reader could repeat it without your code; and report the spread, with a histogram, a middle value and a range, not one number. The judges' notes on the "excellent" e-bike paper criticise it for exactly this.</p>
+
+  <h2 class="wy-section-title"><span class="num">3</span>Bring to Session 8</h2>
+  <ul>
+    <li>Your two sheets, shared with me.</li>
+    <li>One sentence for each part saying what a judge would criticise first in your model.</li>
+  </ul>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Senior study pack</span></div></footer>
+</body>
+</html>

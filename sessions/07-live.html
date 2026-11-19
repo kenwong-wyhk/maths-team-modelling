@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 7 Live: From paragraphs to a paper</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input { width: 100%; font: inherit; font-size: 1.2rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board .cell > input:first-child { font-size: 1.3rem; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.two h3 { margin: 0 0 .4rem; font-family: var(--font-display); font-weight: 400; font-size: 2rem; color: var(--blue); }
+.two .stack p { font-size: 1.3rem; margin: 0; }
+.checks .node h3 { font-size: 1.9rem; } .checks .node p { font-size: 1.15rem; }
+table.data { font-size: 1.3rem; border-collapse: collapse; width: 100%; }
+table.data th, table.data td { text-align: left; padding: .5rem .8rem; border-bottom: 0.07rem solid var(--frame); font-weight: 300; vertical-align: top; }
+table.data thead th, table.data tbody th { font-weight: 400; color: var(--blue); }
+.found p.display { font-size: 2.2rem; margin: .4rem 0; }
+@media (max-width: 800px) { .board, .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-reading="07.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 7</p>
+    <h1 class="display huge in" style="--i:7">From paragraphs to a paper</h1>
+    <p class="in" style="--i:9">Six weeks of sections become one paper. First, what a judge does with one.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 Cold start: list every task in a real problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">A real problem: the MathWorks Math Modeling Challenge 2023, on the growth of e-bikes. Each team has a printed copy.</p>
+    <p class="display big blue-text in" style="--i:3">What will a judge check that you did?</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>Read every sentence, not only the questions. List everything a judge will check, and beside each, the words in the problem that ask for it.</p></div>
+    <p class="note" data-step="2">Do not solve anything. Just list.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 4 The nine tasks -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">How many did your team find?</p>
+    <div class="two">
+      <ol class="in" style="--i:2">
+        <li>A model of the growth in sales (Q1)</li>
+        <li>Two numbers: two years and five years from now (Q1)</li>
+        <li>The country chosen, and stated</li>
+        <li>Factors behind the growth, each argued with a model (Q2)</li>
+        <li>Emissions, congestion, health, as numbers (Q3)</li>
+      </ol>
+      <ol start="6" data-step="1">
+        <li><strong>A one-page summary, written as a brief to the head of the transport department</strong></li>
+        <li>At most 20 pages</li>
+        <li>Every source cited, including the data file</li>
+        <li>Code as an appendix, for the computing prize</li>
+      </ol>
+    </div>
+    <p class="display big" data-step="2">Three numbered questions. Nine things to check.</p>
+    <p class="note" data-step="3">A task with no section in your paper is a task you have not answered.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 5 Paper study: two summaries, unlabelled -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Two teams' summaries of this problem. The competition published both, with the judges' notes. Each team has Summary A and Summary B, on paper.</p>
+    <p class="display big blue-text in" style="--i:3">Which would a judge rate higher?</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="240"></button></div><p>Decide, then write the first sentence of the judges' note on the weaker one.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Paper study</h2></div>
+</section>
+
+<!-- 6 What the judges wrote -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="stack in" style="--i:1">
+        <h3>A: rated "excellent"</h3>
+        <p>The summary gives the results and shows how they were found.</p>
+        <p>It looked at the residuals, not only one score of fit. Graphs, sensitivity, strengths and weaknesses all clearly labelled.</p>
+        <p>But: the simulation's rules are not stated, so nobody could repeat it.</p>
+      </div>
+      <div class="stack in" style="--i:3">
+        <h3>B: rated "average"</h3>
+        <p>The summary describes the context well, but has no results.</p>
+        <p>The three parts disagree. Formulas with little reason, unclear units, no sensitivity analysis.</p>
+        <p>No source cited in the text.</p>
+      </div>
+    </div>
+    <p class="note" data-step="1">Our own check, against the Paper Standards: "1,922,281 e-bikes" is seven figures for a forecast. And neither summary is written to the head of the department, as the problem asked.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Paper study</h2></div>
+</section>
+
+<!-- 7 The map of paper A -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Paper A's sections, under the steps of the cycle.</p>
+    <table class="data in" style="--i:2">
+      <thead><tr><th></th><th>Analyse</th><th>Formulate</th><th>Solve</th><th>Interpret</th><th>Evaluate</th></tr></thead>
+      <tbody>
+        <tr data-step="1"><th>I: sales</th><td>3.1 Restatement</td><td>3.2 Assumptions, 3.3.1 Variables</td><td>3.3.2 Regression</td><td>3.4 Results</td><td>3.4.1 Validation, 3.4.2 Sensitivity, 3.5 Strengths and weaknesses</td></tr>
+        <tr data-step="2"><th>II: factors</th><td>4.1 Restatement</td><td>4.2 Assumptions, 4.3 Variables and factors</td><td>4.4 Model</td><td>4.5 Results</td><td>4.5.1 Validation, 4.5.2 Sensitivity, 4.6 Strengths and weaknesses</td></tr>
+        <tr data-step="3"><th>III: impact</th><td>5.1 Restatement</td><td>5.2 Assumptions, 5.3.1 Variables</td><td>5.3.2 Simulation</td><td>5.4 Results</td><td>5.4.1 Sensitivity, 5.5 Strengths and weaknesses</td></tr>
+      </tbody>
+    </table>
+    <p class="display big" data-step="4">Three tasks: the cycle runs three times.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Paper study</h2></div>
+</section>
+
+<!-- 8 Team time, with the board the coach fills as teams bring their results -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes. Put your sections in the order on the card, and fill the gaps. The summary is written first.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Maps every part of the Hall Problem to a section. Checks every assumption has four parts.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Charts and tables to the Paper Standards. Symbols, references, citations.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>The summary, first: up to one page, with your numbers.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>Plans the time. At minute 25, ticks every summary number against the body.</p></div>
+    </div>
+    <div class="board" data-step="1" id="plans"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | Team time</h2></div>
+</section>
+
+<!-- 9 The summary test -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">A judge reads your summary before anything else. So does every other reader.</p>
+    <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="180"></button></div><p>Swap summaries with another team. Read only the summary, and write down: <strong>the plan it recommends, the number behind it, and the first place you got lost.</strong> Hand it back.</p></div>
+    <p class="display big" data-step="1">Did they write down the plan and the number you meant?</p>
+    <p class="note" data-step="2">If not, the summary has failed, however good the model is.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 10 Every team's recommendation, and the three-minute defence -->
+<section class="scene blue found" data-enter="results">
+  <div class="body">
+    <p class="in" style="--i:1">What each team recommends, and the number behind it.</p>
+    <div class="in" style="--i:3" id="recs"></div>
+    <p data-step="1">One team now defends its summary for three minutes. I choose who answers. Everyone else: ask what a judge would ask.</p>
+  </div>
+  <div class="foot"><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 11 The habit: the judge's first five minutes -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">No new Maths Tool this week · today's habit</p>
+    <p class="display big blue-text in" style="--i:2">The judge's first five minutes</p>
+    <div class="cycle checks" style="--n:5">
+      <div class="node in" style="--i:3"><h3>1 Summary</h3><p>What was found, with what numbers?</p></div>
+      <div class="node in" style="--i:4"><h3>2 Tasks</h3><p>Is every part of the question answered?</p></div>
+      <div class="node in" style="--i:5"><h3>3 One number</h3><p>Find it in the body. Is it the same?</p></div>
+      <div class="node in" style="--i:6"><h3>4 Charts</h3><p>Titled, labelled, with a source?</p></div>
+      <div class="node in" style="--i:7"><h3>5 References</h3><p>Cited in the text, or only listed?</p></div>
+    </div>
+    <p class="note" data-step="1">A paper that fails here is read with suspicion from then on. The Team lead does these five checks before every hand-in.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | What you found</h2></div>
+</section>
+
+<!-- 12 Team Paper: a letter to the Principal -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">A judge reads the summary. The Principal reads the letter. Neither reads your model first.</p>
+    <p class="serif in" style="--i:3">"Dear Principal, We recommend … At present the hall takes … With our plan … We would like to try it at …, and we would measure …"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>Start the letter: <strong>what you recommend, the number that shows it is better, what it changes for students and teachers, and how one assembly could test it.</strong> One page at most.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>5 | Team Paper</h2></div>
+</section>
+
+<!-- 13 Exit slip, roles, and before Session 8 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> One thing that was unclear today, and one thing you liked. The Team lead also hands me the slip with your fixed roles.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>By Monday: finish the paper and the letter, and share it. By Wednesday: score the next team's paper with the Rubric and the Paper Standards. The steps are on the <a href="07.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 8: the Mock Competition starts. An unseen problem, a week, and your fixed roles.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Before Session 8</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  $("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  $("lineWho").textContent = LINE.who;
+  $("lineWhy").textContent = LINE.why || "Listen for what makes it good: a reader who knows nothing about our hall could follow it.";
+
+  /* ---------- The board: each team's recommendation, and the number behind it ---------- */
+  var values = TEAMS.map(function () { return { plan: "", by: "" }; });
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    var name = document.createElement("input");
+    name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+    name.addEventListener("input", function () { TEAMS[i] = name.value; try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {} });
+    cell.appendChild(name);
+    [{ key: "plan", hint: "We recommend …" }, { key: "by", hint: "Better than Plan A by …" }].forEach(function (f) {
+      var box = document.createElement("input");
+      box.type = "text"; box.autocomplete = "off"; box.placeholder = f.hint; box.setAttribute("aria-label", "Team " + (i + 1) + ": " + f.hint);
+      box.addEventListener("input", function () { values[i][f.key] = box.value.trim(); });
+      cell.appendChild(box);
+    });
+    $("plans").appendChild(cell);
+  });
+
+  Live.onEnter("results", function () {
+    var box = $("recs"); box.textContent = "";
+    values.forEach(function (v, i) {
+      if (!v.plan && !v.by) return;
+      var p = document.createElement("p"); p.className = "display";
+      p.textContent = (TEAMS[i] || "Team " + (i + 1)) + ": " + (v.plan || "…") + (v.by ? "  ·  " + v.by : "");
+      box.appendChild(p);
+    });
+    if (!box.firstChild) { var p = document.createElement("p"); p.className = "display"; p.textContent = "Team leads: your plan, and the number behind it?"; box.appendChild(p); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basketballs: A Winning Answer</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this page only. Shared styles live in live/live.css. */
+.assume { display: flex; flex-direction: column; gap: .9rem; }
+.assume p { margin: 0; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.3; font-weight: 400; }
+.assume p strong { font-weight: 700; }
+.assume .just { color: var(--ink-muted); }
+.model { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: 3rem; align-items: center; }
+.sliders { display: grid; grid-template-columns: 9rem 1fr 6rem; gap: .5rem 1rem; align-items: center; font-size: 1.25rem; }
+.sliders output { font-variant-numeric: tabular-nums; text-align: right; color: var(--blue); font-weight: 500; }
+.formula { font-family: var(--font-serif); font-size: 2rem; }
+.answer { font-family: var(--font-display); font-size: 6.5rem; line-height: 1; color: var(--blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.answer small { display: block; font-family: var(--font-sans); font-size: 1.2rem; color: var(--ink-muted); margin-top: .6rem; white-space: normal; }
+.sens { display: grid; grid-template-columns: 21rem 1fr 7rem; gap: .7rem 1.2rem; align-items: center; font-size: 1.3rem; }
+.sens .track { height: 2rem; position: relative; border-left: 0.07rem solid var(--frame); }
+.sens .track i { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: var(--blue); transition: width 1.4s var(--ease); }
+.sens .track.down i { background: none; border: 0.12rem solid var(--blue); }
+.sens b { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; color: var(--blue); text-align: right; font-variant-numeric: tabular-nums; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.pair h3 { margin: 0 0 .5rem; font-family: var(--font-display); font-weight: 400; font-size: 2rem; color: var(--blue); }
+.pair ul { margin: 0; padding-left: 1.2em; font-size: 1.3rem; display: flex; flex-direction: column; gap: .5rem; }
+@media (max-width: 800px) { .model, .pair { grid-template-columns: 1fr; } .sens { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-reading="00.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · After the first meeting</p>
+    <h1 class="display huge in" style="--i:7">How many basketballs would fill the InnoCourt?</h1>
+    <p class="in" style="--i:9">How a winning team would present its answer, in five screens.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 Restating the problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">A winning team starts by saying exactly which question it is answering.</p>
+    <p class="serif narrow in" style="--i:3">We estimate how many full-size basketballs fit in the air space of the InnoCourt, if the balls are <strong>poured in</strong> until the room is full.</p>
+    <p data-step="1">"Fill" could mean stacked neatly by hand, or poured in. We chose poured in, because that is what filling a room would really look like.</p>
+    <p class="note" data-step="2">Notice: the team made a decision the question did not make for it, and said so.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>1 | Problem restatement</h2></div>
+</section>
+
+<!-- 3 Assumptions and justifications -->
+<section class="scene">
+  <div class="body assume">
+    <div class="in" style="--i:1"><p><strong>Assumption 1:</strong> The room is a box.</p><p class="just"><strong>Justification:</strong> Its walls are straight and its ceiling is flat, so length × width × height is close to its true volume.</p></div>
+    <div data-step="1"><p><strong>Assumption 2:</strong> A basketball is a sphere 24 cm across.</p><p class="just"><strong>Justification:</strong> A full-size ball is about 75 cm around, and 75 ÷ π is about 24.</p></div>
+    <div data-step="2"><p><strong>Assumption 3:</strong> Poured-in balls fill 64% of the space.</p><p class="just"><strong>Justification:</strong> Spheres dropped at random settle to about 64%. Stacking them perfectly would reach 74%.</p></div>
+    <div data-step="3"><p><strong>Assumption 4:</strong> Furniture and fittings take up 10% of the room.</p><p class="just"><strong>Justification:</strong> This is an estimate from looking at the room, so we test it later.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Assumptions and justifications</h2></div>
+</section>
+
+<!-- 4 The model and its answer.  EDIT: measure the InnoCourt and set the three sliders, or change ROOM in the script. -->
+<section class="scene" data-enter="model">
+  <div class="body">
+    <p class="formula in" style="--i:1">balls = room volume × (1 − furniture) × packing ÷ volume of one ball</p>
+    <div class="model in" style="--i:2">
+      <div class="sliders">
+        <label for="L">Length</label><input type="range" id="L" min="4" max="40" step="0.5"><output id="oL"></output>
+        <label for="W">Width</label><input type="range" id="W" min="3" max="30" step="0.5"><output id="oW"></output>
+        <label for="H">Height</label><input type="range" id="H" min="2" max="8" step="0.1"><output id="oH"></output>
+      </div>
+      <div class="answer"><span id="N">0</span><small>basketballs, to 2 significant figures</small></div>
+    </div>
+    <p data-step="1" id="working"></p>
+    <p class="note" data-step="2">We round to 2 significant figures. Our measurements are good to about 5%, so more digits would pretend to a precision we do not have.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | The model</h2></div>
+</section>
+
+<!-- 5 Sensitivity analysis -->
+<section class="scene" data-enter="sens">
+  <div class="body">
+    <p class="in" style="--i:1">What if each assumption is a little wrong? We change one at a time and watch the answer.</p>
+    <div class="sens in" style="--i:2" id="sens"></div>
+    <p class="note" data-step="1">Lengths matter most, because a length is cubed: 10% on the ball or on the room moves the answer by a quarter or more. So measure those most carefully.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | Sensitivity analysis</h2></div>
+</section>
+
+<!-- 6 Strengths, weaknesses and the answer -->
+<section class="scene">
+  <div class="body">
+    <div class="pair">
+      <div class="in" style="--i:1"><h3>Strengths</h3><ul>
+        <li>Every number can be traced to a stated assumption.</li>
+        <li>Anyone can repeat it with a tape measure.</li>
+        <li>We know which numbers matter most, and why.</li>
+      </ul></div>
+      <div data-step="1"><h3>Weaknesses</h3><ul>
+        <li>Balls beside a wall pack less tightly than balls in the middle.</li>
+        <li>The furniture figure is a guess.</li>
+        <li>Balls at the bottom would be squashed by those above.</li>
+      </ul></div>
+    </div>
+    <p class="display big blue-text" data-step="2" id="final"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>5 | Strengths and weaknesses</h2></div>
+</section>
+
+<!-- 7 What made it a winning answer -->
+<section class="scene blue">
+  <div class="body">
+    <p class="display big narrow in" style="--i:1">What made that a winning answer was not the number.</p>
+    <p data-step="1">It said which question it was answering.</p>
+    <p data-step="2">It gave a reason for every assumption.</p>
+    <p data-step="3">It tested itself, and admitted where it is weak.</p>
+    <p class="display big" data-step="4">Another team could reach a different number, and be just as good.</p>
+  </div>
+  <div class="foot"><h2>What to take from this</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: the InnoCourt's measurements in metres. These are placeholders, not measurements. */
+  var ROOM = { L: 12, W: 8, H: 3 };
+  var D = 0.24, PACK = 0.64, FURN = 0.10;       /* ball diameter (m), packing fraction, share taken by furniture */
+
+  var $ = function (id) { return document.getElementById(id); };
+  function balls(L, W, H, d, p, f) { return L * W * H * (1 - f) * p / (Math.PI * d * d * d / 6); }
+  function sig2(n) { if (n <= 0) return 0; var m = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / m) * m; }
+  function fmt(n) { return Math.round(n).toLocaleString("en-GB"); }
+  function room() { return { L: +$("L").value, W: +$("W").value, H: +$("H").value }; }
+
+  ["L", "W", "H"].forEach(function (k) { $(k).value = ROOM[k]; $(k).addEventListener("input", update); });
+
+  function update() {
+    var r = room(), n = balls(r.L, r.W, r.H, D, PACK, FURN), vol = r.L * r.W * r.H, one = Math.PI * D * D * D / 6;
+    $("oL").textContent = r.L.toFixed(1) + " m"; $("oW").textContent = r.W.toFixed(1) + " m"; $("oH").textContent = r.H.toFixed(1) + " m";
+    $("N").textContent = fmt(sig2(n));
+    $("working").textContent = "Room " + fmt(vol) + " m³ × 0.90 × 0.64 = " + fmt(vol * 0.9 * 0.64) + " m³ of ball. One ball is " + one.toFixed(5) + " m³. That gives " + fmt(n) + ".";
+    var low = balls(r.L * .95, r.W * .95, r.H * .95, D * 1.03, 0.60, 0.15), high = balls(r.L * 1.05, r.W * 1.05, r.H * 1.05, D * 0.97, 0.68, 0.05);
+    $("final").textContent = "About " + fmt(sig2(n)) + " basketballs, and most likely between " + fmt(sig2(low)) + " and " + fmt(sig2(high)) + ".";
+    sens(r, n);
+  }
+
+  /* One row per assumption: the change in the answer when that one input changes. */
+  var cases = [
+    { label: "Ball 10% wider", f: function (r) { return balls(r.L, r.W, r.H, D * 1.1, PACK, FURN); } },
+    { label: "Stacked neatly (74%), not poured", f: function (r) { return balls(r.L, r.W, r.H, D, 0.74, FURN); } },
+    { label: "Furniture takes 20%, not 10%", f: function (r) { return balls(r.L, r.W, r.H, D, PACK, 0.20); } },
+    { label: "Room 10% bigger each way", f: function (r) { return balls(r.L * 1.1, r.W * 1.1, r.H * 1.1, D, PACK, FURN); } }
+  ];
+  var rows = cases.map(function (c) {
+    var a = document.createElement("span"), t = document.createElement("div"), i = document.createElement("i"), b = document.createElement("b");
+    a.textContent = c.label; t.className = "track"; t.appendChild(i);
+    [a, t, b].forEach(function (n) { $("sens").appendChild(n); });
+    return { track: t, bar: i, out: b, pct: 0 };
+  });
+  function sens(r, n) {
+    cases.forEach(function (c, k) {
+      var pct = (c.f(r) / n - 1) * 100;
+      rows[k].pct = pct;
+      rows[k].out.textContent = (pct > 0 ? "+" : "−") + Math.abs(pct).toFixed(0) + "%";
+      rows[k].track.classList.toggle("down", pct < 0);       /* solid = more balls, outline = fewer */
+    });
+  }
+  function grow() { rows.forEach(function (row) { row.bar.style.width = Math.min(100, Math.abs(row.pct) * 3) + "%"; }); }
+
+  Live.onEnter("model", function (alive) {
+    var target = sig2(balls(room().L, room().W, room().H, D, PACK, FURN));
+    Live.wait(900, alive).then(function () {
+      return Live.tween(1800, function (p) { $("N").textContent = fmt(sig2(target * Live.ease(p))); }, alive);
+    }).then(function () { if (alive()) update(); });
+  });
+  Live.onEnter("sens", function (alive) {
+    rows.forEach(function (row) { row.bar.style.width = "0"; });
+    Live.wait(900, alive).then(function () { if (alive()) grow(); });
+  });
+  update();
+})();
+</script>
+</body>
+</html>

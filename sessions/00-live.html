@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maths Team Launch Live</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this meeting only. Shared styles live in live/live.css. */
+.cols { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); }
+.cols .node p { font-size: 1.35rem; line-height: 1.5; }
+.rules .row { grid-template-columns: 4rem 1fr; }
+.opts { display: flex; flex-direction: column; gap: .7rem; align-items: stretch; max-width: 52rem; }
+.opts .btn { text-align: left; font-size: 1.55rem; padding: .55rem 1.2rem; font-weight: 300; }
+.opts .btn b { font-family: var(--font-display); font-weight: 400; margin-right: 1rem; }
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board label { display: block; font-size: 1rem; font-weight: 400; color: var(--blue); }
+.board input { width: 100%; font: inherit; font-size: 1.5rem; padding: .3rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board input.num { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin-top: .5rem; }
+.ratio { font-family: var(--font-display); font-size: 2.6rem; color: var(--blue); min-height: 3.4rem; }
+.weeks { display: flex; align-items: baseline; gap: 1rem; }
+.weeks .count { font-size: 6rem; color: var(--blue); }
+@media (max-width: 800px) { .cols, .board { grid-template-columns: 1fr; } }
+/* The winning answer (also published on its own as 00-answer-live.html) */
+.assume { display: flex; flex-direction: column; gap: .9rem; }
+.assume p { margin: 0; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.3; font-weight: 400; }
+.assume p strong { font-weight: 700; }
+.assume .just { color: var(--ink-muted); }
+.model { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: 3rem; align-items: center; }
+.sliders { display: grid; grid-template-columns: 9rem 1fr 6rem; gap: .5rem 1rem; align-items: center; font-size: 1.25rem; }
+.sliders output { font-variant-numeric: tabular-nums; text-align: right; color: var(--blue); font-weight: 500; }
+.formula { font-family: var(--font-serif); font-size: 2rem; }
+.answer { font-family: var(--font-display); font-size: 6.5rem; line-height: 1; color: var(--blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.answer small { display: block; font-family: var(--font-sans); font-size: 1.2rem; color: var(--ink-muted); margin-top: .6rem; white-space: normal; }
+.sens { display: grid; grid-template-columns: 21rem 1fr 7rem; gap: .7rem 1.2rem; align-items: center; font-size: 1.3rem; }
+.sens .track { height: 2rem; position: relative; border-left: 0.07rem solid var(--frame); }
+.sens .track i { position: absolute; top: 0; bottom: 0; left: 0; width: 0; background: var(--blue); transition: width 1.4s var(--ease); }
+.sens .track.down i { background: none; border: 0.12rem solid var(--blue); }
+.sens b { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; color: var(--blue); text-align: right; font-variant-numeric: tabular-nums; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.pair h3 { margin: 0 0 .5rem; font-family: var(--font-display); font-weight: 400; font-size: 2rem; color: var(--blue); }
+.pair ul { margin: 0; padding-left: 1.2em; font-size: 1.3rem; display: flex; flex-direction: column; gap: .5rem; }
+@media (max-width: 800px) { .model, .pair { grid-template-columns: 1fr; } .sens { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-reading="00.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · First meeting · 19 Nov, 2026 (Thursday)</p>
+    <h1 class="display huge in" style="--i:7">Mathematical Modelling</h1>
+    <p class="in" style="--i:9">Welcome, Gentlemen.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 Opening game: which is not a real competition problem? -->
+<section class="scene">
+  <div class="body">
+    <p class="display big blue-text in" style="--i:1">One of these has never been set in a modelling competition. Which?</p>
+    <div class="btns choice opts in" style="--i:3">
+      <button class="btn"><b>A</b>Is this household ready to own a pet?</button>
+      <button class="btn"><b>B</b>Plan a season for a global sports league.</button>
+      <button class="btn"><b>C</b>Solve 3x + 7 = 22.</button>
+      <button class="btn"><b>D</b>Are solar panel trackers useful?</button>
+      <button class="btn"><b>E</b>Design the lighting for a museum exhibition hall.</button>
+    </div>
+    <p data-step="1">On three, everyone say a letter.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>Spot the odd one out</h2></div>
+</section>
+
+<!-- 3 What the game shows -->
+<section class="scene blue">
+  <div class="body">
+    <p class="in" style="--i:1">It is C. Somebody already knows the answer to C.</p>
+    <p class="display huge in" style="--i:4">Real questions. No answer key.</p>
+    <p class="narrow" data-step="1">The other four were all set in modelling competitions between 2024 and 2026. Students your age answered them.</p>
+    <p class="narrow" data-step="2">This team is where you learn how.</p>
+  </div>
+  <div class="foot"><h2>What this team does</h2></div>
+</section>
+
+<!-- 4 Teams. Names come from the TEAMS list at the top of the script below. -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Eleven of you, in three teams. You stay in your team all year.</p>
+    <div class="cols" style="--n:3" id="teams"></div>
+    <div class="row" data-step="4"><div><div class="who">First job</div><button class="timer" data-sec="60"></button></div><p>Sit with your team. Choose a team name. You have one minute.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Your team</h2></div>
+</section>
+
+<!-- 5 Roles -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">The four roles of a real competition team. You hold one each week, and they rotate.</p>
+    <div class="cycle" style="--n:4">
+      <div class="node" data-step="1"><h3>Modeller</h3><p>Turns the problem into mathematics, and writes down every assumption.</p></div>
+      <div class="node" data-step="2"><h3>Data lead</h3><p>Finds the numbers, and builds the spreadsheet and the charts.</p></div>
+      <div class="node" data-step="3"><h3>Writer</h3><p>Makes the team's argument clear, and presents it.</p></div>
+      <div class="node" data-step="4"><h3>Team lead</h3><p>Plans the time, and makes sure the parts fit together.</p></div>
+    </div>
+    <p class="note" data-step="5">Share out the four roles now. Each week you move on one place, in this order.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Roles</h2></div>
+</section>
+
+<!-- 6 The team's first problem -->
+<section class="scene" data-enter="balls">
+  <div class="body">
+    <p class="in" style="--i:1">Your team's first problem. Look around you.</p>
+    <p class="display big blue-text in" style="--i:2">How many basketballs would fill the InnoCourt?</p>
+    <svg class="in" style="--i:3" id="balls" viewBox="0 0 1000 150" role="img" aria-label="Basketballs appear one after another along the floor of a room."></svg>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="240"></button></div><p>Modeller: write down what the team assumes <strong>before</strong> anyone calculates. Then agree on one number.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Try one now</h2></div>
+</section>
+
+<!-- 7 The board: every team's number on one line -->
+<section class="scene" data-enter="board">
+  <div class="body">
+    <p class="in" style="--i:1">Writers: tell us your team's number, and one assumption behind it.</p>
+    <div class="board in" style="--i:2" id="board"></div>
+    <svg class="in" style="--i:3" id="line" viewBox="0 0 1000 190" role="img" aria-label="Each team's estimate marked on a number line"></svg>
+    <p class="ratio in" style="--i:4" id="ratio"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Put your numbers up</h2></div>
+</section>
+
+<!-- 8 The point -->
+<section class="scene blue">
+  <div class="body">
+    <p class="display big narrow in" style="--i:1">Three teams. Three numbers. Nobody has ever filled this room. So who is right?</p>
+    <p class="narrow" data-step="1">The team that can say what it assumed, and why that is reasonable.</p>
+    <p class="display big" data-step="2">That is modelling.</p>
+  </div>
+  <div class="foot"><h2>What just happened</h2></div>
+</section>
+
+<!-- 9 A first taste of testing a model -->
+<section class="scene">
+  <div class="body">
+    <p class="display big blue-text narrow in" style="--i:1">Which one thing would change your answer the most?</p>
+    <div class="btns choice opts in" style="--i:3">
+      <button class="btn">The size of the room</button>
+      <button class="btn">The size of one ball</button>
+      <button class="btn">The gaps between the balls</button>
+      <button class="btn">What is already in the room</button>
+    </div>
+    <p class="note" data-step="1">Asking this question is called sensitivity analysis. Every winning paper has one.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>One step further</h2></div>
+</section>
+
+<!-- winning answer 2: Restating the problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Now the same question, answered the way a winning team would present it. It starts by saying exactly which question it is answering.</p>
+    <p class="serif narrow in" style="--i:3">We estimate how many full-size basketballs fit in the air space of the InnoCourt, if the balls are <strong>poured in</strong> until the room is full.</p>
+    <p data-step="1">"Fill" could mean stacked neatly by hand, or poured in. We chose poured in, because that is what filling a room would really look like.</p>
+    <p class="note" data-step="2">Notice: the team made a decision the question did not make for it, and said so.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>A winning answer · 1 | Problem restatement</h2></div>
+</section>
+
+<!-- winning answer 3: Assumptions and justifications -->
+<section class="scene">
+  <div class="body assume">
+    <div class="in" style="--i:1"><p><strong>Assumption 1:</strong> The room is a box.</p><p class="just"><strong>Justification:</strong> Its walls are straight and its ceiling is flat, so length × width × height is close to its true volume.</p></div>
+    <div data-step="1"><p><strong>Assumption 2:</strong> A basketball is a sphere 24 cm across.</p><p class="just"><strong>Justification:</strong> A full-size ball is about 75 cm around, and 75 ÷ π is about 24.</p></div>
+    <div data-step="2"><p><strong>Assumption 3:</strong> Poured-in balls fill 64% of the space.</p><p class="just"><strong>Justification:</strong> Spheres dropped at random settle to about 64%. Stacking them perfectly would reach 74%.</p></div>
+    <div data-step="3"><p><strong>Assumption 4:</strong> Furniture and fittings take up 10% of the room.</p><p class="just"><strong>Justification:</strong> This is an estimate from looking at the room, so we test it later.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>A winning answer · 2 | Assumptions and justifications</h2></div>
+</section>
+
+<!-- winning answer 4: The model and its answer.  EDIT: measure the InnoCourt and set the three sliders, or change ROOM in the script. -->
+<section class="scene" data-enter="model">
+  <div class="body">
+    <p class="formula in" style="--i:1">balls = room volume × (1 − furniture) × packing ÷ volume of one ball</p>
+    <div class="model in" style="--i:2">
+      <div class="sliders">
+        <label for="L">Length</label><input type="range" id="L" min="4" max="40" step="0.5"><output id="oL"></output>
+        <label for="W">Width</label><input type="range" id="W" min="3" max="30" step="0.5"><output id="oW"></output>
+        <label for="H">Height</label><input type="range" id="H" min="2" max="8" step="0.1"><output id="oH"></output>
+      </div>
+      <div class="answer"><span id="N">0</span><small>basketballs, to 2 significant figures</small></div>
+    </div>
+    <p data-step="1" id="working"></p>
+    <p class="note" data-step="2">We round to 2 significant figures. Our measurements are good to about 5%, so more digits would pretend to a precision we do not have.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>A winning answer · 3 | The model</h2></div>
+</section>
+
+<!-- winning answer 5: Sensitivity analysis -->
+<section class="scene" data-enter="sens">
+  <div class="body">
+    <p class="in" style="--i:1">What if each assumption is a little wrong? We change one at a time and watch the answer.</p>
+    <div class="sens in" style="--i:2" id="sens"></div>
+    <p class="note" data-step="1">Lengths matter most, because a length is cubed: 10% on the ball or on the room moves the answer by a quarter or more. So measure those most carefully.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>A winning answer · 4 | Sensitivity analysis</h2></div>
+</section>
+
+<!-- winning answer 6: Strengths, weaknesses and the answer -->
+<section class="scene">
+  <div class="body">
+    <div class="pair">
+      <div class="in" style="--i:1"><h3>Strengths</h3><ul>
+        <li>Every number can be traced to a stated assumption.</li>
+        <li>Anyone can repeat it with a tape measure.</li>
+        <li>We know which numbers matter most, and why.</li>
+      </ul></div>
+      <div data-step="1"><h3>Weaknesses</h3><ul>
+        <li>Balls beside a wall pack less tightly than balls in the middle.</li>
+        <li>The furniture figure is a guess.</li>
+        <li>Balls at the bottom would be squashed by those above.</li>
+      </ul></div>
+    </div>
+    <p class="display big blue-text" data-step="2" id="final"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>A winning answer · 5 | Strengths and weaknesses</h2></div>
+</section>
+
+<!-- winning answer 7: What made it a winning answer -->
+<section class="scene blue">
+  <div class="body">
+    <p class="display big narrow in" style="--i:1">What made that a winning answer was not the number.</p>
+    <p data-step="1">It said which question it was answering.</p>
+    <p data-step="2">It gave a reason for every assumption.</p>
+    <p data-step="3">It tested itself, and admitted where it is weak.</p>
+    <p class="display big" data-step="4">Another team could reach a different number, and be just as good.</p>
+  </div>
+  <div class="foot"><h2>What to take from this</h2></div>
+</section>
+
+<!-- 10 What a competition is -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Restate, assume, model, test, write up. That is a competition paper. The real one gives you about five days.</p>
+    <div class="cycle" style="--n:4">
+      <div class="node" data-step="1"><div class="n">1</div><h3>A problem arrives</h3><p>A real question, released to every team at once.</p></div>
+      <div class="node" data-step="2"><div class="n">2</div><h3>You build a model</h3><p>Assumptions, data, mathematics.</p></div>
+      <div class="node" data-step="3"><div class="n">3</div><h3>You test it</h3><p>Where does it break? What changes the answer?</p></div>
+      <div class="node" data-step="4"><div class="n">4</div><h3>You write it up</h3><p>A paper that convinces a judge who has never met you.</p></div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>What a competition is</h2></div>
+</section>
+
+<!-- 12 Routine.  EDIT: add the session time to the first line if you want it shown. -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">One session a week, 75 minutes. Most weeks on Thursday, in the InnoCourt.</p>
+    <div class="row" data-step="1"><div><div class="who">Before</div></div><p>About 30 minutes on your own, from last week's session page.</p></div>
+    <div class="row" data-step="2"><div><div class="who">During</div></div><p>A problem, your team, the real-world answer, then how a winning paper did it.</p></div>
+    <div class="row" data-step="3"><div><div class="who">After</div></div><p>The session page stays online, to catch up or go further.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Routine</h2></div>
+</section>
+
+<!-- 13 Three rules -->
+<section class="scene">
+  <div class="body rules">
+    <div class="row in" style="--i:1"><div class="who">1</div><p><strong>No marks.</strong> You get feedback on your thinking, from me and from each other.</p></div>
+    <div class="row" data-step="1"><div class="who">2</div><p><strong>Assumptions first.</strong> You did it today: write them down before you calculate.</p></div>
+    <div class="row" data-step="2"><div class="who">3</div><p><strong>AI is a teammate, never the author.</strong> No AI for the first four sessions. A judge wants your reasoning, and AI cannot give you that.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Three rules</h2></div>
+</section>
+
+<!-- 14 Timeline.  Competition dates are expected dates, not yet confirmed. -->
+<section class="scene" data-enter="timeline">
+  <div class="body">
+    <div class="weeks in" style="--i:1"><span class="count"><span data-count="14" data-dp="0" data-delay="1200">0</span></span><span>weeks, about, to your first competition.</span></div>
+    <svg class="in" style="--i:2" id="timeline" viewBox="0 0 1000 240" role="img" aria-label="A timeline from November 2026 to April 2027: weekly sessions, a mock competition, the local competition for all teams between February and April, and the international challenge for all teams in March or April."></svg>
+    <p class="note" data-step="1">Every team enters every competition. The local competition is between February and April; 14 weeks assumes last year's date. The exact dates come in December.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Competition timeline</h2></div>
+</section>
+
+<!-- Your paper: the Hall Problem, the topic of every team's Team Paper -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">One more thing. Your team starts a real paper today, about this school, and finishes it at Session 7.</p>
+    <p class="display big blue-text" data-step="1">What is the best way to dismiss the whole school from the hall?</p>
+    <p data-step="2">Each week you learn one tool on a small problem, then use it on this one. Your Team Paper grows every week.</p>
+    <p class="note" data-step="3">Before Session 1: at the assembly on 25 Nov, watch the dismissal. Write down three things that slow it down.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Your paper</h2></div>
+</section>
+
+<!-- The Hall Problem: where every class has to go -->
+<section class="scene">
+  <div class="body">
+    <img class="in" style="--i:1;display:block;width:100%;max-height:58vh;object-fit:contain" src="../assets/hall-map.svg" alt="A side view of the Classroom Wing on three floors, with the class in each room, Staircase A, and the hall on the second floor with one exit to each floor.">
+    <p data-step="1">Every class goes back to its own room. You may change the seating, the exits each class uses, and the order of leaving.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Your paper</h2></div>
+</section>
+
+<!-- 15 Next -->
+<section class="scene blue">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Next Thursday · Session 1</p>
+    <p class="display huge in" style="--i:3">No right answer</p>
+    <p class="in" style="--i:5">A taxi, the fastest man alive, and a relay team that should not be that fast.</p>
+    <p data-step="1">Bring a charged device, a notebook, and your three things from the hall.</p>
+    <p class="display big" data-step="2">Questions?</p>
+  </div>
+  <div class="foot"><h2>What comes next</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: put each team's members between the square brackets, for example
+     members: ["Chan Tai Man", "Lee Siu Ming", "Wong Ka Ho", "Ng Chi Wai"]
+     While a list is empty, the scene shows the "size" line instead. */
+  var TEAMS = [
+    { name: "Junior Team A", size: "4 students, F1 to F3", members: [] },
+    { name: "Junior Team B", size: "4 students, F1 to F3", members: [] },
+    { name: "Senior Team", size: "3 students, F4 and F5. One place is open.", members: [] }
+  ];
+
+  var S = Live.svg, C = Live.color, $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Teams: one team revealed per step ---------- */
+  TEAMS.forEach(function (t, i) {
+    var node = document.createElement("div");
+    node.className = "node"; node.dataset.step = i + 1;
+    var h = document.createElement("h3"); h.textContent = t.name; node.appendChild(h);
+    var p = document.createElement("p");
+    if (t.members.length) t.members.forEach(function (m, k) { if (k) p.appendChild(document.createElement("br")); p.appendChild(document.createTextNode(m)); });
+    else p.textContent = t.size;
+    node.appendChild(p);
+    $("teams").appendChild(node);
+  });
+
+  /* ---------- The problem: balls drop in along the floor, one after another ---------- */
+  (function () {
+    var svg = $("balls"), N = 24, R = 17, X0 = 40, GAP = 39, Y = 110;
+    svg.appendChild(S("line", { x1: 20, x2: 980, y1: Y + R, y2: Y + R, stroke: C.frame, "stroke-width": 2 }));
+    var balls = [];
+    for (var k = 0; k < N; k++) {
+      var c = S("circle", { cx: X0 + k * GAP, cy: Y, r: R, fill: "none", stroke: C.blue, "stroke-width": 3, opacity: 0 });
+      svg.appendChild(c); balls.push(c);
+    }
+    var more = S("text", { x: X0 + N * GAP, y: Y + 8, "font-size": 30, style: "fill:" + C.blue, opacity: 0 }, "… ?");
+    svg.appendChild(more);
+    Live.onEnter("balls", function (alive) {
+      balls.forEach(function (b) { b.setAttribute("opacity", 0); b.setAttribute("cy", Y - 60); });
+      more.setAttribute("opacity", 0);
+      Live.wait(1100, alive).then(function drop(i) {
+        i = i || 0;
+        if (!alive()) return;
+        if (i >= N) { more.setAttribute("opacity", 1); return; }
+        return Live.tween(130, function (p) {
+          balls[i].setAttribute("opacity", p);
+          balls[i].setAttribute("cy", Y - 60 * (1 - Live.ease(p)));
+        }, alive).then(function () { return drop(i + 1); });
+      });
+    });
+  })();
+
+  /* ---------- The board: type each team's number; all are marked on one line.
+     The line counts in powers of ten, so estimates that differ hugely still fit. ---------- */
+  (function () {
+    var board = $("board"), svg = $("line"), X0 = 70, X1 = 930, Y = 95;
+    var rows = TEAMS.map(function (t, i) {
+      var box = document.createElement("div");
+      box.innerHTML = '<label for="tn' + i + '">Team name</label><input id="tn' + i + '" type="text" autocomplete="off">' +
+                      '<input class="num" id="tv' + i + '" type="text" inputmode="numeric" autocomplete="off" placeholder="number of balls" aria-label="' + t.name + ' estimate">';
+      board.appendChild(box);
+      var name = box.querySelector("#tn" + i), val = box.querySelector("#tv" + i);
+      name.value = t.name;
+      try { var kept = JSON.parse(localStorage.getItem("wyhk-maths-team-names")); if (Array.isArray(kept) && kept[i]) name.value = kept[i]; } catch (e) {}
+      name.addEventListener("input", function () {          /* remembered on this computer, and reused in Session 1 */
+        try { localStorage.setItem("wyhk-maths-team-names", JSON.stringify(rows.map(function (r) { return r.name.value; }))); } catch (e) {}
+      });
+      name.addEventListener("input", draw); val.addEventListener("input", draw);
+      return { name: name, val: val };
+    });
+    function num(text) { var v = parseFloat(String(text).replace(/[, ]/g, "")); return v > 0 ? v : null; }
+    function fmt(v) { return Math.round(v).toLocaleString("en-GB"); }
+    function draw() {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      var marks = rows.map(function (r) { return { name: r.name.value || "Team", v: num(r.val.value) }; }).filter(function (m) { return m.v; });
+      var lo = 3, hi = 6;                                   /* thousands to millions until numbers arrive */
+      if (marks.length) {
+        var vs = marks.map(function (m) { return m.v; });
+        lo = Math.floor(Math.log10(Math.min.apply(null, vs))); hi = Math.ceil(Math.log10(Math.max.apply(null, vs)));
+        if (hi - lo < 2) { hi = lo + 2; }
+      }
+      function x(v) { return X0 + (X1 - X0) * (Math.log10(v) - lo) / (hi - lo); }
+      svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+      for (var d = lo; d <= hi; d++) {
+        var px = x(Math.pow(10, d));
+        svg.appendChild(S("line", { x1: px, x2: px, y1: Y - 8, y2: Y + 8, stroke: C.frame, "stroke-width": 1.5 }));
+        svg.appendChild(S("text", { x: px, y: Y + 36, "text-anchor": "middle", "font-size": 18, style: "fill:" + C.muted }, fmt(Math.pow(10, d))));
+      }
+      marks.forEach(function (m, i) {
+        var px = x(m.v), up = Y - 26 - (i % 2) * 30;       /* stagger labels so close numbers stay readable */
+        svg.appendChild(S("line", { x1: px, x2: px, y1: up + 6, y2: Y + 12, stroke: C.blue, "stroke-width": 4 }));
+        svg.appendChild(S("text", { x: px, y: up, "text-anchor": px > 800 ? "end" : (px < 200 ? "start" : "middle"), "font-size": 22, "font-weight": 500, style: "fill:" + C.blue }, m.name + " · " + fmt(m.v)));
+      });
+      var out = "";
+      if (marks.length > 1) {
+        var all = marks.map(function (m) { return m.v; }), ratio = Math.max.apply(null, all) / Math.min.apply(null, all);
+        out = ratio < 1.05 ? "The teams agree." : "The highest is " + (ratio < 10 ? ratio.toFixed(1) : fmt(ratio)) + " times the lowest.";
+      }
+      $("ratio").textContent = out;
+    }
+    Live.onEnter("board", draw);
+    draw();
+  })();
+
+  /* ---------- Timeline: the line draws, then each part of the year appears ---------- */
+  (function () {
+    var svg = $("timeline"), X0 = 60, X1 = 940, Y = 110;
+    var months = ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
+    function x(m) { return X0 + (X1 - X0) * m / 6; }                 /* m in months from 1 Nov */
+    svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+    var drawn = S("line", { x1: X0, x2: X0, y1: Y, y2: Y, stroke: C.blue, "stroke-width": 4 });
+    svg.appendChild(drawn);
+    months.forEach(function (name, i) {
+      svg.appendChild(S("line", { x1: x(i), x2: x(i), y1: Y - 8, y2: Y + 8, stroke: C.frame, "stroke-width": 1.5 }));
+      svg.appendChild(S("text", { x: x(i + .5), y: Y + 34, "text-anchor": "middle", "font-size": 20, style: "fill:" + C.muted }, name));
+    });
+    /* from, to (months from 1 Nov); label above (-) or below (+) the line; where the label is pinned; label lines.
+       Labels above and below each share one level. A red line marks where each part begins. */
+    var parts = [
+      { a: 0.6, b: 3.2, y: -62, pin: "middle", t: ["Sessions 1 to 7", "learn the modelling cycle"] },
+      { a: 3.2, b: 3.7, y: 82, pin: "end", t: ["Mock competition", "Sessions 8 and 9"] },
+      { a: 3.8, b: 4.1, y: -62, pin: "middle", t: ["Local competition", "all teams · Feb to Apr"] },
+      { a: 4.3, b: 5.8, y: 82, pin: "start", t: ["International challenge", "all teams · five days, Mar or Apr"] }
+    ];
+    var groups = parts.map(function (p, i) {
+      var g = S("g", { opacity: 0 }), y = Y + p.y;
+      var at = p.pin === "end" ? x(p.b) : (p.pin === "start" ? x(p.a) : (x(p.a) + x(p.b)) / 2);
+      g.style.transition = "opacity .7s";
+      g.appendChild(S("rect", { x: x(p.a), y: Y - 7, width: x(p.b) - x(p.a), height: 14, fill: C.blue }));
+      if (i > 0) g.appendChild(S("line", { x1: x(p.a), x2: x(p.a), y1: Y - 22, y2: Y + 22, stroke: C.red, "stroke-width": 2.5 }));
+      g.appendChild(S("text", { x: at, y: y, "text-anchor": p.pin, "font-size": 24, "font-weight": 500, style: "fill:" + C.blue }, p.t[0]));
+      g.appendChild(S("text", { x: at, y: y + 26, "text-anchor": p.pin, "font-size": 18 }, p.t[1]));
+      svg.appendChild(g); return g;
+    });
+    var today = S("g", {});
+    today.appendChild(S("line", { x1: x(0.6), x2: x(0.6), y1: Y - 22, y2: Y + 22, stroke: C.red, "stroke-width": 2.5 }));
+    today.appendChild(S("text", { x: x(0.6) - 10, y: Y - 30, "text-anchor": "end", "font-size": 18 }, "Today"));
+    svg.appendChild(today);
+    Live.onEnter("timeline", function (alive) {
+      groups.forEach(function (g) { g.setAttribute("opacity", 0); });
+      drawn.setAttribute("x2", x(0.6));
+      Live.wait(900, alive).then(function () {
+        return Live.tween(4200, function (p) {
+          var m = 0.6 + (5.8 - 0.6) * Live.ease(p);
+          drawn.setAttribute("x2", x(m));
+          parts.forEach(function (part, i) { if (m >= part.a) groups[i].setAttribute("opacity", 1); });
+        }, alive);
+      }).then(function () { if (alive()) groups.forEach(function (g) { g.setAttribute("opacity", 1); }); });
+    });
+  })();
+
+  /* ================= The winning answer ================= */
+  (function () {
+  /* EDIT: the InnoCourt's measurements in metres. These are placeholders, not measurements. */
+  var ROOM = { L: 12, W: 8, H: 3 };
+  var D = 0.24, PACK = 0.64, FURN = 0.10;       /* ball diameter (m), packing fraction, share taken by furniture */
+
+  var $ = function (id) { return document.getElementById(id); };
+  function balls(L, W, H, d, p, f) { return L * W * H * (1 - f) * p / (Math.PI * d * d * d / 6); }
+  function sig2(n) { if (n <= 0) return 0; var m = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / m) * m; }
+  function fmt(n) { return Math.round(n).toLocaleString("en-GB"); }
+  function room() { return { L: +$("L").value, W: +$("W").value, H: +$("H").value }; }
+
+  ["L", "W", "H"].forEach(function (k) { $(k).value = ROOM[k]; $(k).addEventListener("input", update); });
+
+  function update() {
+    var r = room(), n = balls(r.L, r.W, r.H, D, PACK, FURN), vol = r.L * r.W * r.H, one = Math.PI * D * D * D / 6;
+    $("oL").textContent = r.L.toFixed(1) + " m"; $("oW").textContent = r.W.toFixed(1) + " m"; $("oH").textContent = r.H.toFixed(1) + " m";
+    $("N").textContent = fmt(sig2(n));
+    $("working").textContent = "Room " + fmt(vol) + " m³ × 0.90 × 0.64 = " + fmt(vol * 0.9 * 0.64) + " m³ of ball. One ball is " + one.toFixed(5) + " m³. That gives " + fmt(n) + ".";
+    var low = balls(r.L * .95, r.W * .95, r.H * .95, D * 1.03, 0.60, 0.15), high = balls(r.L * 1.05, r.W * 1.05, r.H * 1.05, D * 0.97, 0.68, 0.05);
+    $("final").textContent = "About " + fmt(sig2(n)) + " basketballs, and most likely between " + fmt(sig2(low)) + " and " + fmt(sig2(high)) + ".";
+    sens(r, n);
+  }
+
+  /* One row per assumption: the change in the answer when that one input changes. */
+  var cases = [
+    { label: "Ball 10% wider", f: function (r) { return balls(r.L, r.W, r.H, D * 1.1, PACK, FURN); } },
+    { label: "Stacked neatly (74%), not poured", f: function (r) { return balls(r.L, r.W, r.H, D, 0.74, FURN); } },
+    { label: "Furniture takes 20%, not 10%", f: function (r) { return balls(r.L, r.W, r.H, D, PACK, 0.20); } },
+    { label: "Room 10% bigger each way", f: function (r) { return balls(r.L * 1.1, r.W * 1.1, r.H * 1.1, D, PACK, FURN); } }
+  ];
+  var rows = cases.map(function (c) {
+    var a = document.createElement("span"), t = document.createElement("div"), i = document.createElement("i"), b = document.createElement("b");
+    a.textContent = c.label; t.className = "track"; t.appendChild(i);
+    [a, t, b].forEach(function (n) { $("sens").appendChild(n); });
+    return { track: t, bar: i, out: b, pct: 0 };
+  });
+  function sens(r, n) {
+    cases.forEach(function (c, k) {
+      var pct = (c.f(r) / n - 1) * 100;
+      rows[k].pct = pct;
+      rows[k].out.textContent = (pct > 0 ? "+" : "−") + Math.abs(pct).toFixed(0) + "%";
+      rows[k].track.classList.toggle("down", pct < 0);       /* solid = more balls, outline = fewer */
+    });
+  }
+  function grow() { rows.forEach(function (row) { row.bar.style.width = Math.min(100, Math.abs(row.pct) * 3) + "%"; }); }
+
+  Live.onEnter("model", function (alive) {
+    var target = sig2(balls(room().L, room().W, room().H, D, PACK, FURN));
+    Live.wait(900, alive).then(function () {
+      return Live.tween(1800, function (p) { $("N").textContent = fmt(sig2(target * Live.ease(p))); }, alive);
+    }).then(function () { if (alive()) update(); });
+  });
+  Live.onEnter("sens", function (alive) {
+    rows.forEach(function (row) { row.bar.style.width = "0"; });
+    Live.wait(900, alive).then(function () { if (alive()) grow(); });
+  });
+  update();
+  })();
+})();
+</script>
+</body>
+</html>

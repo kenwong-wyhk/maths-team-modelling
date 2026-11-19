@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 6 Live: Refine and test your model</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input, .board textarea { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board textarea { height: 9rem; resize: none; font-size: 1.45rem; line-height: 1.35; }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .under { display: block; margin: .5rem 0 0; white-space: normal; }
+.meter .low { color: var(--blue); font-weight: 500; min-height: 1.9rem; }
+#batonMeter { transition: opacity .3s; }
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.code { font-family: Consolas, "Courier New", monospace; font-size: 1.25rem; border: 0.07rem solid var(--frame); padding: 0 .5rem; white-space: nowrap; }
+.five { display: grid; grid-template-columns: repeat(5, 1fr); }
+.five .node h3 { font-size: 2rem; }
+.five .node p { font-size: 1.1rem; }
+/* the loop runs from under the 5 to under the 2, with an arrowhead at the 2 */
+.five + .loop i { left: calc(20% + .8rem); right: calc(20% - .8rem); }
+.five + .loop i::before { content: ""; position: absolute; left: -.57rem; top: -.1rem; border: .5rem solid transparent; border-top: 0; border-bottom: .8rem solid var(--red); }
+@media (max-width: 800px) { .board, .five, .tool { grid-template-columns: 1fr; } }
+.explore { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+#sens { font-size: 1.3rem; }
+.quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.quad .count { margin: 0; font-size: 5.5rem; }
+.quad .real { border-left: 0.3rem solid var(--red); padding-left: 1.2rem; }
+table.data.small { font-size: 1.2rem; }
+.board > .cell > input[placeholder] { font-size: 1.1rem; }
+.pairnum { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.pairnum .count { margin: 0; }
+.explore .stack p { font-size: 1.35rem; margin: 0 0 .9rem; }
+table.data { font-size: 1.5rem; border-collapse: collapse; width: 100%; }
+table.data th, table.data td { text-align: left; padding: .45rem 1rem; border-bottom: 0.07rem solid var(--frame); font-weight: 300; }
+table.data thead th, table.data tbody th { font-weight: 400; color: var(--blue); }
+</style>
+</head>
+<body data-reading="06.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 6</p>
+    <h1 class="display huge in" style="--i:7">Refine and test your model</h1>
+    <p class="in" style="--i:9">Last week you built a model in forty minutes. Today you try to break it.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 Cold start: how would you test it? -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Your pages from the Mini Competition are back, each with one strength and one question from me.</p>
+    <p class="display big blue-text in" style="--i:3">You gave a number for 2030. How could you find out today whether to believe it?</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="300"></button></div><p>No card, no hint. Plan two tests you could carry out today with what you have. The Team lead writes them down.</p></div>
+    <p class="note" data-step="2">You cannot wait until 2030. A judge cannot either.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | Cold start</h2></div>
+</section>
+
+<!-- 4 Team time, with the board the coach fills as teams bring their results -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes. From today you may search, and use AI for its named jobs. Every source and every use is written down.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Tests the model on a figure it has not seen.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Changes one input at a time, and records what the answer does.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>Finds one more figure, with its source. Keeps the AI Log.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>Plans the time. Brings me the team's answer as a range.</p></div>
+    </div>
+    <div class="board" data-step="1" id="range"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Team time</h2></div>
+</section>
+
+<!-- 5 Every team's range -->
+<section class="scene blue" data-enter="results">
+  <div class="body">
+    <p class="in" style="--i:1">Last week each team gave one number. This week, a range.</p>
+    <p class="display big in" style="--i:3" id="ranges"></p>
+    <p class="in" style="--i:5" id="inputs"></p>
+    <p class="display big" data-step="1">Is a range a weaker answer? No: it tells the reader how far to trust it.</p>
+    <p data-step="2">One team now defends its range for three minutes. Everyone else: ask what a judge would ask.</p>
+  </div>
+  <div class="foot"><h2>3 | What you found</h2></div>
+</section>
+
+<!-- 6 The test on a hidden figure -->
+<section class="scene blue">
+  <div class="body">
+    <p class="in" style="--i:1">Hide September 2026. Fit each model to the end of 2020 and October 2023 only, and ask it about September 2026.</p>
+    <div class="quad in" style="--i:3">
+      <div><p class="count"><span data-count="13.6" data-from="0" data-dp="1" data-ms="1500" data-delay="600">0.0</span>%</p><p>Straight line</p></div>
+      <div class="real"><p class="count"><span data-count="20.1" data-from="0" data-dp="1" data-ms="1900" data-delay="600">0.0</span>%</p><p>What really happened</p></div>
+      <div><p class="count"><span data-count="26.2" data-from="0" data-dp="1" data-ms="2300" data-delay="600">0.0</span>%</p><p>Growth with a ceiling</p></div>
+      <div><p class="count"><span data-count="30.8" data-from="0" data-dp="1" data-ms="2700" data-delay="600">0.0</span>%</p><p>Compound growth</p></div>
+    </div>
+    <p class="display big" style="font-size:2.9rem" data-step="1">No model passed. The truth fell between the line and the ceiling.</p>
+    <p data-step="2">So for 2030, "between 38% and 56%" is an honest answer. 81% is not.</p>
+  </div>
+  <div class="foot"><h2>3 | What you found</h2></div>
+</section>
+
+<!-- 7 Maths Tool: sensitivity analysis -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Today's Maths Tool · what you just built has a name</p>
+    <div class="tool">
+      <div class="in" style="--i:2">
+        <h3>Sensitivity analysis</h3>
+        <p class="formula">% change in the answer ÷ % change in the input</p>
+        <p>Change one input, and only one. Above 1, the model magnifies a mistake in that input. Below 1, it shrinks it.</p>
+      </div>
+      <div data-step="1">
+        <h3>The ceiling model, 56%</h3>
+        <table class="data small">
+          <tbody>
+            <tr><th>September 2026 share, up 10%</th><td>up 13%</td><td>1.3</td></tr>
+            <tr><th>Total vehicles, up 10%</th><td>down 9%</td><td>0.9</td></tr>
+            <tr><th>October 2023 share, up 10%</th><td>down 7%</td><td>0.7</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note" data-step="2">The newest figure matters most. Check that one first.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | What you found</h2></div>
+</section>
+
+<!-- 8 The sensitivity explorer -->
+<section class="scene">
+  <div class="body">
+    <div class="explore">
+      <div class="in" style="--i:1" id="sens"></div>
+      <div class="stack">
+        <p class="in" style="--i:2">Three inputs, three models. The dark edge on the right is 100%.</p>
+        <p data-step="1">Move one slider at a time. Which input moves the answers most?</p>
+        <p data-step="2">Reset. Now read down the column: 38, 81, 56. The choice of model moves the answer more than any input does.</p>
+        <p data-step="3">The October 2023 figure came from a news report. How much does our answer depend on it?</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | What you found</h2></div>
+</section>
+
+<!-- 9 Paper study: one extract, one task -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" style="height:auto"><div class="page">
+          <img style="max-height:40vh;width:auto;max-width:100%;display:block;margin:0 auto" src="../assets/papers/immc2025-team2025017-weaknesses.png" alt="Four weaknesses listed by the team: dependence on assumptions, limited validation of viewer interest, lack of stakeholder perspective, and a static skill assumption in the simulation.">
+        </div></div>
+        <p class="cap">Team 2025017, International Mathematical Modeling Challenge 2025: scheduling a global sports league. Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">Another winning paper on the league problem. It ends by listing the weaknesses of its own model.</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="150"></button></div><p><strong>Find the weakness that admits something was never checked</strong> against real data. Did admitting it help the team or hurt it?</p></div>
+        <p data-step="1">The second: viewer interest, "without empirical validation". The paper still won. A judge trusts a team that knows where its model is thin.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | Paper study</h2></div>
+</section>
+
+<!-- 10 Team Paper: the Hall Problem -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Now the Hall Problem. Do to your own model what you have just done to the electric vehicles.</p>
+    <p class="serif in" style="--i:3">"Our answer depends most on … If it is 10% out, our answer changes by … A strength of our model is … because … A weakness is … because …"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="420"></button></div><p>Change the rate by 10%, then the number of students, then one input of your own. The Writer types: <strong>which input matters most, one strength and one weakness, each with evidence.</strong></p></div>
+    <p class="note" data-step="2">"Our model is simple" is not evidence. "Our estimate was within 15% of the time I measured" is.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>5 | Team Paper</h2></div>
+</section>
+
+<!-- 11 Exit slip and before Session 7 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>Finish the sensitivity table for your hall model, and the strengths and weaknesses section. The steps are on the <a href="06.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 7: your six sections become one paper. Come ready to say which role each of you should keep for the competitions.</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | Before Session 7</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script src="../assets/ev-sensitivity.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  $("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  $("lineWho").textContent = LINE.who;
+  $("lineWhy").textContent = LINE.why || "Listen for what makes it good: it names a source, and says how far the team trusts it.";
+
+  /* ---------- The board: each team's range for 2030, and the input its answer depends on most ---------- */
+  function num(text) { var v = parseFloat(String(text).replace(/[%, ]/g, "")); return isFinite(v) && String(text).trim() !== "" ? v : null; }
+  var values = TEAMS.map(function () { return { lo: null, hi: null, input: "" }; });
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    var name = document.createElement("input");
+    name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+    name.addEventListener("input", function () { TEAMS[i] = name.value; try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {} });
+    cell.appendChild(name);
+    var row = document.createElement("div"); row.className = "fields";
+    [{ key: "lo", label: "2030, from (%)" }, { key: "hi", label: "to (%)" }].forEach(function (f) {
+      var lab = document.createElement("label"), box = document.createElement("input");
+      box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+      box.addEventListener("input", function () { values[i][f.key] = num(box.value); });
+      lab.appendChild(document.createTextNode(f.label)); lab.appendChild(box); row.appendChild(lab);
+    });
+    cell.appendChild(row);
+    var what = document.createElement("input");
+    what.type = "text"; what.autocomplete = "off"; what.placeholder = "Depends most on …"; what.setAttribute("aria-label", "Team " + (i + 1) + ": the input the answer depends on most");
+    what.addEventListener("input", function () { values[i].input = what.value.trim(); });
+    cell.appendChild(what); $("range").appendChild(cell);
+  });
+
+  Live.onEnter("results", function () {
+    var r = [], d = [];
+    values.forEach(function (v, i) {
+      var who = TEAMS[i] || "Team " + (i + 1);
+      if (v.lo !== null && v.hi !== null) r.push(who + ": " + Math.min(v.lo, v.hi) + "% to " + Math.max(v.lo, v.hi) + "%");
+      if (v.input) d.push(who + ": " + v.input);
+    });
+    $("ranges").textContent = r.length ? r.join("  ·  ") : "Team leads: your range for the end of 2030?";
+    $("inputs").textContent = d.length ? "Depends most on.  " + d.join("  ·  ") : "";
+  });
+
+  EvSensitivity($("sens"));
+})();
+</script>
+</body>
+</html>

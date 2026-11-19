@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 2 Live: A wrong model is a starting point</title>
+<link rel="stylesheet" href="live/live.css">
+<style>
+/* Styles for this lesson only. Shared styles live in live/live.css. */
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.board .cell { display: flex; flex-direction: column; gap: .4rem; }
+.board input, .board textarea { width: 100%; font: inherit; font-size: 1.3rem; padding: .25rem .7rem; border: 0.07rem solid var(--blue); background: var(--white); color: var(--ink); }
+.board textarea { height: 9rem; resize: none; font-size: 1.45rem; line-height: 1.35; }
+.board .fields { display: flex; gap: .4rem; }
+.board .fields label { flex: 1; font-size: .95rem; font-weight: 400; color: var(--blue); }
+.board .fields input { font-family: var(--font-display); font-size: 1.8rem; color: var(--blue); }
+.mine { font-size: 1.05rem; font-weight: 400; min-height: 1.6rem; margin: .2rem 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter .under { display: block; margin: .5rem 0 0; white-space: normal; }
+.meter .low { color: var(--blue); font-weight: 500; min-height: 1.9rem; }
+#batonMeter { transition: opacity .3s; }
+.tool { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.tool h3 { font-size: 2rem; }
+.formula { font-family: var(--font-display); font-size: 2.2rem; color: var(--blue); margin: .6rem 0; }
+.jobs .node h3 { font-size: 1.7rem; } .jobs .node p { font-size: 1.1rem; }
+.line { font-size: 2.6rem; line-height: 1.3; }
+.code { font-family: Consolas, "Courier New", monospace; font-size: 1.25rem; border: 0.07rem solid var(--frame); padding: 0 .5rem; white-space: nowrap; }
+.five { display: grid; grid-template-columns: repeat(5, 1fr); }
+.five .node h3 { font-size: 2rem; }
+.five .node p { font-size: 1.1rem; }
+/* the loop runs from under the 5 to under the 2, with an arrowhead at the 2 */
+.five + .loop i { left: calc(20% + .8rem); right: calc(20% - .8rem); }
+.five + .loop i::before { content: ""; position: absolute; left: -.57rem; top: -.1rem; border: .5rem solid transparent; border-top: 0; border-bottom: .8rem solid var(--red); }
+@media (max-width: 800px) { .board, .five, .tool { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-reading="02.html">
+
+<!-- 1 Title -->
+<section class="scene blue title">
+  <span class="cross-v"></span><span class="cross-h"></span>
+  <div class="body">
+    <p class="kicker in" style="--i:5">Maths Team · Mathematical Modelling · Session 2</p>
+    <h1 class="display huge in" style="--i:7">A wrong model is a starting point</h1>
+    <p class="in" style="--i:9">Last week your model missed. Today you find out why, and fix it.</p>
+    <p class="kicker in" style="--i:14">Scroll down to begin</p>
+  </div>
+  <div class="foot bare"><h2></h2></div>
+</section>
+
+<!-- 2 A student's line, from last week's Team Papers. The words come from LINE in the script. -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">From last week's Team Papers</p>
+    <p class="serif line in" style="--i:3" id="lineText"></p>
+    <p class="in" style="--i:5" id="lineWho"></p>
+    <p class="note" data-step="1" id="lineWhy"></p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"><h2>A line worth reading</h2></div>
+</section>
+
+<!-- 3 The puzzle from last week, and each team's explanation -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Four Bolts, one after another: 38.32 s. The real relay record: 36.84 s. Faster by 1.48 s.</p>
+    <p class="display big blue-text in" style="--i:2">Why? Writers, your team's explanation.</p>
+    <div class="board in" style="--i:3" id="why"></div>
+    <p class="note" data-step="1">I will not say who is right. In team time, your own spreadsheet will.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>Last week's puzzle</h2></div>
+</section>
+
+<!-- 4 New data: Bolt's time at every 10 m -->
+<section class="scene" data-enter="splits">
+  <div class="body">
+    <p class="in" style="--i:1">The same race, Berlin 2009. This time the clock is read every 10 metres.</p>
+    <div class="split in" style="--i:2">
+      <svg id="track" viewBox="0 0 1000 170" role="img" aria-label="A runner covers 100 metres in 9.58 seconds. His time is marked as he passes each 10 metre line."></svg>
+      <div class="meter"><span id="clock">0.00</span><small>seconds</small></div>
+    </div>
+    <div class="btns in" style="--i:3"><button class="btn" onclick="Live.replay('run')">Run it in real time</button></div>
+    <p class="display big blue-text" data-step="1">When is he fastest? Is he ever running at 10.44 m/s?</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>1 | New data</h2></div>
+</section>
+
+<!-- 5 Maths Tool -->
+<section class="scene">
+  <div class="body">
+    <p class="kicker in" style="--i:1">Today's Maths Tool</p>
+    <div class="tool">
+      <div class="in" style="--i:2">
+        <h3>Speed over a stretch</h3>
+        <p class="formula">speed = 10 ÷ (t₂ − t₁)</p>
+        <p>From 10 m to 20 m he takes 2.88 − 1.89 = 0.99 s, so his speed there is 10 ÷ 0.99. In a sheet, each speed is one formula: <span class="code">=10/(B3-B2)</span></p>
+      </div>
+      <div data-step="1">
+        <h3>A model in stages</h3>
+        <p class="formula">speeding up, then top speed</p>
+        <p>One speed for the whole race was last week's model. This week the race has stages, and each stage has its own rule. Mathematicians call this a piecewise model.</p>
+      </div>
+    </div>
+    <p class="note" data-step="2">Where does "speeding up" end and "top speed" begin? You decide, from your own numbers, and you write it down as an assumption.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>2 | Maths Tool</h2></div>
+</section>
+
+<!-- 6 The rules of the handover: the problem for team time -->
+<section class="scene" data-enter="handover">
+  <div class="body">
+    <p class="in" style="--i:1">The next runner may start running 20 m before the line, and the baton must change hands inside a 20 m zone.</p>
+    <div class="split in" style="--i:2">
+      <svg id="zone" viewBox="0 0 1000 200" role="img" aria-label="A stretch of track around the 100 metre line. The outgoing runner starts at 80 metres. The baton may change hands only between 90 and 110 metres."></svg>
+      <div class="meter" id="batonMeter"><span id="baton">12.2</span><small>m/s</small><small class="under" id="batonWho">speed of the baton</small><small class="under low" id="dip"></small></div>
+    </div>
+    <div class="btns in" style="--i:3">
+      <button class="btn" onclick="Live.replay('early')">Hand over early, at 90 m</button>
+      <button class="btn" onclick="Live.replay('late')">Hand over late, at 110 m</button>
+    </div>
+    <p data-step="1">Watch the speed of the baton, not the runners. Which handover keeps it moving faster?</p>
+    <p class="display big blue-text" style="font-size:2.6rem" data-step="2">Build a second model of the relay. Every runner is Bolt, and the baton changes hands at 90 m.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>3 | The handover</h2></div>
+</section>
+
+<!-- 7 Team time, with the board the coach fills as teams bring their totals -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Team time</div><button class="timer" data-sec="2100"></button></div><p>Thirty-five minutes, and I will not interrupt. The card gives the rules, not the method. One device per team, for the spreadsheet only.</p></div>
+    <div class="cycle jobs" style="--n:4">
+      <div class="node in" style="--i:2"><h3>Modeller</h3><p>Decides the top speed, and writes each assumption before it is used.</p></div>
+      <div class="node in" style="--i:3"><h3>Data lead</h3><p>Builds the sheet: ten times, ten speeds, then the four runners.</p></div>
+      <div class="node in" style="--i:4"><h3>Writer</h3><p>Notes why the relay is faster. Brings me the model's total.</p></div>
+      <div class="node in" style="--i:5"><h3>Team lead</h3><p>Checks three speeds by hand. Draws the handover for the team.</p></div>
+    </div>
+    <p data-step="1">Stuck on the model after ten minutes of trying? The Writer may collect a hint card. Still no AI and no searching.</p>
+    <div class="board" data-step="1" id="model2"></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>4 | Team time</h2></div>
+</section>
+
+<!-- 8 The speeds -->
+<section class="scene blue" data-enter="speeds">
+  <div class="body">
+    <p class="in" style="--i:1">Bolt's speed over each 10 metres, in metres per second. Does your sheet agree?</p>
+    <svg class="in" style="--i:2" id="speeds" viewBox="0 0 1000 240" role="img" aria-label="Bars showing speed over each 10 metres: 5.29, 10.10, 11.11, 11.63, 12.05, 12.20, 12.35, 12.20, 12.05 and 12.05 metres per second, with his average of 10.44 marked."></svg>
+    <p class="display big" style="font-size:2.6rem" data-step="1">He passes 10.44 m/s in the first 30 m and never holds it. It is the average of a slow start and a fast finish.</p>
+    <p data-step="2">In a relay only the first runner starts from standing still. The slow first 10 metres, 1.89 s of it, happens once, not four times.</p>
+  </div>
+  <div class="foot"><h2>5 | What you found</h2></div>
+</section>
+
+<!-- 9 Both models against the record -->
+<section class="scene blue" data-enter="compare">
+  <div class="body">
+    <svg class="in" style="--i:1" id="compare" viewBox="0 0 1000 250" role="img" aria-label="A time line from 34 to 39 seconds. The first model is at 38.32, the real record at 36.84, the second model at 35.11 with an early handover and 34.38 with a late handover."></svg>
+    <p class="mine in" style="--i:2" id="mineEarly"></p>
+    <p class="mine in" style="--i:2" id="mineLate"></p>
+    <p class="display big" style="font-size:2.9rem" data-step="1">The first model was 1.48 s too slow. The second is about 1.7 s too fast.</p>
+    <p data-step="2">Is that progress? Hands up. Then, Writers: what does your second model leave out?</p>
+  </div>
+  <div class="foot"><h2>5 | What you found</h2></div>
+</section>
+
+<!-- 10 The modelling cycle, by name -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">What you have done twice now has a name: the modelling cycle. It has five steps.</p>
+    <div>
+      <div class="five">
+        <div class="node" data-step="1"><div class="n">1</div><h3>Analyse</h3><p>Understand the real problem. Why is a relay faster?</p></div>
+        <div class="node" data-step="2"><div class="n">2</div><h3>Formulate</h3><p>Make assumptions and build a model. Every runner is Bolt.</p></div>
+        <div class="node" data-step="3"><div class="n">3</div><h3>Solve</h3><p>Work the model out. Your spreadsheet.</p></div>
+        <div class="node" data-step="4"><div class="n">4</div><h3>Interpret</h3><p>Say what the number means. A relay time.</p></div>
+        <div class="node" data-step="5"><div class="n">5</div><h3>Evaluate</h3><p>Compare with reality. Find what to fix.</p></div>
+      </div>
+      <div class="loop" data-step="6"><i></i><span>refine, and go round again</span></div>
+    </div>
+    <p class="display big blue-text" data-step="7">Evaluating is not the end. It sends you back to step 2.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>6 | The modelling cycle</h2></div>
+</section>
+
+<!-- 11 Paper study: one extract, one task -->
+<section class="scene">
+  <div class="body">
+    <div class="two">
+      <div class="in" style="--i:1">
+        <div class="sheet" style="height:auto"><div class="page">
+          <img src="../assets/papers/immc2025-team2025006-added-teams.png" alt="Section 4.2.2 of the paper, Details of the model after the addition of teams: a paragraph on how the tournament format is adjusted, a table of results, and a paragraph comparing them with the original.">
+        </div></div>
+        <p class="cap">Team 2025006, International Mathematical Modeling Challenge 2025: scheduling a global sports league. Shown for study in class.</p>
+      </div>
+      <div class="stack">
+        <p class="in" style="--i:2">Question B from the first meeting. The team built a league for 20 countries. Then the problem asked: what if four more join?</p>
+        <div class="row in" style="--i:3"><div><div class="who">Team</div><button class="timer" data-sec="180"></button></div><p><strong>Find the sentence</strong> that compares the new model with the old one. You do not need to follow the symbols.</p></div>
+        <p data-step="1">They did not start again. They said what changed, kept the rest, and reported the new result the same way as the old.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>7 | Paper study</h2></div>
+</section>
+
+<!-- 12 Team Paper: this week's paragraph -->
+<section class="scene">
+  <div class="body">
+    <p class="in" style="--i:1">Now the Hall Problem. Your first estimate was one speed for the whole hall, like last week's runner. Here is the real time.</p>
+    <p class="serif in" style="--i:3">"Our first model assumed … It gave … The measured time was …, an error of … %. A second model needs these stages: …"</p>
+    <div class="row" data-step="1"><div><div class="who">Team</div><button class="timer" data-sec="420"></button></div><p>Writer types, the others say what to write: <strong>your estimate, the measured time, the percentage error, and the stages your second model of the hall will need.</strong> Use the names of the five steps where they fit.</p></div>
+    <p class="note" data-step="2">Next week opens with the best sentence I find.</p>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>8 | Team Paper</h2></div>
+</section>
+
+<!-- 13 Exit slip and before Session 3 -->
+<section class="scene">
+  <div class="body">
+    <div class="row in" style="--i:1"><div><div class="who">Alone</div><button class="timer" data-sec="120"></button></div><p><strong>Exit slip.</strong> On the slip of paper: one thing that was unclear today, and one thing you liked. No name needed.</p></div>
+    <div class="row" data-step="1"><div><div class="who">This week</div></div><p>About 30 minutes: build your second model of the hall, in stages, in a sheet. The steps are on the <a href="02.html#hall">reading version</a>.</p></div>
+    <div class="row" data-step="2"><div><div class="who">Next Thursday</div></div><p>Session 3: which sport suits you best, and what does "best" mean?</p></div>
+  </div>
+  <div class="foot"><img src="live/brand/signature-en-horizontal.svg" alt=""><h2>9 | Before Session 3</h2></div>
+</section>
+
+<script src="live/live.js"></script>
+<script>
+(function () {
+  /* EDIT: the three team names. Names typed on a board during a session are remembered on this computer. */
+  var TEAMS = ["Junior Team A", "Junior Team B", "Senior Team"];
+
+  /* EDIT before the session: the best sentence from last week's Team Papers, who wrote it, and why you chose it.
+     Left empty, the scene asks you to read the sentence aloud. */
+  var LINE = { text: "", who: "", why: "" };
+
+  var S = Live.svg, C = Live.color, $ = function (id) { return document.getElementById(id); };
+  var KEY = "wyhk-maths-team-names";
+  try {
+    var kept = JSON.parse(localStorage.getItem(KEY));
+    if (Array.isArray(kept) && kept.length === TEAMS.length) TEAMS = kept.map(function (n, i) { return n || TEAMS[i]; });
+  } catch (e) {}
+
+  document.getElementById("lineText").textContent = LINE.text ? "“" + LINE.text + "”" : "I read your three Team Papers. Here is the sentence I liked best.";
+  document.getElementById("lineWho").textContent = LINE.who;
+  document.getElementById("lineWhy").textContent = LINE.why || "Listen for what makes it good: it says what was assumed, and why.";
+
+  /* Bolt's time at every 10 m (Berlin, 2009), and the top speed he holds from 50 m on. */
+  var SPLITS = [0, 1.89, 2.88, 3.78, 4.64, 5.47, 6.29, 7.10, 7.92, 8.75, 9.58];
+  var TOP = 50 / (9.58 - 5.47);
+  function distAt(t) {                         /* metres covered t seconds after the gun */
+    if (t >= 9.58) return 100 + (t - 9.58) * TOP;
+    for (var i = 0; i < 10; i++) if (t <= SPLITS[i + 1]) return 10 * i + 10 * (t - SPLITS[i]) / (SPLITS[i + 1] - SPLITS[i]);
+    return 100;
+  }
+  function speedAt(d) { var i = Math.min(9, Math.floor(d / 10)); return 10 / (SPLITS[i + 1] - SPLITS[i]); }
+
+  /* ---------- Boards (the same pattern as Session 1) ---------- */
+  var nameBoxes = [];
+  function nameBox(i, cell) {
+    var name = document.createElement("input");
+    name.type = "text"; name.value = TEAMS[i]; name.autocomplete = "off"; name.setAttribute("aria-label", "Team " + (i + 1) + " name");
+    name.addEventListener("input", function () {
+      TEAMS[i] = name.value;
+      nameBoxes.forEach(function (b) { if (b.i === i && b.el !== name) b.el.value = name.value; });
+      try { localStorage.setItem(KEY, JSON.stringify(TEAMS)); } catch (e) {}
+    });
+    nameBoxes.push({ i: i, el: name }); cell.appendChild(name);
+  }
+  function num(text) { var v = parseFloat(String(text).replace(/[, ]/g, "")); return isFinite(v) && String(text).trim() !== "" ? v : null; }
+  function board(id, fields) {
+    var values = TEAMS.map(function () { return {}; });
+    TEAMS.forEach(function (team, i) {
+      var cell = document.createElement("div"); cell.className = "cell";
+      nameBox(i, cell);
+      var row = document.createElement("div"); row.className = "fields";
+      fields.forEach(function (f) {
+        var lab = document.createElement("label"), box = document.createElement("input");
+        box.type = "text"; box.inputMode = "decimal"; box.autocomplete = "off";
+        box.addEventListener("input", function () { values[i][f.key] = num(box.value); });
+        lab.appendChild(document.createTextNode(f.label)); lab.appendChild(box); row.appendChild(lab);
+        values[i][f.key] = null;
+      });
+      cell.appendChild(row); $(id).appendChild(cell);
+    });
+    return values;
+  }
+  function estimates(values, key, label) {
+    var parts = [];
+    values.forEach(function (v, i) {
+      if (v[key] === null || v[key] === undefined) return;
+      parts.push((TEAMS[i] || "Team " + (i + 1)) + " " + v[key].toFixed(2));
+    });
+    return parts.length ? label + "  " + parts.join("  ·  ") : "";
+  }
+  /* The explanations board: a name and a text box for each team. */
+  TEAMS.forEach(function (team, i) {
+    var cell = document.createElement("div"); cell.className = "cell";
+    nameBox(i, cell);
+    var box = document.createElement("textarea");
+    box.setAttribute("aria-label", "Team " + (i + 1) + " explanation"); box.placeholder = "Because …";
+    cell.appendChild(box); $("why").appendChild(cell);
+  });
+  var model2 = board("model2", [{ key: "early", label: "Handover at 90 m (s)" }, { key: "late", label: "At 110 m, if done (s)" }]);
+
+  /* ---------- New data: the sprint again, with the clock read at every 10 m ---------- */
+  (function () {
+    var svg = $("track"), X0 = 40, X1 = 960, Y = 110;
+    function x(m) { return X0 + (X1 - X0) * m / 100; }
+    svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+    var stamps = [];
+    for (var m = 0; m <= 100; m += 10) {
+      svg.appendChild(S("line", { x1: x(m), x2: x(m), y1: Y - 8, y2: Y + 8, stroke: C.frame, "stroke-width": 1.5 }));
+      svg.appendChild(S("text", { x: x(m), y: Y + 36, "text-anchor": "middle", "font-size": 18, style: "fill:" + C.muted }, m === 100 ? "100 m" : m));
+      if (m > 0) {
+        var st = S("text", { x: x(m), y: Y - 34, "text-anchor": "middle", "font-size": 21, "font-weight": 500, style: "fill:" + C.blue, opacity: 0 }, SPLITS[m / 10].toFixed(2));
+        st.style.transition = "opacity .35s";
+        svg.appendChild(st); stamps.push(st);
+      }
+    }
+    var trail = S("line", { x1: X0, x2: X0, y1: Y, y2: Y, stroke: C.blue, "stroke-width": 4 });
+    var dot = S("circle", { cx: X0, cy: Y, r: 13, fill: C.blue });
+    svg.appendChild(trail); svg.appendChild(dot);
+    function place(t) {
+      var d = Math.min(100, distAt(t));
+      dot.setAttribute("cx", x(d)); trail.setAttribute("x2", x(d));
+      $("clock").textContent = t.toFixed(2);
+      stamps.forEach(function (st, k) { st.setAttribute("opacity", d >= 10 * (k + 1) - 0.001 ? 1 : 0); });
+    }
+    Live.onEnter("splits", function () { place(0); });
+    Live.onEnter("run", function (alive) {
+      place(0);
+      Live.wait(700, alive).then(function () { return Live.tween(9580, function (p) { place(9.58 * p); }, alive); })
+        .then(function () { if (alive()) place(9.58); });
+    });
+    place(0);
+  })();
+
+  /* ---------- The speeds: one bar for each 10 m, against the 10.44 average ---------- */
+  (function () {
+    var svg = $("speeds"), L = 70, R = 960, B = 196, T = 28, MAX = 13;
+    function y(v) { return B - (B - T) * v / MAX; }
+    var w = (R - L) / 10, bars = [];
+    for (var i = 0; i < 10; i++) {
+      var v = 10 / (SPLITS[i + 1] - SPLITS[i]);
+      var bar = S("rect", { x: L + i * w + 8, width: w - 16, y: B, height: 0, fill: C.white });
+      var val = S("text", { x: L + i * w + w / 2, y: y(v) - 10, "text-anchor": "middle", "font-size": 22, "font-weight": 500, style: "fill:" + C.white, opacity: 0 }, v.toFixed(2));
+      val.style.transition = "opacity .4s";
+      svg.appendChild(bar); svg.appendChild(val);
+      svg.appendChild(S("text", { x: L + i * w + w / 2, y: B + 30, "text-anchor": "middle", "font-size": 17, style: "fill:" + C.white }, (i * 10) + "–" + (i * 10 + 10) + " m"));
+      bars.push({ bar: bar, val: val, v: v });
+    }
+    svg.appendChild(S("line", { x1: L, x2: R, y1: B, y2: B, stroke: C.white, "stroke-width": 1.5 }));
+    var avg = S("g", { opacity: 0 });
+    avg.style.transition = "opacity .8s";
+    avg.appendChild(S("line", { x1: L, x2: R, y1: y(10.44), y2: y(10.44), stroke: C.red, "stroke-width": 3 }));
+    avg.appendChild(S("text", { x: L - 8, y: y(10.44) + 6, "text-anchor": "end", "font-size": 17, style: "fill:" + C.white }, "10.44"));
+    svg.appendChild(avg);
+    Live.onEnter("speeds", function (alive) {
+      bars.forEach(function (b) { b.bar.setAttribute("y", B); b.bar.setAttribute("height", 0); b.val.setAttribute("opacity", 0); });
+      avg.setAttribute("opacity", 0);
+      Live.wait(900, alive).then(function grow(i) {
+        i = i || 0;
+        if (!alive()) return;
+        if (i >= bars.length) { avg.setAttribute("opacity", 1); return; }
+        var b = bars[i];
+        return Live.tween(260, function (p) {
+          var h = (B - y(b.v)) * Live.ease(p);
+          b.bar.setAttribute("y", B - h); b.bar.setAttribute("height", h);
+        }, alive).then(function () { if (alive()) b.val.setAttribute("opacity", 1); return grow(i + 1); });
+      });
+    });
+  })();
+
+  /* ---------- The handover: the incoming runner at top speed, the outgoing runner speeding up.
+     The meter follows the baton, so the class sees it slow down when it changes hands. ---------- */
+  (function () {
+    var svg = $("zone"), X0 = 30, X1 = 970, Y = 110, FROM = 55, TO = 135;
+    function x(m) { return X0 + (X1 - X0) * (m - FROM) / (TO - FROM); }
+    svg.appendChild(S("rect", { x: x(80), y: Y - 46, width: x(90) - x(80), height: 92, fill: "none", stroke: C.frame, "stroke-width": 2 }));
+    svg.appendChild(S("rect", { x: x(90), y: Y - 46, width: x(110) - x(90), height: 92, fill: "none", stroke: C.blue, "stroke-width": 3 }));
+    svg.appendChild(S("text", { x: x(85), y: Y - 56, "text-anchor": "middle", "font-size": 17, style: "fill:" + C.muted }, "start zone"));
+    svg.appendChild(S("text", { x: x(100), y: Y - 56, "text-anchor": "middle", "font-size": 19, "font-weight": 500, style: "fill:" + C.blue }, "handover zone"));
+    svg.appendChild(S("line", { x1: X0, x2: X1, y1: Y, y2: Y, stroke: C.frame, "stroke-width": 2 }));
+    for (var m = 60; m <= 130; m += 10) {
+      svg.appendChild(S("line", { x1: x(m), x2: x(m), y1: Y - 7, y2: Y + 7, stroke: C.frame, "stroke-width": 1.5 }));
+      svg.appendChild(S("text", { x: x(m), y: Y + 76, "text-anchor": "middle", "font-size": 17, style: "fill:" + C.muted }, m + " m"));
+    }
+    var incoming = S("circle", { cy: Y - 20, r: 12, fill: C.blue });
+    var outgoing = S("circle", { cy: Y + 20, r: 11, fill: C.white, stroke: C.blue, "stroke-width": 3 });
+    var baton = S("rect", { width: 8, height: 26, fill: C.red });
+    svg.appendChild(incoming); svg.appendChild(outgoing); svg.appendChild(baton);
+    function draw(inPos, outPos, held, speed) {
+      incoming.setAttribute("cx", x(Math.min(TO, inPos))); outgoing.setAttribute("cx", x(Math.min(TO, outPos)));
+      var bx = held === "in" ? inPos : outPos;
+      baton.setAttribute("x", x(Math.min(TO, bx)) + 12); baton.setAttribute("y", (held === "in" ? Y - 20 : Y + 20) - 13);
+      $("baton").textContent = speed.toFixed(1);
+      $("batonWho").textContent = held === "in" ? "the incoming runner has the baton" : "the outgoing runner has the baton";
+    }
+    function play(at) {
+      return function (alive) {
+        var run = at - 80, tHand = SPLITS[run / 10], start = at - TOP * tHand, END = 5.47, STOP = 1.5;
+        var lowest = TOP;
+        /* A new run starts from a visibly cleared meter, so it is plain that the last run's reading has gone. */
+        draw(start, 80, "in", TOP); $("dip").textContent = ""; $("batonMeter").style.opacity = 0.25;
+        Live.wait(900, alive).then(function () {
+          if (alive()) $("batonMeter").style.opacity = 1;
+          return Live.tween(END * 1000, function (p) {
+            var t = END * p, outPos = 80 + distAt(t), inPos;
+            if (t < tHand) inPos = start + TOP * t;
+            else { var u = Math.min(STOP, t - tHand); inPos = at + TOP * u - TOP / (2 * STOP) * u * u; }    /* slows to a stop */
+            var speed = t < tHand ? TOP : speedAt(distAt(t));
+            lowest = Math.min(lowest, speed);
+            draw(inPos, outPos, t < tHand ? "in" : "out", speed);
+            if (t >= tHand) $("dip").textContent = "lowest after the handover at " + at + " m: " + lowest.toFixed(1) + " m/s";
+          }, alive);
+        });
+      };
+    }
+    Live.onEnter("handover", function () { draw(90 - TOP * 1.89, 80, "in", TOP); $("dip").textContent = ""; $("batonMeter").style.opacity = 1; });
+    Live.onEnter("early", play(90));
+    Live.onEnter("late", play(110));
+    draw(90 - TOP * 1.89, 80, "in", TOP);
+  })();
+
+  /* ---------- Both models and the real record on one line ---------- */
+  (function () {
+    var svg = $("compare"), L = 60, R = 940, Y = 130;
+    function x(t) { return L + (R - L) * (t - 34) / 5; }
+    svg.appendChild(S("line", { x1: L, x2: R, y1: Y, y2: Y, stroke: C.white, "stroke-width": 2 }));
+    for (var s = 34; s <= 39; s++) {
+      svg.appendChild(S("line", { x1: x(s), x2: x(s), y1: Y - 7, y2: Y + 7, stroke: C.white, "stroke-width": 1.5 }));
+      svg.appendChild(S("text", { x: x(s), y: Y + 34, "text-anchor": "middle", "font-size": 18, style: "fill:" + C.white }, s + " s"));
+    }
+    function mark(t, lines, up, red) {
+      var g = S("g", { opacity: 0 }), base = up ? Y - 78 : Y + 74;
+      g.style.transition = "opacity .8s";
+      g.appendChild(S("line", { x1: x(t), x2: x(t), y1: Y - 26, y2: Y + 26, stroke: red ? C.red : C.white, "stroke-width": red ? 5 : 4 }));
+      g.appendChild(S("text", { x: x(t), y: base, "text-anchor": "middle", "font-size": 34, style: "fill:" + C.white + ";font-family:Oswald,sans-serif" }, lines[0]));
+      g.appendChild(S("text", { x: x(t), y: base + 26, "text-anchor": "middle", "font-size": 18, style: "fill:" + C.white }, lines[1]));
+      svg.appendChild(g); return g;
+    }
+    var marks = [
+      mark(38.32, ["38.32", "first model: four Bolts from rest"], true),
+      mark(36.84, ["36.84", "the real record"], false, true),
+      mark(35.11, ["35.11", "second model, early handover"], true),
+      mark(34.38, ["34.38", "second model, late handover"], false)
+    ];
+    Live.onEnter("compare", function (alive) {
+      marks.forEach(function (g) { g.setAttribute("opacity", 0); });
+      $("mineEarly").textContent = estimates(model2, "early", "Handover at 90 m, you said:");
+      $("mineLate").textContent = estimates(model2, "late", "Handover at 110 m, you said:");
+      Live.wait(900, alive).then(function show(i) {
+        i = i || 0;
+        if (!alive() || i >= marks.length) return;
+        marks[i].setAttribute("opacity", 1);
+        return Live.wait(1100, alive).then(function () { return show(i + 1); });
+      });
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
