@@ -176,17 +176,8 @@
 
   <div class="tile demo" id="demo">
     <h3>Model explorer: one speed for every distance</h3>
-    <p>The dots are the average speeds of the real world records. The red line is the model "every race is run at the same speed". Move the slider to change that speed.</p>
-    <svg id="chart" viewBox="0 0 680 320" role="img" aria-label="Average speed of world records by distance, with the constant-speed model as a horizontal line"></svg>
-    <label for="speed">Model speed: <span class="readout" id="speedOut"></span></label>
-    <input type="range" id="speed" min="7" max="10.6" step="0.01" value="10.44">
-    <div class="table-wrap">
-    <table id="tbl">
-      <thead><tr><th>Event</th><th>Real record</th><th>Model predicts</th><th>Error</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    </div>
-    <p id="verdict"></p>
+    <p>The dots are the average speeds of the real world records. The red line is the model "every race is run at the same speed". Move the slider to change that speed. The lower chart shows the largest of the five errors for every speed: the dot is the speed you chose.</p>
+    <div id="speedx"></div>
   </div>
 
   <ol class="tasks">
@@ -202,79 +193,7 @@
 
 <footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Session 1</span></div></footer>
 
-<script>
-(function () {
-  var records = [
-    { name: "100 m", d: 100, t: 9.58 },
-    { name: "200 m", d: 200, t: 19.19 },
-    { name: "400 m", d: 400, t: 43.03 },
-    { name: "800 m", d: 800, t: 100.91 },
-    { name: "1500 m", d: 1500, t: 206.00 }
-  ];
-  var svg = document.getElementById("chart");
-  var slider = document.getElementById("speed");
-  var out = document.getElementById("speedOut");
-  var tbody = document.querySelector("#tbl tbody");
-  var verdict = document.getElementById("verdict");
-  var NS = "http://www.w3.org/2000/svg";
-  var L = 56, R = 660, T = 20, B = 270, VMIN = 6.5, VMAX = 11;
-  var FONT = '"Noto Sans HK", sans-serif';
-
-  function el(tag, attrs, text) {
-    var e = document.createElementNS(NS, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    if (text !== undefined) e.textContent = text;
-    return e;
-  }
-  function x(i) { return L + 50 + i * (R - L - 100) / (records.length - 1); }
-  function y(v) { return B - (v - VMIN) / (VMAX - VMIN) * (B - T); }
-  function fmt(t) {
-    if (t < 60) return t.toFixed(2) + " s";
-    var m = Math.floor(t / 60), s = t - m * 60;
-    return m + ":" + (s < 10 ? "0" : "") + s.toFixed(2);
-  }
-
-  /* WYHK tokens: blue for the data, a red line for the model, frame grey for the grid. */
-  var BLUE = "#004898", RED = "#d7000f", INK = "#231f20", MUTED = "#6d6e71", FRAME = "#a7a9ac";
-
-  for (var v = 7; v <= 11; v++) {
-    svg.appendChild(el("line", { x1: L, x2: R, y1: y(v), y2: y(v), stroke: FRAME, "stroke-width": 0.67 }));
-    svg.appendChild(el("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end", "font-size": 12, "font-family": FONT, fill: MUTED }, v));
-  }
-  svg.appendChild(el("text", { x: 14, y: (T + B) / 2, "font-size": 12, "font-family": FONT, fill: MUTED, transform: "rotate(-90 14 " + (T + B) / 2 + ")", "text-anchor": "middle" }, "Average speed (m/s)"));
-  var gaps = [];
-  records.forEach(function (r, i) {
-    var g = el("line", { x1: x(i), x2: x(i), stroke: MUTED, "stroke-width": 1, "stroke-dasharray": "3 3" });
-    svg.appendChild(g); gaps.push(g);
-  });
-  var modelLine = el("line", { x1: L, x2: R, stroke: RED, "stroke-width": 2 });
-  svg.appendChild(modelLine);
-  records.forEach(function (r, i) {
-    svg.appendChild(el("circle", { cx: x(i), cy: y(r.d / r.t), r: 6, fill: BLUE }));
-    svg.appendChild(el("text", { x: x(i), y: B + 22, "text-anchor": "middle", "font-size": 13, "font-family": FONT, fill: INK }, r.name));
-    svg.appendChild(el("text", { x: x(i), y: y(r.d / r.t) + 22, "text-anchor": "middle", "font-size": 12, "font-family": FONT, fill: BLUE }, (r.d / r.t).toFixed(2)));
-  });
-
-  function update() {
-    var s = parseFloat(slider.value);
-    out.textContent = s.toFixed(2) + " m/s";
-    modelLine.setAttribute("y1", y(s)); modelLine.setAttribute("y2", y(s));
-    tbody.innerHTML = "";
-    var worst = 0, worstName = "";
-    records.forEach(function (r, i) {
-      gaps[i].setAttribute("y1", y(s)); gaps[i].setAttribute("y2", y(r.d / r.t));
-      var pred = r.d / s, err = (pred - r.t) / r.t * 100;
-      if (Math.abs(err) > Math.abs(worst)) { worst = err; worstName = r.name; }
-      var tr = document.createElement("tr");
-      var cls = Math.abs(err) < 1 ? "near" : (Math.abs(err) > 10 ? "far" : "");
-      tr.innerHTML = "<td>" + r.name + "</td><td>" + fmt(r.t) + "</td><td>" + fmt(pred) + "</td><td class='" + cls + "'>" + (Math.abs(err) < 0.05 ? "0.0" : (err > 0 ? "+" : "") + err.toFixed(1)) + "%</td>";
-      tbody.appendChild(tr);
-    });
-    verdict.textContent = "Largest error: " + Math.abs(worst).toFixed(1) + "% at " + worstName + " (the model is " + (worst < 0 ? "too fast" : "too slow") + ").";
-  }
-  slider.addEventListener("input", update);
-  update();
-})();
-</script>
+<script src="../assets/speed-explorer.js"></script>
+<script>SpeedExplorer(document.getElementById("speedx"), { table: true });</script>
 </body>
 </html>
