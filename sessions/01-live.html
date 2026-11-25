@@ -21,7 +21,7 @@
 .splits { display: flex; flex-direction: column; gap: .6rem; min-height: 11rem; }
 .splitrow { display: grid; grid-template-columns: 14rem 1fr; gap: 1.2rem; align-items: center; }
 .splitrow .who2 { font-weight: 400; color: var(--blue); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.splitbar { display: flex; height: 2.6rem; }
+.splitbar { display: flex; height: 2.6rem; min-width: min-content; }   /* a tiny total still fits its three amounts, and the sum sits after them */
 .splitline { display: flex; align-items: center; gap: .8rem; }
 .splitline .sum { font-size: 1.3rem; font-weight: 400; color: var(--blue); white-space: nowrap; }
 .splitline .sum.off { color: var(--red); }
