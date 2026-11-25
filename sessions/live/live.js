@@ -17,6 +17,7 @@
    Moving on: scroll down or right (mouse wheel, trackpad, or a swipe on a touch screen) = next; scroll up or left = back.
    One scroll gesture is one press, however long it lasts.
    Keys: Right, Down, Space, PageDown, Enter = next. Left, Up, PageUp = back. Home = first scene. F = full screen.
+   H = hide or show the buttons. The scene counter in the top-right corner is a menu: choose a scene to jump to it.
    Most presentation clickers send PageDown and PageUp, so they work too. */
 (function () {
   "use strict";
@@ -90,7 +91,7 @@
     step = atEnd ? maxStep(scenes[i]) : 0;
     showSteps();
     progress.style.width = (scenes.length > 1 ? i / (scenes.length - 1) * 100 : 100) + "%";
-    where.textContent = (i + 1) + " / " + scenes.length;
+    jump.value = i;
     try { history.replaceState(null, "", "#" + (i + 1)); } catch (e) {}
     var alive = aliveFor(run);
     builtIns(scenes[i], alive);
@@ -111,7 +112,7 @@
   }
 
   /* ---------- Controls ---------- */
-  var nav = document.createElement("div"), progress = document.createElement("div"), where = document.createElement("span");
+  var nav = document.createElement("div"), progress = document.createElement("div"), jump = document.createElement("select");
   function button(label, title, fn) {
     var b = document.createElement("button");
     b.textContent = label; b.setAttribute("aria-label", title); b.onclick = fn;
@@ -125,7 +126,13 @@
       a.href = reading; a.textContent = "Reading version"; a.className = "live-reading";
       document.body.appendChild(a);
     }
-    nav.appendChild(where);
+    jump.setAttribute("aria-label", "Jump to scene");
+    scenes.forEach(function (s, k) {
+      var h = s.querySelector(".foot h2"), title = (h && h.textContent.trim()) || (s.querySelector("h1") || {}).textContent || "";
+      jump.add(new Option((k + 1) + " / " + scenes.length + (title ? " · " + title.replace(/^\d+\s*\|\s*/, "") : ""), k));
+    });
+    jump.onchange = function () { go(+jump.value); jump.blur(); };   // blur, so the arrow keys move scenes again
+    nav.appendChild(jump);
     button("Full screen", "Full screen", fullscreen);
     document.body.appendChild(nav); document.body.appendChild(progress);
     buildScroll();
@@ -137,6 +144,7 @@
       else if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); back(); }
       else if (e.key === "Home") go(0);
       else if (e.key === "f" || e.key === "F") fullscreen();
+      else if (e.key === "h" || e.key === "H") document.body.classList.toggle("bare");
     });
   }
 

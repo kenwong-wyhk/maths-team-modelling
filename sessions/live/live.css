@@ -149,6 +149,11 @@ th { color: var(--blue); font-weight: 400; font-size: 1rem; }
 /* the way back to the reading version: a button in the top-left corner */
 .live-reading { position: fixed; left: 0; top: 0; z-index: 6; margin: .4rem 1rem; padding: .1rem .7rem; background: var(--white); border: 0.07rem solid var(--frame); color: var(--blue); font-size: 1rem; font-weight: 400; text-decoration: none; }
 .live-reading:hover, .live-nav button:hover { border-color: var(--blue); }
+.live-nav select { font: inherit; color: var(--blue); background: var(--white); border: 0.07rem solid var(--frame); padding: .1rem .3rem; }
+/* faint until pointed at, so they do not distract on a blue scene; H hides them altogether */
+.live-nav, .live-reading { opacity: .25; transition: opacity .3s; }
+.live-nav:hover, .live-nav:focus-within, .live-reading:hover, .live-reading:focus-visible { opacity: 1; }
+body.bare .live-nav, body.bare .live-reading { display: none; }
 
 /* Small screens: scenes scroll instead of filling the screen. */
 @media (max-width: 800px) {
