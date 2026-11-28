@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The League Problem</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Senior Team: the second local project</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Second local project · Senior Team</p>
+  <h1>The League Problem</h1>
+  <p class="lede">The 2025 international problem asked for a sports league for the whole world. You have read two winning answers to it. This one is for the school, and your client, the PE department, will run it.</p>
+
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Every class wants games. The courts are few, a lunchtime is short, rain cancels games, and the exams come whatever happens.</p>
+    <p><strong>What is the best format for the lunchtime class competition?</strong></p>
+  </div>
+  <p>There is no answer key. You decide what "best" means and defend it. If the PE department finds your format convincing, it may use it for the next competition, and your predictions will be tested against what happens.</p>
+  <p>Your Team lead writes the team's time plan, using the six steps of <a href="hall-trial.html">The Hall Problem, for real</a>.</p>
+
+  <h2 class="wy-section-title"><span class="num">1</span>What you are given</h2>
+  <ul>
+    <li><strong>The rules of the competition:</strong> the sport, the length of a game, who may enter.</li>
+    <li><strong>Last year's fixtures and results,</strong> by class.</li>
+    <li><strong>What the client tells you</strong> at your first meeting: what went wrong, what must not change, and when the competition must end.</li>
+  </ul>
+
+  <h2 class="wy-section-title"><span class="num">2</span>What you may change</h2>
+  <ul>
+    <li><strong>The format:</strong> everyone plays everyone; groups, then a knockout; or rounds where each draw depends on the results so far, as the <a href="read-2025017.html">volleyball paper</a> invented.</li>
+    <li><strong>The fixtures:</strong> who plays whom, and when.</li>
+    <li><strong>How often a class plays,</strong> and the rest between its games.</li>
+    <li><strong>The tie-breaks,</strong> and what happens to a game lost to rain.</li>
+  </ul>
+  <p>You may not change the rules of the sport, the length of a game, the courts or the lunch break.</p>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you must find out yourselves</h2>
+  <ul>
+    <li><strong>How many courts,</strong> and how many games fit on one court in one lunchtime, from the start of one game to the start of the next. If the competition is running, time it at the courts.</li>
+    <li><strong>How many lunchtimes there are</strong> before the competition must end, and how many are usually lost to rain, tests and events.</li>
+    <li><strong>How often the stronger class won</strong> last year. Your simulation needs it.</li>
+  </ul>
+  <div class="rule">
+    <p><strong>Classes, not names.</strong> Record results by class only. No names, no photographs, no film. At the courts, stand off the playing area and do not hold up a game.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Four tools</h2>
+  <div class="tile">
+    <span class="label">Count before you design</span>
+    <p>With n classes, everyone playing everyone means n(n − 1) ÷ 2 games. If each class plays at most once a lunchtime, at most n ÷ 2 games (rounded down) fit in a lunchtime, and never more than the courts allow. Divide, and you have the fewest lunchtimes any schedule can take. Twelve classes on two courts, one game a court each lunchtime: 66 games, at least 33 lunchtimes. Do it with your own numbers before you choose a format.</p>
+  </div>
+  <div class="tile">
+    <span class="label">Building a round robin</span>
+    <p>Write the classes in two rows facing each other; each class plays the one opposite. For the next round, keep one class fixed and move every other class one place round the circle. With an odd number of classes, first add a "rest" place: whoever faces it sits that round out. After n − 1 rounds, or n rounds if you added a rest place, every pair has met once.</p>
+  </div>
+  <div class="tile">
+    <span class="label">A simulation of each format</span>
+    <p>Give each class a rating from last year's results. Turn two ratings into a chance of winning: with the Elo formula, a class rated 100 points higher wins about 64% of the time, 200 points higher about 76%. Play the whole competition many times in a sheet, with rain days included. Report how often the strongest class wins, how many games decide nothing, and the range of finishing dates. As your <a href="senior.html">study pack</a> said, state every rule so that anyone could repeat it.</p>
+  </div>
+  <div class="tile">
+    <span class="label">Testing the ratings</span>
+    <p>Fit the ratings to the first half of last year's games only. Then use them to predict the winners of the second half. If they do no better than a coin, the simulation built on them is worth little. This is Session 6's held-back data.</p>
+  </div>
+  <p>Both winning papers on the 2025 problem chose and defended a format. Read how in the <a href="read-2025006.html">football paper</a> and the <a href="read-2025017.html">volleyball paper</a>, then decide what you would borrow and what a school competition needs that a world league does not.</p>
+  <p><strong>Prove it.</strong></p>
+  <ol class="tasks">
+    <li>Show that with n classes, each playing at most once a day, everyone-plays-everyone needs at least n − 1 days when n is even and at least n days when n is odd.</li>
+    <li>Show that the circle above reaches those numbers: every pair meets exactly once, and with an odd number of classes, each class rests exactly once.</li>
+    <li>For your own numbers, compare everyone-plays-everyone with groups and then a knockout: the lunchtimes each needs, and, from your simulation, how often each finds the strongest class. Which would you advise, and what would change your mind?</li>
+  </ol>
+  <details>
+    <summary>Hints for 1 and 2: open only when you are stuck</summary>
+    <p><strong>1.</strong> Each class has n − 1 opponents and plays at most one a day. For odd n, one class must sit out every day, so a day holds at most (n − 1) ÷ 2 games; there are n(n − 1) ÷ 2 games in all.</p>
+    <p><strong>2.</strong> Number the moving places 1 to n − 1 round the circle and follow two classes as they move. When can they be opposite each other? For odd n, the rest place is the fixed one.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>The six steps, for this problem</h2>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Step</th><th>What you do</th></tr>
+    <tr><td>1. Meet the client</td><td>Questions to the PE teacher who runs the competition: what went wrong last time, when it must end, what makes a format fair.</td></tr>
+    <tr><td>2. Predict, then compare</td><td>Run last year's format through your simulation, sealed: when did it end, and how often does the strongest class win? Compare with what happened. Test your ratings on the second half of last year's games.</td></tr>
+    <tr><td>3. A format the school can run</td><td>The format, the full fixture list, the tie-breaks, and what happens on a rain day, on one page each.</td></tr>
+    <tr><td>4. The pitch</td><td>Five minutes to the client: the format, the finishing date with a range, the chance it finds the best class, and what could go wrong.</td></tr>
+    <tr><td>5. Predict, then try</td><td>If the client uses your format, sealed predictions of the finishing date and the lunchtimes lost. Observers at the courts record when each game starts and ends.</td></tr>
+    <tr><td>6. Report back</td><td>A section in your paper testing your model against what happened, and one page for the client.</td></tr>
+  </table>
+  </div>
+  <p>The Junior Teams are working on the <a href="sports-day.html">Sports Day Problem</a> for the same client. A simulation of their day would give their programme a range: offer to show them how.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>The League Problem</span></div></footer>
+</body>
+</html>
