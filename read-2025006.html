@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a whole paper: the football paper</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Reading a whole paper · 2 of 3</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Reading a whole paper · 2 of 3</p>
+  <h1>The football paper, from start to finish</h1>
+  <p class="lede">Two teams answered the IMMC 2025 problem very differently, and both won. This is the first of the two. Read it as a judge would, with the problem beside you and a pencil in your hand, and keep your notes: the next guide puts the second paper beside this one. About 50 minutes. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> the 2025 problem and the paper of Team 2025006, on paper or on screen. The file has 79 pages, but you need only pages 1 to 30. From page 31 it is computer code, so do not print it. The page numbers here are the ones printed at the top of each page ("5 of 79"), which match the file. The paper's own contents page is one page out: each section starts a page earlier than it says.</p>
+    <p><strong>Borrow how the paper is built, never its sentences.</strong> Read it yourself. If a word stops you, use the list below or a dictionary, not an AI summary: the point is what you notice.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Before you read: what was asked?</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 5 min</span> Read the five numbered requirements of the problem, and the list under "Your PDF submission should consist of". Skip the guidelines after it. <strong>Write a list of every task,</strong> including the small ones inside sentences. Aim for at least twelve. Keep the list: you will use it for this paper and the next.</li>
+  </ol>
+  <details>
+    <summary>My list: open when yours is written</summary>
+    <ol>
+      <li>Choose the sport: a team sport with at least five players on the field (see the Glossary).</li>
+      <li>Choose 20 teams, at least two from each continent except Antarctica, and explain the criteria.</li>
+      <li>Name other things a fair schedule should consider, beyond travel, number of games and equal matchups, and discuss the trade-offs.</li>
+      <li>Build a model for a fair and practical schedule: a fair share of games, equal travel, balanced matchups.</li>
+      <li>Use it to make a full season schedule.</li>
+      <li>Give evidence that the schedule is fair, sustainable and geographically representative.</li>
+      <li>Say how many games each team must play to declare a winner.</li>
+      <li>Add four teams, and explain the criteria.</li>
+      <li>Say how the four affect the schedule: fairness, sustainability, geography.</li>
+      <li>Say how many games are needed now.</li>
+      <li>Analyse changes to key constraints: travel distances, a team's home, the number of games.</li>
+      <li>In two pages or less, adapt the model to other sports.</li>
+      <li>A one-page letter for a non-technical reader.</li>
+      <li>A one-page visual graphic of the 20-team schedule, on its own page.</li>
+      <li>Summary, contents, references, an AI report if AI was used, and no more than 24 pages before the references.</li>
+    </ol>
+  </details>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means in this paper</th></tr>
+      <tr><td>league</td><td>聯賽</td><td>a competition played over a season</td></tr>
+      <tr><td>schedule</td><td>賽程</td><td>who plays whom, where and when</td></tr>
+      <tr><td>format</td><td>賽制</td><td>the shape of the competition: groups, knockouts and so on</td></tr>
+      <tr><td>round robin</td><td>循環賽</td><td>every team plays every other team: once (single) or twice (double)</td></tr>
+      <tr><td>group stage</td><td>小組賽</td><td>small round robins before the main competition</td></tr>
+      <tr><td>knockout</td><td>淘汰賽</td><td>lose once and you are out</td></tr>
+      <tr><td>home / away</td><td>主場 / 客場</td><td>playing in your own country / in the other team's</td></tr>
+      <tr><td>matchup</td><td>對賽</td><td>one pairing of two teams</td></tr>
+      <tr><td>index</td><td>指數</td><td>one number made from several measures (Session 3)</td></tr>
+      <tr><td>normalise</td><td>標準化</td><td>put every measure on the same 0-to-1 scale (Session 3)</td></tr>
+      <tr><td>outlier</td><td>離群值</td><td>a value far from all the others</td></tr>
+      <tr><td>Elo rating</td><td>Elo 等級分</td><td>a rating of strength; the gap between two ratings gives each team's chance of winning</td></tr>
+      <tr><td>simulation</td><td>模擬</td><td>playing the season many times on a computer, with chance deciding each match</td></tr>
+      <tr><td>inversion</td><td>逆序</td><td>two teams ranked the wrong way round</td></tr>
+      <tr><td>cluster</td><td>聚類</td><td>a group of countries close together on the map</td></tr>
+      <tr><td>constraint</td><td>限制條件</td><td>a rule the schedule must obey</td></tr>
+      <tr><td>jet lag</td><td>時差反應</td><td>tiredness after flying across time zones</td></tr>
+      <tr><td>sustainability</td><td>可持續性</td><td>here, mostly: less flying, less carbon</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Read with a pencil</h2>
+  <p>Twelve stops, about 35 minutes. At each, read the pages, then do the task in the margin of your copy or in a note. Keep moving: if a task takes more than three minutes, write a question mark and go on. You may skip page 9, pages 11–12, page 15 and page 17, and everything after page 28.</p>
+  <ol class="tasks">
+    <li><span class="tag">p. 1</span> Read only the summary. <strong>In one sentence, what does the team recommend?</strong> Then count the results the summary gives: decisions or numbers, not methods. Keep both.</li>
+    <li><span class="tag">p. 3, 12–13</span> The visual graphic promises "81% fewer carbon emissions" than a double round robin. Find the two numbers behind it on page 13 and check the 81%. <strong>Is it carbon that the team measured?</strong> Find the assumption on page 12 that lets them call it carbon.</li>
+    <li><span class="tag">p. 5–6</span> Before any mathematics, the team says what "fair" means. <strong>Find two meanings of fair that pull against each other.</strong> Then find, on page 16, the rule the team makes to settle it.</li>
+    <li><span class="tag">p. 6–7, 2</span> Why football? List the team's reasons. The problem says some sports "already have an established international presence", and football has the World Cup. <strong>Where does the paper say why a football league is still needed?</strong></li>
+    <li><span class="tag">p. 7–8</span> The criteria for choosing teams. Beside each, find its reason and its source. Then: <strong>why are fan count and funding put on a 0-to-1 scale with z-scores,</strong> and not with min-max like the others?</li>
+    <li><span class="tag">p. 12–13</span> Seven formats, each played 1,000 times by computer. I<sub>F</sub> is the team's overall score for a format: higher is better. L, the "loss", grows when the final ranking puts teams the wrong way round: lower is better. Find the winner and the runner-up by I<sub>F</sub>. How far apart are they? Which format has the lowest L? <strong>Why didn't it win?</strong></li>
+    <li><span class="tag">p. 14, 20</span> Page 14 says each team plays 9.2 games on average, from 2 × 92 ÷ 20. Check it. Then <strong>account for all 92 games.</strong> Page 14 and the start of page 20 tell you the stages. A round robin of n teams has n(n − 1) ÷ 2 games; a knockout of 8 teams has 7.</li>
+    <li><span class="tag">p. 16</span> The three rules on the order of matches. One gives a number of hours for jet lag. <strong>Write it down, with its source.</strong> You will need it in the next paper.</li>
+    <li><span class="tag">p. 18–19</span> Time of day. Read Assumptions 7 and 8. <strong>What is assumed about the whole world? Is a reason given?</strong> Then Figure D.2: why does the match start at 4 p.m. in Uruguay?</li>
+    <li><span class="tag">p. 21</span> The four extra teams. <strong>Find the sentence where the team admits a conflict with one of the IMMC's goals.</strong> Do you accept the reason that follows it?</li>
+    <li><span class="tag">p. 22–23</span> The sensitivity analysis moves each weight by 10%. Does the chosen format ever lose? <strong>In which change does it come closest to losing, and to which format?</strong> Compare section 7 of the pet paper.</li>
+    <li><span class="tag">p. 28</span> The Report on Use of AI. What was AI used for? The problem's AI policy (its last pages) asks for the exact question and the complete answer. <strong>Does this report give both?</strong></li>
+  </ol>
+  <details>
+    <summary>What I found: open when you have done all twelve</summary>
+    <ol>
+      <li>Mine: a grouped single round robin followed by knockouts, with group games on weekends from February to June. The summary gives three results: the format, the months, and that the sensitivity test left the choice unchanged. Keep your count: the next paper's summary is built differently.</li>
+      <li>1,464 flight hours for the chosen format against 7,567 for the double round robin: 1 − 1464 ÷ 7567 ≈ 0.81. The team measured flight hours. Assumption 6 says take-off, landing and travel inside a country add little, so carbon goes with flight time. Fair enough, but the graphic does not tell the reader that it rests on an assumption.</li>
+      <li>Close, balanced matches pull against a ranking that lets teams move: if teams only meet teams like themselves, nobody can climb out of their level. The settlement on page 16: no team plays more than two much stronger, or three much weaker, opponents in a row. A definition on page 5 becomes a constraint on page 16. Finding that link is what reading a whole paper is for.</li>
+      <li>Its reasons: the most fans in the world, easy to play, popular in developing countries, and a good test before other sports. Section 2.1 never mentions the World Cup. The nearest answer is in the letter (page 2): other international tournaments are held in one place, while this league plays in every country, in front of home crowds. Remember this. The next paper rules football out because of the World Cup.</li>
+      <li>Each criterion has a "Justification" and a source in brackets: a habit worth borrowing. A few countries with huge populations are outliers. With min-max they would score 1 and squash every other country near 0. Choosing the method to fit the data, and saying why, is Session 3 done properly.</li>
+      <li>Format 5 wins with 0.721. Format 1, a full single round robin, is second with 0.704: a gap of 0.017. The double round robin (format 2) has the lowest loss, 0.81, but it needs 380 games and 7,567 flight hours, and flight hours carry the largest weight. The Senior Team will see how close 0.721 and 0.704 really are.</li>
+      <li>2 × 92 ÷ 20 = 9.2. Five groups of 4: 5 × 6 = 30. The qualifier round robin of the 10 teams placed 2nd and 3rd: 45. The placement round robin of the 5 teams placed 4th: 10. The knockout of 8: 7. Total 92. The placement round robin is mentioned only on page 20, six pages after the count, so a reader has to hunt for it.</li>
+      <li>5 hours, from Heid &amp; Wu (2023). East-to-west trips count 1.5 times, because they take longer to recover from.</li>
+      <li>That everyone in the world watches television at the same hours as people in the United States. No reason is given and nothing is tested. 4 p.m. in Uruguay is 9 p.m. in Italy. Every start from 4 to 8 p.m. was about as good, and Italy's higher fan index tipped it.</li>
+      <li>"Unfortunately, all four of the new teams are European, which seems to conflict with our goals for geographical representation." The reason that follows: the index weighs many things, and strong teams such as Iran and Senegal lose out on green energy. Yours to judge. I like the honesty. "It is unlikely that the long term harm of this is prevalent" is a claim with nothing behind it.</li>
+      <li>It never loses. It comes closest when the weight on flight hours (T<sub>a</sub>) goes down: 0.725 against format 1's 0.721. Unlike the pet paper, the team shows its results and explains them: format 1 ranks the teams more accurately than format 5 but flies far more, so it gains when flying counts for less.</li>
+      <li>GitHub Copilot's autocomplete while writing code, and one ChatGPT question about making boxes in Google Docs. Both are given in full: the ChatGPT answer runs on to page 30, which is why the report looks long. Keep this in mind for the next paper's report.</li>
+    </ol>
+  </details>
+
+  <div class="tile">
+    <span class="label">Beat the team's months · 5 min</span>
+    <p>Each group plays its games in its own month. The table on page 18 gives each group's average temperature in each month, and the "cost" is how far that is from 20 °C. A lower total is better.</p>
+    <ol class="tasks">
+      <li><span class="tag">Alone</span> Work out the total cost of the team's choice, shown under the table.</li>
+      <li><span class="tag">Alone</span> <strong>Try to find a cheaper choice</strong> by swapping two groups' months. There are 120 ways in all.</li>
+      <li><span class="tag">Pair</span> The Asian Pacific group is Japan, South Korea, Australia and New Zealand. When it is spring in Japan, it is autumn in Australia. <strong>What can one average temperature for that group hide?</strong></li>
+    </ol>
+  </div>
+  <details>
+    <summary>My figures: open when you have tried all three</summary>
+    <p>6 + 2.75 + 1.5 + 1.25 + 0.25 = 11.75. Nothing beats it: the best alternative, swapping the Asian Pacific and South American months, costs 12.0. An average of a cold place and a warm place can be close to 20 °C while neither country is. The method is right; the input hides two hemispheres.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>After reading: be the judge</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 3 min</span> Go back to your task list. Beside each task write <strong>answered</strong>, <strong>partly</strong> or <strong>missing</strong>, with the page. Leave room for a second column: the next paper goes there.</li>
+    <li><span class="tag">Alone · 1 min</span> Go back to your sentence from the summary. Is every part of it true?</li>
+    <li><span class="tag">Team</span> Agree on one thing your Team Paper will borrow from this paper, and one thing it will do better: <span class="sentence">"From the football paper we borrow … We will do better at …"</span></li>
+  </ol>
+  <details>
+    <summary>My verdicts: open when yours are written</summary>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>Task</th><th>Verdict</th></tr>
+      <tr><td>The sport</td><td>Answered, pages 6–7</td></tr>
+      <tr><td>20 teams, two per continent, criteria</td><td>Answered, pages 7–9</td></tr>
+      <tr><td>Other components, and the trade-offs</td><td>Answered, pages 5–6: its own list, and one trade-off named</td></tr>
+      <tr><td>A model for games, travel and matchups</td><td>Answered, pages 9–19</td></tr>
+      <tr><td>Full season schedule</td><td>Partly: the group stage in full (page 20); later rounds depend on results, so a sample (page 21)</td></tr>
+      <tr><td>Evidence of fairness, sustainability, geography</td><td>Mostly: five measures for each format (pages 12–13); geography only through the two-per-continent rule</td></tr>
+      <tr><td>Games to declare a winner</td><td>Answered, page 14: at least 6, at most 15, 9.2 on average</td></tr>
+      <tr><td>Four more teams, criteria</td><td>Answered, page 21</td></tr>
+      <tr><td>Effect of the four</td><td>Mostly, pages 21–22, with the honest note on geography</td></tr>
+      <tr><td>Games needed now</td><td>Answered, page 22: 10.3 on average</td></tr>
+      <tr><td>Changes to key constraints</td><td>Partly: pages 22–23 change the weights, not travel, a team's home or the number of games</td></tr>
+      <tr><td>Other sports, two pages or less</td><td>Answered, pages 23–24</td></tr>
+      <tr><td>Letter; visual graphic</td><td>Answered, pages 2 and 3</td></tr>
+      <tr><td>Summary, contents, references, AI report; 24 pages</td><td>Answered: the report ends on page 24</td></tr>
+    </table>
+    </div>
+    <p>The summary says the sensitivity test showed the format is a reliable choice. True for the weights. The constraints that the problem names in task 3d were never changed.</p>
+  </details>
+  <p class="note">This paper answers nearly every task, checks most of its numbers, and admits a weakness against its own goal. Its one real gap is task 3d. Notice how much of that you could only see by reading the whole of it: the 92 games, and the link from "fair" on page 5 to the rule on page 16.</p>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Senior Team: go further</h2>
+  <p>About 30 minutes more. A sheet helps.</p>
+  <ol class="tasks">
+    <li><span class="tag">p. 16</span> Derive the 190: solve 1 ÷ (1 + 10<sup>(R<sub>B</sub> − R<sub>A</sub>) ÷ 400</sup>) &gt; 0.75 for R<sub>B</sub> − R<sub>A</sub>. <strong>Check the sign of the paper's answer.</strong></li>
+    <li><span class="tag">p. 30</span> Appendix A.1. Find the weights with <code>=GEOMEAN</code> of each row, divided by their total. Estimate λ<sub>max</sub>: multiply the matrix by your weights (<code>=MMULT</code>), divide each result by its weight, and average. Then CI = (λ<sub>max</sub> − 5) ÷ 4 and CR = CI ÷ 1.12. <strong>Does the matrix pass the usual test, CR &lt; 0.1?</strong> The pet paper checked this; this paper does not.</li>
+    <li><span class="tag">p. 10, 13, 30</span> Appendix A.2 is the matrix behind the format weights. Find its weights as before, and compare them with page 10's 0.21, 0.34, 0.07, 0.10, 0.28. Then put the seven formats' T<sub>g</sub>, T<sub>a</sub>, σ<sub>N</sub>, P<sub>A</sub> = σ<sub>A</sub> ÷ T<sub>a</sub> and L in a sheet, and min-max each column with lower as better: (max − x) ÷ (max − min). With page 10's weights you should get close to the paper's 0.721 and 0.704. <strong>Now use your weights. Which format wins?</strong></li>
+    <li><span class="tag">p. 21</span> Ecuador's nine games, with Elo ratings in brackets. Check them against the rules on page 16. <strong>Does any opponent count as much stronger or much weaker?</strong> Are there ever more than two home or two away games in a row?</li>
+    <li><span class="tag">p. 10, 13</span> Each format is played 1,000 times, but no measure comes with a range. <strong>What would you need to know before believing that 0.721 beats 0.704?</strong> How would you find it?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all five</summary>
+    <ol>
+      <li>10<sup>(R<sub>B</sub> − R<sub>A</sub>) ÷ 400</sup> &lt; 1/3, so R<sub>B</sub> − R<sub>A</sub> &lt; 400 log<sub>10</sub>(1/3) ≈ −190.8: team A must be about 190 points above B. The paper prints "= 190", which should be −190. Its conclusion on page 17 is right; the line before it has a sign slip.</li>
+      <li>About 0.547, 0.140, 0.106, 0.050 and 0.157. λ<sub>max</sub> ≈ 5.96, CI ≈ 0.24, CR ≈ 0.21: more than twice the limit. The weights on page 8 (2.84, 0.78, 0.62, 0.33, 1) are the exact eigenvector, scaled so the last is 1; scaling does not change the ranking. The formula on page 8 then prints two of them as 0.63 and 0.333.</li>
+      <li>About 0.20, 0.32, 0.07, 0.09, 0.32: the matrix gives the last measure, L, more weight than page 10 does. With page 10's weights I get 0.724 for format 5 and 0.706 for format 1, close to the paper's figures. With the matrix's own weights the two formats tie at about 0.717. With the exact eigenvector, format 1 edges ahead, 0.720 to 0.715. Either the matrix or the printed weights has a slip, and the choice of format turns on it. The team half-says so on page 23: format 1 is "the closest contender".</li>
+      <li>Ecuador is 1911. The biggest gap is to France, 2031: 120 points, well short of 190. So the skill rule never applies to Ecuador. The pattern is home, away, away, home, home, away, away, home, home: never more than two in a row, five at home and four away.</li>
+      <li>How much each average would move if the 1,000 seasons were played again with new random numbers: a standard deviation, or simply the whole simulation run twice. Without it, a gap of 0.017 might be chance. A paper that plays 1,000 seasons can afford to show this.</li>
+    </ol>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Bring to the next session</h2>
+  <ul>
+    <li>Your task list, with a verdict and a page beside each task, and room for a second column.</li>
+    <li>Your team's two sentences: what you borrow, and what you will do better.</li>
+    <li>Your notes from stops 1, 4, 8 and 12. The next guide asks for them.</li>
+  </ul>
+  <p class="note">Next in this series: the volleyball paper, on the same problem, which reached a very different answer.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Reading a whole paper · 2 of 3</span></div></footer>
+</body>
+</html>
