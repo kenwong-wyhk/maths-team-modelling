@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills Lab 4: The best of many plans</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Skills Lab 4 of 4 · after Session 6</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Skills Lab 4 of 4 · after Session 6</p>
+  <h1>The best of many plans</h1>
+  <p class="lede">Comparing two plans tells you which is better. Many competition tasks ask for the best plan of all: the cheapest, the fastest, the fairest. Finding it is called optimisation. The Hall Problem page gives you two rules for one kind of decision. This lab gives you two methods that work for almost any: try every plan, when there are few enough, and swap, when there are too many. Then it shows the trap in swapping, and the idea behind the "simulated annealing" in the football paper. About 45 minutes in a team, with one laptop. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> a Google Sheet, and paper for section 2. AI may help with a formula, with your AI Log. Open each "My figures" box only when your team has its own answer.</p>
+  </div>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means here</th></tr>
+      <tr><td>optimisation</td><td>最優化</td><td>finding the best plan, not just a better one</td></tr>
+      <tr><td>decision variable</td><td>決策變量</td><td>a number you choose, such as how many coaches to hire</td></tr>
+      <tr><td>objective</td><td>目標函數</td><td>what "best" means, as a number to make as small or as large as possible</td></tr>
+      <tr><td>constraint</td><td>限制條件</td><td>a rule every plan must obey</td></tr>
+      <tr><td>feasible</td><td>可行</td><td>obeying every constraint</td></tr>
+      <tr><td>try every plan</td><td>窮舉</td><td>check all the plans, one by one</td></tr>
+      <tr><td>assignment</td><td>指派</td><td>giving each person one job, or each group one month</td></tr>
+      <tr><td>local optimum</td><td>局部最優</td><td>a plan that no small change improves, though a better plan exists</td></tr>
+      <tr><td>simulated annealing</td><td>模擬退火</td><td>a swap method that sometimes accepts a worse plan, to escape a local optimum</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Try every plan: the coaches</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>The whole school, 900 students and 30 teachers, goes to the stadium for Sports Day. A coach company offers:</p>
+    <ul>
+      <li><strong>large coaches:</strong> 61 seats, $3,100 each for the day. It has only 12.</li>
+      <li><strong>medium coaches:</strong> 49 seats, $2,600 each, as many as the school needs.</li>
+    </ul>
+    <p>Everyone needs a seat. <strong>What is the cheapest plan?</strong></p>
+  </div>
+  <p>The prices are made up for this lab.</p>
+  <p><strong>Team time: about 20 minutes.</strong></p>
+  <ol class="tasks">
+    <li><span class="tag">Modeller</span> Write the model in three lines: what you choose (call them L and M), what "best" means as a formula, and every rule a plan must obey. Do not forget the rules nobody says out loud.</li>
+    <li><span class="tag">Team</span> A large coach costs less per seat than a medium one. So hire all 12 large coaches and fill the rest with medium ones. What does that cost, and how many seats are empty?</li>
+    <li><span class="tag">Data lead</span> Now try every plan. Put L = 0 to 12 down column A, from A2, and M = 0 to 20 along row 1, from B1. Put the price of a large coach, 3100, in X2, in its own cell as in Session 6. In B2 put a formula that gives the cost if the plan has enough seats, and leaves the cell empty if it does not: <code>=IF(61*$A2+49*B$1&gt;=930,$X$2*$A2+2600*B$1,"")</code>. Fill it across and down. The $ signs keep the formula reading column A, row 1 and X2. Find the smallest cost with <code>=MIN(B2:V14)</code>. To colour it, select B2:V14, choose Format, then Conditional formatting, then "Custom formula is", and type <code>=B2=MIN($B$2:$V$14)</code>. Which plan is cheapest?</li>
+    <li><span class="tag">Every team</span> Why does the cheapest plan not use all twelve of the cheaper-per-seat coaches?</li>
+    <li><span class="tag">Every team</span> The price of a large coach is only a quote. Raise X2 in steps of $10. By how much can it rise before a different plan becomes the cheapest, and which plan is that?</li>
+    <li><span class="tag">Every team</span> The stadium's car park holds at most 16 coaches. Add this rule to your formula: inside the IF, <code>AND(61*$A2+49*B$1&gt;=930,$A2+B$1&lt;=16)</code> is true only when both rules are kept. What happens? What would your team tell the school?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your team has tried all six</summary>
+    <p><strong>1.</strong> Choose whole numbers L and M. Make 3100L + 2600M as small as possible. Rules: 61L + 49M ≥ 930; L is at most 12; and L and M are whole numbers, at least 0. Nobody hires 4.04 coaches.</p>
+    <p><strong>2.</strong> 12 large coaches seat 732, which leaves 198, so 5 medium: $37,200 + $13,000 = $50,200, with 47 empty seats.</p>
+    <p><strong>3.</strong> <strong>9 large and 8 medium: $48,700,</strong> with 941 seats and 11 empty. It saves $1,500 on the plan in task 2.</p>
+    <p><strong>4.</strong> Empty seats cost money too. A price per seat counts only the seats you fill. The plan in task 2 pays for 47 seats nobody sits in.</p>
+    <p><strong>5.</strong> By only $20. At $3,120 the plan of 4 large and 14 medium ties with 9 and 8, and above it, 4 and 14 is cheapest: 930 seats exactly, none empty. At $3,100 it costs $48,800, only $100 more than the best. A paper should give both plans, and say that the choice between them turns on the price.</p>
+    <p><strong>6.</strong> No plan is left. Sixteen coaches hold at most 12 × 61 + 4 × 49 = 928 seats: two short. The model has done its job: it shows that the rules cannot all be kept, and the school must relax one. Two teachers could drive, a coach could make two trips, or a smaller coach could be found. A paper says which rule it relaxes, and why.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Swap: the stalls</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Four students set up four stalls for the school fair. Each sets up one stall, and each is quicker at some stalls than others, because of what he has done before. The table gives the minutes each would take.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th></th><th>Games</th><th>Food</th><th>Books</th><th>Plants</th></tr>
+      <tr><th>Adam</th><td>7</td><td>24</td><td>11</td><td>30</td></tr>
+      <tr><th>Ben</th><td>6</td><td>5</td><td>28</td><td>29</td></tr>
+      <tr><th>Carl</th><td>24</td><td>6</td><td>26</td><td>28</td></tr>
+      <tr><th>Dan</th><td>9</td><td>16</td><td>17</td><td>6</td></tr>
+    </table>
+    </div>
+    <p><strong>Which student should set up which stall, to make the total minutes of work as small as possible?</strong></p>
+  </div>
+  <p><strong>Team time: about 15 minutes,</strong> on paper.</p>
+  <ol class="tasks" start="7">
+    <li><span class="tag">Team</span> The obvious plan. Adam chooses first and takes his quickest stall. Then Ben takes his quickest of the stalls left, then Carl. Dan gets the last one. What is the total?</li>
+    <li><span class="tag">Team</span> Improve it by swapping. Choose two students and swap their stalls; keep the swap if the total falls. There are six pairs to try. Does any of them help?</li>
+    <li><span class="tag">Every team</span> How many different plans are there in all? (Adam has 4 stalls to choose from; then Ben has 3 left.) List them in order, split the list between you, and work out every total. What is the best plan, and how many students does it move from the obvious plan?</li>
+    <li><span class="tag">Every team</span> Go back to the obvious plan. Make the least bad of the six swaps, even though it makes the total worse. Then try all six swaps again. What happens?</li>
+    <li><span class="tag">Extra</span> With 10 students and 10 stalls, how many plans are there? If a computer checks a million plans a second, how long does it take to try every one? With 20 students?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your team has tried all five</summary>
+    <p><strong>7.</strong> Adam Games 7, Ben Food 5, Carl Books 26, Dan Plants 6: <strong>44 minutes.</strong></p>
+    <p><strong>8.</strong> The six swaps give 62, 46, 70, 47, 78 and 57. Every one is worse. The obvious plan is stuck: no single swap improves it. That is a local optimum.</p>
+    <p><strong>9.</strong> 4 × 3 × 2 × 1 = 24 plans. The best is Adam Books 11, Ben Games 6, Carl Food 6, Dan Plants 6: <strong>29 minutes,</strong> 15 fewer. It moves three students at once: Adam to Books, Ben to Games, Carl to Food. A swap moves only two, so no swap could reach it in one step. Of the 24 plans, only these two are stuck.</p>
+    <p><strong>10.</strong> The least bad swap is Adam and Carl: 46 minutes, two worse. From there, swapping Ben and Carl gives 29. One step backwards was the way out. This is the idea of simulated annealing, which the football paper uses to order its matches (its page 17): early on, accept a worse plan now and then; later, almost never.</p>
+    <p><strong>11.</strong> 10 × 9 × … × 1 = 3,628,800 plans: under four seconds. With 20 students, about 2.4 × 10<sup>18</sup> plans: about 77,000 years. Trying every plan stops working very quickly. For assignments like this one there is an exact shortcut, the Hungarian method, which the football paper uses to give each group its month (its page 18). Harder problems, like its order of matches, are why it turned to simulated annealing.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">The method in one box</span>
+    <p><strong>Write the model first:</strong> the decision variables, the objective, and every constraint, including "whole numbers".</p>
+    <p><strong>Count the plans.</strong> If there are a few thousand or fewer, try every one: a table of IF formulas in a sheet, or a loop in Python. Then you know the answer is the best.</p>
+    <p><strong>Too many to try?</strong> Start from a sensible plan and swap while it helps. Start again from several different plans. Accept the occasional worse swap to escape a local optimum. Then you have a good plan, and you must say that it may not be the best.</p>
+    <p><strong>Report</strong> the best plan, the runner-up and the gap between them, and how much an input must change before the best plan changes.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">3</span>Use it: your Hall Problem</h2>
+  <p>Which exit each class uses is an assignment; the order in which they leave is an ordering. Count your plans before you try them: 25 classes and 3 exits give 3<sup>25</sup>, about 850 billion ways to choose the exits alone, before any order. So you cannot try them all. Use the bottleneck rule and the ordering rule on the <a href="../hall.html">Hall Problem page</a> to cut the plans down, then swap to improve what is left.</p>
+  <p>The ordering rule is proved by swaps too. There the proof shows that each swap that puts a longer walk earlier never makes the plan worse, so swapping until the order is longest walk first always ends at the best order. A proof like that is what lets a paper say "best" and not "good". If your team has none, write "the best plan we found".</p>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Senior Team: go further</h2>
+  <p>About 20 minutes more.</p>
+  <ol class="tasks">
+    <li><span class="tag">Draw</span> Suppose coaches could be hired in fractions. Draw the lines 61L + 49M = 930 and L = 12 on axes with L across and M up, and shade the plans with enough seats. Show that the cheapest fractional plan is at a corner of the shaded region, and find it. Round it up to whole coaches. Is that the best whole-number plan? This method, for fractional plans, is called linear programming.</li>
+    <li><span class="tag">Sheet or Python</span> The company also has small coaches: 28 seats, $1,900 each, as many as needed. Now there are three decision variables, and one table is not enough. Find the cheapest plan.</li>
+    <li><span class="tag">Think</span> In task 7, does it matter who chooses first? Try Carl first, then Ben, Adam and Dan. A rule like "everyone takes his quickest" depends on an order nobody wrote down.</li>
+    <li><span class="tag">Python</span> The Python below makes up an 8 × 8 table, finds the best plan by trying all 40,320, and then runs the swap method from 200 random starts. How often does swapping find the best? What does that say about a paper that ran a swap method once?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all four</summary>
+    <p><strong>1.</strong> A large coach is cheaper per seat ($50.8 against $53.1), so the cheapest fractional plan uses as many as it can: the corner L = 12, M = 198 ÷ 49 ≈ 4.04, costing about $47,700. Rounded up, 12 and 5 costs $50,200: not the best, which is 9 and 8. Rounding the fractional answer can miss the best whole-number plan.</p>
+    <p><strong>2.</strong> 10 large, 6 medium and 1 small: 932 seats, $48,500. One small coach saves $200 on the best plan with two kinds.</p>
+    <p><strong>3.</strong> Yes. Carl first takes Food, then Ben takes Games, Adam takes Books and Dan Plants: 29 minutes, the best. Other orders give 44, 46 or 47.</p>
+    <p><strong>4.</strong> In my run, about one start in five ended at the best plan. The rest stopped at local optima. A paper that runs a swap method once has found a good plan, not the best; running it from many starts, and keeping the best result, is the least it should do.</p>
+  </details>
+  <p><strong>In Python.</strong> Optional. Paste this into a notebook at <a href="https://colab.research.google.com/">Google Colab</a>, signed in with your school account, and press Run.</p>
+<pre class="code">import itertools, random
+
+# 1. Coaches: try every plan
+best = None
+for L in range(0, 13):                 # large: 61 seats, $3,100, at most 12
+    for M in range(0, 20):             # medium: 49 seats, $2,600
+        for S in range(0, 34):         # small: 28 seats, $1,900
+            if 61 * L + 49 * M + 28 * S &gt;= 930:
+                cost = 3100 * L + 2600 * M + 1900 * S
+                if best is None or cost &lt; best[0]:
+                    best = (cost, L, M, S)
+print("cheapest: $%d with %d large, %d medium, %d small" % best)
+
+# 2. Stalls: minutes for each student (row) to set up each stall (column)
+C = [[7, 24, 11, 30],
+     [6, 5, 28, 29],
+     [24, 6, 26, 28],
+     [9, 16, 17, 6]]
+total = lambda plan: sum(C[i][plan[i]] for i in range(len(plan)))
+plans = list(itertools.permutations(range(4)))      # plan[i] = the stall of student i
+print(len(plans), "plans; the best takes", min(map(total, plans)), "minutes")
+
+# 3. Swap until no swap helps, from a random start, on a bigger random problem
+def swap_search(C, plan):
+    plan, better = list(plan), True
+    while better:
+        better = False
+        for i, j in itertools.combinations(range(len(plan)), 2):
+            new = plan[:]
+            new[i], new[j] = new[j], new[i]
+            if sum(C[k][new[k]] for k in range(len(C))) &lt; sum(C[k][plan[k]] for k in range(len(C))):
+                plan, better = new, True
+    return sum(C[k][plan[k]] for k in range(len(C)))
+
+random.seed(1)
+n = 8
+C8 = [[random.randint(5, 30) for _ in range(n)] for _ in range(n)]
+exact = min(sum(C8[i][p[i]] for i in range(n)) for p in itertools.permutations(range(n)))
+ends = [swap_search(C8, random.sample(range(n), n)) for _ in range(200)]
+print("8 students: best %d; swapping from 200 random starts reached it %d times" % (exact, ends.count(exact)))</pre>
+
+  <h2 class="wy-section-title" id="card"><span class="num">5</span>Contest card</h2>
+  <div class="tile">
+    <span class="label">Optimisation in a competition</span>
+    <p><strong>Use it when</strong> a task asks for the best plan, schedule, route or allocation, not just a good one.</p>
+    <p><strong>In the sheet:</strong> a table of IF formulas with $ signs, MIN or MAX, and conditional formatting. In Python: loops over every plan, or <code>itertools.permutations</code> for orders and assignments.</p>
+    <p><strong>What a judge wants to see:</strong> the decision variables, the objective and every constraint, written out; how many plans there are; how the best was found, and whether it is certainly the best; the runner-up; and how much an input must change before the answer changes.</p>
+    <p><strong>What a judge distrusts:</strong> "optimal" from a method that cannot promise it; a fractional answer rounded with no check; and a best plan with no word on how close the next one is.</p>
+  </div>
+
+  <p class="note">Back to <a href="../labs.html">all four labs</a>. Previous: <a href="03-simulation.html">Skills Lab 3, Does the best team win?</a></p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Skills Lab 4</span></div></footer>
+</body>
+</html>

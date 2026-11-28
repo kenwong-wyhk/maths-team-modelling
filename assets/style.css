@@ -130,6 +130,10 @@ footer.site .wrap {
 }
 .note { color: var(--ink-muted); font-size: 0.85rem; margin-top: 48px; }
 
+/* Code to copy, in the Skills Labs: kept on one line each, scrolled sideways on a phone. */
+main code { overflow-wrap: anywhere; }
+pre.code { font-family: Consolas, "Courier New", monospace; font-size: 0.78rem; line-height: 1.45; border: var(--border-hairline) solid var(--frame); padding: 12px 16px; margin: 16px 0; overflow-x: auto; white-space: pre; }
+
 /* Paper Study: a section of a real paper, shown as the page itself. */
 figure.paper { margin: 16px 0; }
 figure.paper img { display: block; width: 100%; max-width: 100%; height: auto; }

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills Lab 2: Curves from data</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Skills Lab 2 of 4 · after Session 5</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Skills Lab 2 of 4 · after Session 5</p>
+  <h1>Curves from data</h1>
+  <p class="lede">In Session 4 you fitted a straight line to many points. In Session 5 you drew a curve through two. Real data often curves, and a competition gives you more than two points. This lab teaches one trick that turns the two most common curves into straight lines, so that Session 4's least squares can fit them to all the data. Then it shows why the curve that fits best is not always the one to believe. About 45 minutes in a team, with one laptop. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> a Google Sheet. You may search, and use AI for its named jobs, with your AI Log: you will look up one record. Open each "My figures" box only when your sheet has its own answer.</p>
+  </div>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means here</th></tr>
+      <tr><td>natural logarithm, ln</td><td>自然對數</td><td>the power of e ≈ 2.718 that gives a number: ln 100 ≈ 4.6 because e<sup>4.6</sup> ≈ 100. In a sheet, LN</td></tr>
+      <tr><td>exponential growth</td><td>指數增長</td><td>multiplied by the same factor every year, as compound interest is (Session 5)</td></tr>
+      <tr><td>power law</td><td>冪律</td><td>y = a × x<sup>b</sup>: when x doubles, y is multiplied by the same factor, 2<sup>b</sup></td></tr>
+      <tr><td>straighten, transform</td><td>變換</td><td>change the numbers (here, take ln) so that a curve becomes a line</td></tr>
+      <tr><td>residual</td><td>殘差</td><td>the gap between a real value and the model (Session 4)</td></tr>
+      <tr><td>R², R-squared</td><td>決定係數</td><td>how close the points lie to a fitted straight line, from 0 to 1; in a sheet, RSQ</td></tr>
+      <tr><td>extrapolate</td><td>外推</td><td>use a model outside the range of the data it was fitted to</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>The trick</h2>
+  <p>Logarithms turn multiplying into adding: ln(p × q) = ln p + ln q, and ln(x<sup>b</sup>) = b × ln x. So two curves become straight lines:</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>If the data follows</th><th>then this is a straight line</th><th>Its slope gives</th><th>Its intercept gives</th></tr>
+    <tr><td>a power law, y = a × x<sup>b</sup></td><td>ln y against ln x: ln y = ln a + b × ln x</td><td>b</td><td>a = e<sup>intercept</sup></td></tr>
+    <tr><td>exponential growth, y = A × g<sup>x</sup></td><td>ln y against x: ln y = ln A + x × ln g</td><td>g = e<sup>slope</sup></td><td>A = e<sup>intercept</sup></td></tr>
+  </table>
+  </div>
+  <p>So: make a column of logarithms, fit a straight line to it with SLOPE and INTERCEPT as in Session 4, and turn the answer back with EXP. That is all.</p>
+  <p><strong>New to logarithms?</strong> You meet them properly in Form 4, but two facts are all this lab needs, and a sheet will show you both. In any cell, compare <code>=LN(6)</code> with <code>=LN(2)+LN(3)</code>, and <code>=LN(8)</code> with <code>=3*LN(2)</code>. Then <code>=EXP(LN(5))</code>: EXP undoes LN.</p>
+
+  <h2 class="wy-section-title"><span class="num">2</span>The records again</h2>
+  <p>In Session 1 you predicted world records from Bolt's speed alone, and the model fell apart over longer races. Here are seven men's world records, as they stood in 2026. Source: World Athletics.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Distance</th><th>Record</th><th>In seconds</th><th>Set by</th></tr>
+    <tr><td>100 m</td><td>9.58</td><td>9.58</td><td>Usain Bolt, 2009</td></tr>
+    <tr><td>200 m</td><td>19.19</td><td>19.19</td><td>Usain Bolt, 2009</td></tr>
+    <tr><td>400 m</td><td>43.03</td><td>43.03</td><td>Wayde van Niekerk, 2016</td></tr>
+    <tr><td>800 m</td><td>1:40.91</td><td>100.91</td><td>David Rudisha, 2012</td></tr>
+    <tr><td>1500 m</td><td>3:26.00</td><td>206.00</td><td>Hicham El Guerrouj, 1998</td></tr>
+    <tr><td>5000 m</td><td>12:35.36</td><td>755.36</td><td>Joshua Cheptegei, 2020</td></tr>
+    <tr><td>10,000 m</td><td>26:11.00</td><td>1571.00</td><td>Joshua Cheptegei, 2020</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Team time: about 25 minutes.</strong> Distances in column A, times in seconds in column B, rows 2 to 8.</p>
+  <ol class="tasks">
+    <li><span class="tag">Data lead</span> Draw a scatter chart of time against distance, and fit a straight line with SLOPE and INTERCEPT. On the chart it looks very good. What does the line predict for the 100 m?</li>
+    <li><span class="tag">Data lead</span> Straighten. In C2, <code>=LN(A2)</code>; in D2, <code>=LN(B2)</code>; fill both down. Draw D against C. Fit a line to it: in H2, b <code>=SLOPE(D2:D8,C2:C8)</code>, and in H3, a <code>=EXP(INTERCEPT(D2:D8,C2:C8))</code>. Write the model as t = a × d<sup>b</sup>.</li>
+    <li><span class="tag">Team</span> In E2, the model's time, <code>=$H$3*A2^$H$2</code>, filled down. In F2, its percentage error, as in Session 1. What is the largest error? In Session 1, the best single speed for every race still missed one record by 18%.</li>
+    <li><span class="tag">Modeller</span> Look at the signs of the seven errors, in order of distance. Are they scattered at random, or is there a pattern? What could the pattern mean about the races?</li>
+    <li><span class="tag">Writer</span> Use the model to predict the marathon, 42,195 m. Then look up the men's marathon record, from World Athletics, and log the search if you used AI. How far out is the model?</li>
+    <li><span class="tag">Every team</span> A marathon is not a sprint. Fit b again using only the 5000 m and the 10,000 m: with two points, b = ln(1571.00 ÷ 755.36) ÷ ln 2. Predict the marathon from the 10,000 m with this b: when the distance is multiplied by k, the time is multiplied by k<sup>b</sup>, so the marathon takes 1571.00 × (42,195 ÷ 10,000)<sup>b</sup> seconds. Which prediction would you put in a paper, and what reason would you give a judge?</li>
+    <li><span class="tag">Extra</span> Test on records the model has not seen, as in Session 4. Fit the power law to the 100 m to 1500 m only, Session 1's five races, and use it to predict the 5000 m and 10,000 m.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your team has tried at least tasks 1 to 5</summary>
+    <p><strong>1.</strong> The line is t = 0.158 d − 20.3, and it predicts −4.5 seconds for the 100 m. Its R² (task 11 shows how to find it) is 0.9996, a shade better than the 0.9994 of the line through the logarithms in task 2. A fit can look perfect and still be nonsense at one end: most of its "goodness" comes from the 10,000 m, the biggest number in the table.</p>
+    <p><strong>2.</strong> b ≈ 1.12 and a ≈ 0.0537, so t = 0.0537 × d<sup>1.12</sup>. If b were exactly 1, speed would be the same at every distance: Session 1's model. b above 1 says that the longer the race, the slower the average speed.</p>
+    <p><strong>3.</strong> The errors are −2.2%, +6.2%, +3.0%, −4.5%, −5.4%, −0.5% and +4.1%. The largest is +6.2%, at the 200 m: one curve does three times better than one speed.</p>
+    <p><strong>4.</strong> Minus, plus, plus, minus, minus, minus, plus: runs of the same sign, not a random scatter. The model is too slow for the 200 m and 400 m, too fast for the 800 m and 1500 m, and too slow again for the 10,000 m. One curve is being asked to fit sprints, middle distances and long distances, which are run in different ways. A pattern in the residuals means the model has missed something.</p>
+    <p><strong>5.</strong> About 8,200 seconds: 2 hours 17 minutes. The real record is around two hours, so the model is a quarter of an hour too slow: 13% or more. It was fitted to races up to 10,000 m and asked about one four times as long.</p>
+    <p><strong>6.</strong> b = ln 2.080 ÷ ln 2 ≈ 1.056. The marathon is 4.2195 times the 10,000 m, so it comes out at 1571.00 × 4.2195<sup>1.056</sup> ≈ 7,190 seconds: just under two hours, and within about a minute of the record. Put this one in the paper, and say why: the question is about a long race, so fit the races most like it. A published model for runners uses the same number, 1.06 (see the Senior Team's questions).</p>
+    <p><strong>7.</strong> Fitted to 100 m to 1500 m, b ≈ 1.15, and the model predicts 13:26 for the 5000 m and 29:45 for the 10,000 m: 6.8% and 13.6% too slow. The further outside its data, the worse it does.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>Which curve? The electric vehicles</h2>
+  <p>Session 5's data sheet: electric vehicles in Hong Kong at the end of each year, read from a chart in the Government's Hong Kong Roadmap on Popularisation of Electric Vehicles (2021), to the nearest hundred.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Year</th><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td><td>2015</td><td>2016</td><td>2017</td><td>2018</td><td>2019</td><td>2020</td></tr>
+    <tr><th>Electric vehicles</th><td>200</td><td>300</td><td>500</td><td>600</td><td>1,600</td><td>4,300</td><td>7,300</td><td>11,200</td><td>11,600</td><td>13,900</td><td>18,500</td></tr>
+  </table>
+  </div>
+  <p>Later figures, also from Session 5: 70,701 electric vehicles at the end of October 2023, and about 186,000 at the end of September 2026. Hide them for now: they are the test.</p>
+  <ol class="tasks" start="8">
+    <li><span class="tag">Data lead</span> Put the years after 2010 (0 to 10) in one column and the counts in the next. Exponential growth means ln(count) against years is a straight line. Make the column of logarithms of the counts (not of the years) and fit a line to it. The growth factor for one year is g = EXP(SLOPE), and the fitted value for 2010 is A = EXP(INTERCEPT). What is g, as a percentage rise each year?</li>
+    <li><span class="tag">Team</span> Use the fitted model, A × g<sup>t</sup>, to predict October 2023 (t = 13.83 years after 2010) and September 2026 (t = 16.75). Now uncover the real figures. How far out is the model?</li>
+    <li><span class="tag">Modeller</span> Look at the residuals of the logarithms, year by year: each year's ln(count) minus the line's value for that year. Where are they below the line, and where above? What does the pattern say about the growth since 2017? Which of Session 5's three models does that point to?</li>
+    <li><span class="tag">Every team</span> R² measures how close points lie to a fitted straight line, from 0 to 1. Find it for the line through the counts, <code>=RSQ(counts,years)</code>, and for the line through the logarithms, <code>=RSQ(logarithms,years)</code>, using your own cell ranges. Which is larger? After task 9, would you trust a model because its R² is large?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your team has tried all four</summary>
+    <p><strong>8.</strong> g ≈ 1.65, so about 65% more electric vehicles every year, from a fitted start of about 212 in 2010.</p>
+    <p><strong>9.</strong> The model says about 208,000 in October 2023 and 889,000 in September 2026. The real figures were 70,701 and about 186,000: three times and nearly five times too many.</p>
+    <p><strong>10.</strong> Below the line from 2010 to 2013, above it from 2015 to 2017, and below again by 2019 and 2020. The early years grew slowly, the middle years fast, and since 2017 the growth has been slowing: the year-on-year factors fall from 2.7 in 2014 and 2015 to 1.04 in 2018. A constant factor cannot follow that. Session 5's growth with a ceiling bends in exactly this way.</p>
+    <p><strong>11.</strong> The line through the logarithms, with R² ≈ 0.95, against 0.91 for the line through the counts. Yet the exponential model failed the test by a factor of three. R² measures how well a model fits the data it was given, not how well it predicts. And 0.95 is measured on the logarithms: measured on the counts themselves, the exponential model's R² is only about 0.52, because it overshoots 2019 and 2020. Quote R² only with what it was measured on, and never as the only evidence.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">The method in one box</span>
+    <p><strong>Choose the shape for a reason,</strong> before fitting: a share that cannot pass 100% needs a ceiling (Session 5); something that grows by a percentage each year is exponential; something that scales with size, such as time against distance, may be a power law.</p>
+    <p><strong>Straighten and fit.</strong> Power law: fit ln y against ln x; b = SLOPE, a = EXP(INTERCEPT). Exponential: fit ln y against x; g = EXP(SLOPE), A = EXP(INTERCEPT). In Google Sheets, <code>=LOGEST(y,x)</code> gives g and A at once, and <code>=GROWTH(y,x,new_x)</code> predicts.</p>
+    <p><strong>Check three things.</strong> The residuals have no pattern. A test on data the model has not seen. And the prediction stays near the range of the data, or the paper says that it does not.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Use it</h2>
+  <ul>
+    <li><strong>The Hall Problem.</strong> If your team counted a crowd at a door every ten seconds (the extra task before Session 5), plot the running total against time. A crowd that starts slowly curves at first. Does a straight line or a curve fit better, and over which seconds would you use each?</li>
+    <li><strong>In a competition.</strong> Many problems give a few years of data that grow fast. Fitting them with an exponential and predicting far ahead is the mistake task 9 shows. Say in the paper how far ahead you trust the curve, and why.</li>
+  </ul>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Senior Team: go further</h2>
+  <p>About 20 minutes more.</p>
+  <ol class="tasks">
+    <li><span class="tag">Prove</span> For t = a × d<sup>b</sup>, show that when the distance doubles, the average speed is multiplied by 2<sup>1 − b</sup>. By what percentage does it fall for b = 1.12, and for b = 1.06?</li>
+    <li><span class="tag">Explain</span> A gap of 0.05 between ln(real) and ln(model) is about a 5% error, whatever the size of the numbers. Why? (Use ln(p ÷ q) = ln p − ln q, and ln(1 + x) ≈ x for small x.) So the fit on logarithms treats a 1% miss in the 100 m like a 1% miss in the 10,000 m. Use this to explain the straight line's −4.5 seconds in task 1.</li>
+    <li><span class="tag">Look up</span> Riegel's formula for runners, published in 1981. What exponent does it use, and for which distances did its author say it holds?</li>
+    <li><span class="tag">Papers</span> The volleyball paper fits a constant for three other sports by trying every value and keeping the one that best predicts the matches it was fitted to (its pages 23 to 25). Using tasks 7 and 9, write what test it should have added.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all four</summary>
+    <p>Speed is d ÷ t = d<sup>1 − b</sup> ÷ a, and doubling d multiplies it by 2<sup>1 − b</sup>. For b = 1.12 that is 0.920, a fall of 8%; for b = 1.06, 0.959, a fall of about 4%.</p>
+    <p>ln(real) − ln(model) = ln(real ÷ model), and if real ÷ model = 1 + x, this is about x. A straight-line fit of t on d minimises gaps in seconds, so a 5-second miss in the 100 m costs it no more than a 5-second miss in the 10,000 m: it gives up the 100 m to fit the long races.</p>
+    <p>Riegel uses 1.06, for races from about 3.5 minutes to about 4 hours; check the original before you quote it.</p>
+    <p>Hold some matches back, fit the constant to the rest, and see how well it predicts the matches it has not seen.</p>
+  </details>
+  <p><strong>In Python.</strong> Optional. Paste this into a notebook at <a href="https://colab.research.google.com/">Google Colab</a>, signed in with your school account, and press Run.</p>
+<pre class="code">import numpy as np
+
+# Men's world records: distance in metres, time in seconds
+d = np.array([100, 200, 400, 800, 1500, 5000, 10000])
+t = np.array([9.58, 19.19, 43.03, 100.91, 206.00, 755.36, 1571.00])
+
+# Straighten: ln t = ln a + b ln d, so fit a line to the logarithms
+b, c = np.polyfit(np.log(d), np.log(t), 1)
+a = np.exp(c)
+print("t = %.4f x d^%.3f" % (a, b))
+for di, ti in zip(d, t):
+    model = a * di ** b
+    print("%6d m  real %8.2f  model %8.2f  error %+5.1f%%" % (di, ti, model, (model - ti) / ti * 100))
+m = a * 42195 ** b
+print("marathon: %.0f s, about %d h %d min" % (m, m // 3600, round(m % 3600 / 60)))
+
+# Electric vehicles in Hong Kong at the end of each year, 2010 to 2020
+x = np.arange(0, 11)                       # years after 2010
+n = np.array([200, 300, 500, 600, 1600, 4300, 7300, 11200, 11600, 13900, 18500])
+slope, c = np.polyfit(x, np.log(n), 1)     # ln n = ln A + x ln g
+g, A = np.exp(slope), np.exp(c)
+print("n = %.0f x %.3f^x" % (A, g))
+for label, when, real in [("October 2023", 13 + 10 / 12, 70701), ("September 2026", 16.75, 186000)]:
+    print("%s: model %.0f, real %d" % (label, A * g ** when, real))</pre>
+
+  <h2 class="wy-section-title" id="card"><span class="num">6</span>Contest card</h2>
+  <div class="tile">
+    <span class="label">Fitting a curve in a competition</span>
+    <p><strong>Use it when</strong> the data curves and you must continue it, or when you need a number, such as a rate or an exponent, from many points at once.</p>
+    <p><strong>In the sheet:</strong> LN, SLOPE, INTERCEPT, EXP; or LOGEST and GROWTH; or a chart trend line with its equation.</p>
+    <p><strong>What a judge wants to see:</strong> why this shape, in one sentence about the real world; the fitted equation with its units; a residual plot or a sentence about the residuals; a test on held-back data; and the range of the data, with a warning if the prediction leaves it.</p>
+    <p><strong>What a judge distrusts:</strong> R² as the only evidence; a curve chosen because it fitted best; a prediction far outside the data with no warning; and a fitted constant never tested on data it was not fitted to.</p>
+  </div>
+
+  <p class="note">Back to <a href="../labs.html">all four labs</a>. Previous: <a href="01-weights.html">Skills Lab 1, Weights you can defend</a>. Next: <a href="03-simulation.html">Skills Lab 3, Does the best team win?</a>, after Session 6.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Skills Lab 2</span></div></footer>
+</body>
+</html>

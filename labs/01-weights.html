@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills Lab 1: Weights you can defend</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Skills Lab 1 of 4 · after Session 3</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Skills Lab 1 of 4 · after Session 3</p>
+  <h1>Weights you can defend</h1>
+  <p class="lede">In Session 3 you gave each measurement a weight out of 10. A judge can ask "why 7 and not 6?", and the honest answer is often "it felt right". This lab teaches the method two of our winning papers use: you compare two things at a time, which is easier to judge and to defend, and the sheet turns your comparisons into weights and tells you whether they contradict each other. About 45 minutes in a team, with one laptop. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> a Google Sheet, your team's Session 3 work, and the pet paper handed out in Session 3. No AI: the judgements are the point, and they are yours. Open each "My figures" box only when your sheet has its own answer.</p>
+  </div>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means here</th></tr>
+      <tr><td>analytic hierarchy process (AHP)</td><td>層次分析法</td><td>turning comparisons of two things at a time into weights</td></tr>
+      <tr><td>criterion, criteria</td><td>準則</td><td>one thing that "best" depends on, such as cost</td></tr>
+      <tr><td>pairwise comparison</td><td>兩兩比較</td><td>a judgement about two criteria: "safety matters 3 times as much as cost"</td></tr>
+      <tr><td>comparison matrix</td><td>比較矩陣</td><td>the square table of all the comparisons</td></tr>
+      <tr><td>reciprocal</td><td>倒數</td><td>1 ÷ a number: the reciprocal of 3 is 1/3</td></tr>
+      <tr><td>geometric mean</td><td>幾何平均數</td><td>multiply n numbers and take the n-th root</td></tr>
+      <tr><td>consistent</td><td>一致</td><td>the comparisons agree with each other</td></tr>
+      <tr><td>consistency ratio (CR)</td><td>一致性比率</td><td>one number for how much the comparisons contradict each other</td></tr>
+      <tr><td>eigenvector</td><td>特徵向量</td><td>the exact AHP weights (Senior Team)</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>The problem</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>The Form 2 classes will spend one day on a school trip. Three places are possible: the Science Museum, a boat trip round the Geopark, and the Wetland Park. Four things matter: <strong>cost</strong>, <strong>travel time</strong>, <strong>what students learn</strong>, and <strong>safety</strong>.</p>
+    <p><strong>Which place is best?</strong></p>
+  </div>
+  <p>A team has already scored each place out of 10 on each criterion, as you did in Session 3. A higher score is always better: a cheap trip scores high on cost, and a short journey scores high on travel time. The numbers are made up for this lab.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th></th><th>Science Museum</th><th>Geopark</th><th>Wetland Park</th></tr>
+    <tr><th>Cost</th><td>6</td><td>5</td><td>7</td></tr>
+    <tr><th>Travel time</th><td>9</td><td>4</td><td>5</td></tr>
+    <tr><th>Learning</th><td>6</td><td>9</td><td>8</td></tr>
+    <tr><th>Safety</th><td>9</td><td>7</td><td>8</td></tr>
+  </table>
+  </div>
+  <p>The scores are the easy part. The hard part, as in Session 3, is how much each criterion matters.</p>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Compare two at a time</h2>
+  <p>Nobody can say "safety is worth 0.48 of the decision". Most people can say "safety matters more than cost, about three times as much". AHP asks only for judgements of that kind, on this scale:</p>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Number</th><th>Meaning</th></tr>
+    <tr><td>1</td><td>the two matter equally</td></tr>
+    <tr><td>3</td><td>the first matters moderately more</td></tr>
+    <tr><td>5</td><td>the first matters strongly more</td></tr>
+    <tr><td>7</td><td>very strongly more</td></tr>
+    <tr><td>9</td><td>extremely more</td></tr>
+    <tr><td>2, 4, 6, 8</td><td>in between</td></tr>
+  </table>
+  </div>
+  <p>If the first matters less, use the reciprocal: "cost matters a third as much as safety" is 1/3.</p>
+  <div class="tile">
+    <span class="label">One team's six judgements, each with its reason</span>
+    <ul>
+      <li>Safety matters <strong>3 times</strong> as much as cost: a cheap trip is worth nothing if a student is hurt.</li>
+      <li>Safety matters <strong>5 times</strong> as much as travel time: a long bus ride is tiring, not dangerous.</li>
+      <li>Safety matters <strong>2 times</strong> as much as learning: the trip is for learning, but not at any risk.</li>
+      <li>Learning matters <strong>2 times</strong> as much as cost: parents pay for what their sons learn.</li>
+      <li>Learning matters <strong>3 times</strong> as much as travel time.</li>
+      <li>Cost matters <strong>2 times</strong> as much as travel time.</li>
+    </ul>
+  </div>
+  <p>Put them in a square table. The number in row i and column j says how many times as much criterion i matters as criterion j.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th></th><th>Cost</th><th>Travel time</th><th>Learning</th><th>Safety</th></tr>
+    <tr><th>Cost</th><td>1</td><td>2</td><td>1/2</td><td>1/3</td></tr>
+    <tr><th>Travel time</th><td>1/2</td><td>1</td><td>1/3</td><td>1/5</td></tr>
+    <tr><th>Learning</th><td>2</td><td>3</td><td>1</td><td>1/2</td></tr>
+    <tr><th>Safety</th><td>3</td><td>5</td><td>2</td><td>1</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Team time: about 35 minutes.</strong> The Data lead types; the others check every formula before it is filled across. Type every fraction as a formula, <code>=1/2</code>: a sheet reads 1/2 typed on its own as a date.</p>
+  <ol class="tasks">
+    <li><span class="tag">Build</span> Put the matrix in a sheet, in B2:E5, with the names in row 1 and column A. Only the six numbers above the diagonal are judgements. Why is every number on the diagonal 1? Type each number below the diagonal as a formula, so that it can never disagree with the one above: it is 1 divided by its mirror image across the diagonal. In B3, <code>=1/C2</code>; in B4, <code>=1/D2</code>; and so on for all six. How many judgements would five criteria need? Count the comparisons listed on pages 8 and 9 of the pet paper, which has five.</li>
+    <li><span class="tag">Weights</span> For each row, take the geometric mean of its four numbers: in G2, <code>=GEOMEAN(B2:E2)</code>, filled down. Then divide each by the total of the four, so that the weights add up to 1: in H2, <code>=G2/SUM($G$2:$G$5)</code>, filled down. Which criterion has the largest weight? Is the order of the weights the order you expected from the six sentences?</li>
+    <li><span class="tag">Score</span> Put the table of scores in A8:D12, with the places across row 8 and the criteria down column A in the same order as the weights. Each place's score is a weighted sum, as in Session 3: in B13, <code>=SUMPRODUCT($H$2:$H$5,B9:B12)</code>, filled right. Rank the three places.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your sheet has weights and scores</summary>
+    <p>The diagonal compares each criterion with itself. Five criteria need 10 judgements: each pair once, 5 × 4 ÷ 2. The pet paper lists 10.</p>
+    <p>Weights: cost 0.157, travel time 0.088, learning 0.272, safety 0.483. Safety has almost half the decision, and the order matches the sentences: safety beats everything, travel time loses to everything.</p>
+    <p>Scores: Science Museum 7.71, Wetland Park 7.58, Geopark 6.97. The Science Museum wins, by 0.13.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>Do the judgements agree with each other?</h2>
+  <p>Suppose a team says safety matters 3 times as much as cost, and learning 2 times as much as cost. Then it has already said, without meaning to, that safety matters 1.5 times as much as learning. Its sentence about safety and learning says 2. The judgements disagree a little. A team that wrote "cost beats travel time, travel time beats learning, and learning beats cost" would be going round in a circle.</p>
+  <ol class="tasks" start="4">
+    <li><span class="tag">Team</span> Find one more set of three criteria in the six sentences where the judgements disagree, and say by how much.</li>
+    <li><span class="tag">Data lead</span> Now one number for the whole matrix. Multiply the matrix by the weights: in I2, <code>=MMULT(B2:E5,H2:H5)</code>, which fills I2:I5 by itself. In J2, divide by the weight, <code>=I2/H2</code>, and fill down. The average of J2:J5, <code>=AVERAGE(J2:J5)</code>, is called λ (lambda). Then
+      <span class="sentence">CI = (λ − n) ÷ (n − 1) &nbsp; and &nbsp; CR = CI ÷ RI</span>
+      where n = 4 is the number of criteria and RI is 0.58 for three criteria, 0.90 for four and 1.12 for five. The usual rule: <strong>a consistency ratio below 0.1 is acceptable.</strong> Does this team pass?</li>
+    <li><span class="tag">Every team</span> Team B agreed with all six sentences, but typed one number into the wrong cell: 5 in the travel-time row, safety column, and so 1/5 in the safety row, travel-time column. Make the change in a copy of your sheet: right-click the tab at the bottom and choose Duplicate. What happens to the weights, the winner and the consistency ratio?</li>
+    <li><span class="tag">Every team</span> Find the mistake from the numbers alone, as you would in a matrix with no story. For each of the six judgements, divide the number in the matrix by the ratio of the two weights (row weight ÷ column weight). A consistent judgement gives exactly 1. If an answer is below 1, turn it over (1 ÷ it), so that 0.4 counts as 2.5. Which judgement is furthest from 1? Correct it and check the ratio again.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when your sheet has a consistency ratio</summary>
+    <p>Safety is 5 times travel time, and cost is 2 times travel time, so safety should be 2.5 times cost: the team said 3. Learning is 3 times travel time and cost 2 times, so learning should be 1.5 times cost: the team said 2. Small gaps like these are normal.</p>
+    <p>λ ≈ 4.015, so CI ≈ 0.005 and CR ≈ 0.005, far below 0.1. If every judgement agreed exactly, λ would be exactly 4 and CR would be 0.</p>
+    <p>Team B: the weights become 0.186, 0.234, 0.323 and 0.257, so travel time now matters almost as much as safety, which nobody in the team believes. The Science Museum still wins, 7.47 to 7.11, but by luck. λ ≈ 5.7 and CR ≈ 0.63: six times the limit.</p>
+    <p>The travel-time and safety judgement gives 5 ÷ (0.234 ÷ 0.257) ≈ 5.5. No other judgement is further from 1 than about 2.5. Put back 1/5, and CR returns to 0.005.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Which judgement decides the answer?</h2>
+  <p>The scale goes 1/9, 1/8, … 1/3, 1/2, 1, 2, 3, … 9. One step changes a 2 to a 1 or a 3, and a 1/3 to a 1/4 or a 1/2.</p>
+  <ol class="tasks" start="8">
+    <li><span class="tag">Every team</span> Change each of the six judgements by one step up, then one step down, one at a time: twelve changes. Keep the reciprocals below the diagonal as formulas, so that they change too. For which changes does the winner change? What must your paper therefore defend most carefully?</li>
+    <li><span class="tag">Every team</span> In Session 3 you chose weights out of 10 directly. Which way is easier to defend in front of a judge? What does a consistency ratio below 0.1 <em>not</em> prove?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all twelve</summary>
+    <p>Only one of the twelve changes the winner: saying learning and safety matter <strong>equally</strong> (2 down to 1). The Wetland Park then wins, 7.57 to 7.52. Every other change keeps the Science Museum first. So the decision rests on one sentence, "safety matters twice as much as learning", and that is the sentence a judge will ask about.</p>
+    <p>A low CR proves only that the judgements agree with each other. A team can be consistently wrong: if it thinks cost matters 9 times as much as safety, and says so consistently, it passes the test. The reasons in the sentences are what a judge reads.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">The method in one box</span>
+    <p><strong>Judge.</strong> For n criteria, make n(n − 1) ÷ 2 comparisons on the 1 to 9 scale, each as a sentence with a reason. Fill the matrix: 1 on the diagonal, reciprocals below it.</p>
+    <p><strong>Weights.</strong> The geometric mean of each row, divided by the total of the geometric means.</p>
+    <p><strong>Check.</strong> λ is the average of (matrix × weights) ÷ weights. Then</p>
+    <p class="sentence">CI = (λ − n) ÷ (n − 1), &nbsp; CR = CI ÷ RI, &nbsp; with RI = 0.58, 0.90, 1.12 for n = 3, 4, 5</p>
+    <p>CR below 0.1 is acceptable. Above it, find the judgement whose number is furthest from (row weight ÷ column weight), and argue it out again as a team.</p>
+    <p><strong>Test.</strong> Move each judgement one step and see whether the answer changes.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Use it: your Hall Problem</h2>
+  <ol class="tasks" start="10">
+    <li><span class="tag">Team · 10 min</span> Take the measures of "best" from your Team Paper: time, safety, fairness, lesson time lost, or whatever your team chose. Compare them two at a time, each as a sentence with a reason. Build the matrix and find the weights and the consistency ratio. If it is above 0.1, find the judgement that disagrees most and argue it out again.</li>
+    <li><span class="tag">Writer</span> In the Team Paper, give the sentences, the matrix, the weights to two decimal places, the consistency ratio, and the judgement your answer depends on most. A frame to start from: <span class="sentence">"We compared our measures two at a time (Table …). For example, we judge … to matter … times as much as … because … The weights are … and the consistency ratio is …, below 0.1. Our best plan changes only if …"</span></li>
+  </ol>
+  <p>Two decimal places, not three: the weights come from judgements such as "3 times", and they are not more exact than those.</p>
+
+  <h2 class="wy-section-title"><span class="num">6</span>Senior Team: go further</h2>
+  <p>About 20 minutes more.</p>
+  <ol class="tasks">
+    <li><span class="tag">Sheet</span> The exact AHP weights are an <strong>eigenvector</strong>: weights w for which the matrix times w is λ times w. Find them by repeated multiplication. Start with w = (0.25, 0.25, 0.25, 0.25). Multiply by the matrix with MMULT, divide by the total, and repeat in the next column. After how many rounds do the weights stop changing in the third decimal place? Compare them with the geometric-mean weights.</li>
+    <li><span class="tag">Prove</span> A matrix is perfectly consistent if there are weights w<sub>1</sub>, … , w<sub>n</sub> with every entry m<sub>ij</sub> = w<sub>i</sub> ÷ w<sub>j</sub>. Prove that then (a) the geometric mean of row i is w<sub>i</sub> times a number that is the same for every row, so the geometric-mean method gives exactly w; and (b) the matrix times w is n times w, so λ = n and CI = 0.</li>
+    <li><span class="tag">Think</span> RI is the average CI of matrices filled with random judgements from the scale. So what does CR = 0.1 mean in words? Why does a 2 × 2 matrix not need a check at all?</li>
+    <li><span class="tag">Papers</span> The senior sections of the guides to the <a href="../read-2024030.html">pet paper</a> and the <a href="../read-2025006.html">football paper</a> ask you to check each paper's matrix. For a matrix that fails, write the two sentences a team should have put in its paper.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all four</summary>
+    <p>From equal weights, the second round already gives 0.157, 0.088, 0.272, 0.483, and the third changes nothing in the third decimal place. These are the geometric-mean weights to three decimal places. For a matrix this consistent the two methods agree; they part only when CR is large.</p>
+    <p>(a) The product of row i is w<sub>i</sub><sup>n</sup> ÷ (w<sub>1</sub>w<sub>2</sub>…w<sub>n</sub>), so its n-th root is w<sub>i</sub> ÷ G, where G is the geometric mean of all the weights, the same for every row. (b) Entry i of the matrix times w is the sum over j of (w<sub>i</sub> ÷ w<sub>j</sub>) × w<sub>j</sub> = n × w<sub>i</sub>.</p>
+    <p>CR = 0.1 means the contradictions are a tenth the size of those in a matrix filled at random. A 2 × 2 matrix has one judgement, so nothing can disagree with it: its CI is always 0.</p>
+    <p>For example: "Our first matrix had a consistency ratio of 0.21, above the usual limit of 0.1. The judgement of … against … disagreed most with the others, so we discussed it again and changed it from 5 to 3, which brought the ratio down to …." A judge then sees that the team checked, and what it changed.</p>
+  </details>
+  <p><strong>In Python.</strong> Optional. Paste this into a notebook at <a href="https://colab.research.google.com/">Google Colab</a>, signed in with your school account, and press Run. It prints both kinds of weights, λ, CR and the three scores. Change the matrix to your own.</p>
+<pre class="code">import numpy as np
+
+# The comparison matrix: rows and columns in the order cost, travel, learning, safety
+M = np.array([[1,   2,   1/2, 1/3],
+              [1/2, 1,   1/3, 1/5],
+              [2,   3,   1,   1/2],
+              [3,   5,   2,   1  ]])
+n = len(M)
+
+# Weights by the geometric mean of each row
+g = M.prod(axis=1) ** (1 / n)
+w_gm = g / g.sum()
+
+# Exact weights: the eigenvector of the largest eigenvalue
+values, vectors = np.linalg.eig(M)
+k = np.argmax(values.real)
+lam = values[k].real
+w = np.abs(vectors[:, k].real)
+w = w / w.sum()
+
+RI = {3: 0.58, 4: 0.90, 5: 1.12, 6: 1.24, 7: 1.32}[n]
+CR = (lam - n) / (n - 1) / RI
+
+print("geometric-mean weights:", w_gm.round(3))
+print("eigenvector weights:   ", w.round(3))
+print("lambda =", round(lam, 3), " CR =", round(CR, 3))
+
+# Each place's score out of 10: columns are the Science Museum, the Geopark, the Wetland Park
+scores = np.array([[6, 5, 7],
+                   [9, 4, 5],
+                   [6, 9, 8],
+                   [9, 7, 8]])
+print("scores:", (w @ scores).round(2))</pre>
+
+  <h2 class="wy-section-title" id="card"><span class="num">7</span>Contest card</h2>
+  <div class="tile">
+    <span class="label">AHP in a competition</span>
+    <p><strong>Use it when</strong> several criteria decide the answer and no data says how much each matters.</p>
+    <p><strong>In the sheet:</strong> GEOMEAN for the weights, MMULT for λ, SUMPRODUCT for the scores. Reciprocals as formulas, never typed.</p>
+    <p><strong>What a judge wants to see:</strong> every comparison as a sentence with its reason; the matrix; the weights; the consistency ratio; and what happens to the answer when the judgement it depends on most moves one step.</p>
+    <p><strong>What a judge distrusts:</strong> weights printed to three decimal places from judgements of "3 times"; a consistency ratio that is missing, or above 0.1 with no comment; and a "published source" for the comparisons that does not contain them.</p>
+  </div>
+
+  <p class="note">Back to <a href="../labs.html">all four labs</a>. Next: <a href="02-curves.html">Skills Lab 2, Curves from data</a>, after Session 5.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Skills Lab 1</span></div></footer>
+</body>
+</html>
