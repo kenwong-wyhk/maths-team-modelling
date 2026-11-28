@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills Lab 3: Does the best team win?</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="../index.html"><img class="wy-signature" src="../assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="../index.html">Maths Team · Mathematical Modelling</a><br>Skills Lab 3 of 4 · after Session 6</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Skills Lab 3 of 4 · after Session 6</p>
+  <h1>Does the best team win?</h1>
+  <p class="lede">Many modelling questions are about chance. Will the strongest team win the league? How long will the slowest class take? When the probability is too hard to work out, you can play the situation thousands of times in a sheet and count what happens. That is a simulation. The football paper played each of its seven formats 1,000 times. This lab builds a small one, and then asks the question a judge asks of every simulation: how sure are you? About 45 minutes in a team, with one laptop. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> a Google Sheet. AI may help with a formula, under the AI Teammate Rule, with your AI Log. If you have done the simulation in the <a href="../senior.html">senior study pack</a>, the first part will be quick. Open each "My figures" box only when your sheet has its own answer.</p>
+  </div>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means here</th></tr>
+      <tr><td>simulation</td><td>模擬</td><td>playing the tournament many times, with chance deciding each match</td></tr>
+      <tr><td>random number</td><td>隨機數</td><td>RAND() gives a number from 0 to 1, every value equally likely</td></tr>
+      <tr><td>probability, chance</td><td>概率</td><td>how often something happens in the long run, from 0 to 1</td></tr>
+      <tr><td>Elo rating</td><td>Elo 等級分</td><td>a rating of strength; the gap between two ratings gives each team's chance of winning</td></tr>
+      <tr><td>knockout</td><td>淘汰賽</td><td>lose once and you are out</td></tr>
+      <tr><td>round robin</td><td>循環賽</td><td>every team plays every other team: once (single) or twice (double)</td></tr>
+      <tr><td>draw lots</td><td>抽籤</td><td>choose by chance, every choice equally likely</td></tr>
+      <tr><td>independent</td><td>獨立</td><td>one match's result does not change the chances in another</td></tr>
+      <tr><td>estimate, margin</td><td>估計值、誤差範圍</td><td>the answer from the runs, and how far it might be from the true answer</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>The problem</h2>
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Four teams enter a small league. Their ratings are A 1800, B 1700, C 1650 and D 1550. The organisers want the strongest team to have the best chance of being champion, and they want few games. Two formats are proposed:</p>
+    <ul>
+      <li><strong>Knockout.</strong> A plays D and B plays C; the two winners play the final. 3 games.</li>
+      <li><strong>Round robin.</strong> Every team plays every other once; the team with the most wins is champion. 6 games.</li>
+    </ul>
+    <p><strong>Which format gives A the better chance, and is it worth the extra games?</strong></p>
+  </div>
+  <p>You probably expect the round robin to be fairer: twice the games, and one bad day does not knock A out. Write down your team's guess, with a reason, before you build anything.</p>
+  <div class="tile">
+    <span class="label">The rules of the simulation, stated so that anyone could repeat them</span>
+    <ol>
+      <li>Every match has a winner: no draws.</li>
+      <li>Team X beats team Y with chance <span class="sentence">1 ÷ (1 + 10<sup>(R<sub>Y</sub> − R<sub>X</sub>) ÷ 400</sup>)</span> where R<sub>X</sub> and R<sub>Y</sub> are their ratings. This is the Elo formula on page 10 of the football paper.</li>
+      <li>Every match is independent of every other. Ratings never change during the tournament.</li>
+      <li>In the round robin, if two or more teams tie for the most wins, the champion is chosen from them by lot.</li>
+      <li>One run is one whole tournament. Its result is the champion.</li>
+    </ol>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">2</span>The knockout</h2>
+  <p><strong>Team time: about 15 minutes.</strong> The Data lead builds; the Team lead checks each formula on the first row before it is filled down.</p>
+  <ol class="tasks">
+    <li><span class="tag">Data lead</span> In a tab called Chances, put the four teams and their ratings in A2:B5, and the constant 400 in B7, in its own cell so that you can change it later. Work out the chance that each team beats each other team: six chances, in E2:E7 in the order A–B, A–C, A–D, B–C, B–D, C–D, with a label such as "A beats B" beside each in D2:D7. For A against B: <code>=1/(1+10^(($B$3-$B$2)/$B$7))</code>. Check: 0.640.</li>
+    <li><span class="tag">Data lead</span> In a new tab, play one knockout in one row. Use RAND() for each match: if it is below the chance that the first team wins, the first team wins. The final needs the ratings of whichever teams won the semi-finals. The hint card below has the formulas if you need them.</li>
+    <li><span class="tag">Team</span> Fill the row down to make 1,000 tournaments. In what fraction is A the champion? Now make the sheet recalculate: type anything in an empty cell and press Enter. Do it five times and write down the five answers. How much do they move?</li>
+    <li><span class="tag">Every team</span> The knockout is small enough to work out exactly, with a tree diagram. A must beat D, and then beat whichever of B and C wins. When two things must both happen, multiply their chances; when there are two different ways for something to happen, add the chances of the two ways. Find A's exact chance. Are your five answers within 0.03 of it?</li>
+  </ol>
+  <details>
+    <summary>Hint card: open only after ten minutes of trying</summary>
+    <p><strong>A match.</strong> A beats D with chance 0.808. If that chance is in E4 of the Chances tab, then in B2: <code>=IF(RAND()&lt;Chances!$E$4,"A","D")</code>. In C2, B against C, with that chance in E5: <code>=IF(RAND()&lt;Chances!$E$5,"B","C")</code>. Pointing to the cell, not typing 0.808, means a change in the Chances tab reaches every run.</p>
+    <p><strong>The final.</strong> Look up each winner's rating in the Chances tab: <code>VLOOKUP(B2,Chances!$A$2:$B$5,2,FALSE)</code>. In D2, with the two lookups written out:</p>
+    <p><code>=IF(RAND()&lt;1/(1+10^((VLOOKUP(C2,Chances!$A$2:$B$5,2,FALSE)-VLOOKUP(B2,Chances!$A$2:$B$5,2,FALSE))/Chances!$B$7)),B2,C2)</code></p>
+    <p><strong>Many runs.</strong> Select B2:D2 and fill down to row 1001. Then <code>=COUNTIF(D2:D1001,"A")/1000</code>.</p>
+  </details>
+  <details>
+    <summary>My figures: open when your knockout runs</summary>
+    <p>The six chances: A beats B 0.640, C 0.703, D 0.808; B beats C 0.571, D 0.703; C beats D 0.640.</p>
+    <p>Exactly: 0.808 × (0.571 × 0.640 + 0.429 × 0.703) = 0.808 × 0.667 ≈ 0.539. So A is champion in about 54% of knockouts. Your five answers from 1,000 runs will be scattered around 0.539, usually within 0.03 of it. Mine, five times: 0.570, 0.553, 0.532, 0.575, 0.536. The fourth is 0.036 away: "usually" is not "always", as section 3 explains.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>The round robin, and how sure you are</h2>
+  <p><strong>Team time: about 15 minutes.</strong></p>
+  <ol class="tasks" start="5">
+    <li><span class="tag">Data lead</span> In a new tab, play one round robin in one row: six match columns, then four columns counting each team's wins with COUNTIF. To settle a tie by lot, add <code>RAND()/10</code> to each team's wins in four more columns: the extra is less than 0.1, so it never changes the order of two teams with different wins, and it puts tied teams in a random order. The champion is the team with the largest of the four. Fill down to 1,000 runs.</li>
+    <li><span class="tag">Team</span> In what fraction is A the champion? Was your guess from section 1 right? Find a reason in the results: in how many runs is there a tie for the most wins?</li>
+    <li><span class="tag">Writer</span> A simulation's answer is an estimate. Statisticians give it a margin: if p is the fraction from n runs, the true answer is very likely within <span class="sentence">2 × √(p × (1 − p) ÷ n)</span> of p. Work out the margin for each format. Do the two ranges overlap? If they do, what may your team say, and what may it not?</li>
+    <li><span class="tag">Every team</span> The rating gap that makes a team three times as likely to win as to lose is about 190 points with 400 in the formula. The volleyball paper used 200 instead, from an analysis of past volleyball matches (its page 11). Change 400 to 200 in the Chances tab. What happens to A's chance in each format? Which changes the answer more: the format, or the constant you assumed?</li>
+    <li><span class="tag">Extra</span> Add a double round robin, each pair playing twice: 12 games. Does it give A a better chance than the knockout? Is it worth four times the games?</li>
+  </ol>
+  <details>
+    <summary>Hint card for the round robin: open only after ten minutes of trying</summary>
+    <p><strong>Six matches,</strong> in B2 to G2, one for each pair, each pointing to its chance in the Chances tab. A against B: <code>=IF(RAND()&lt;Chances!$E$2,"A","B")</code>; the other five the same way.</p>
+    <p><strong>Wins,</strong> in H2 to K2: <code>=COUNTIF($B2:$G2,"A")</code>, then "B", "C" and "D".</p>
+    <p><strong>Wins with a lottery ticket,</strong> in L2 to O2: <code>=H2+RAND()/10</code>, filled right.</p>
+    <p><strong>The champion,</strong> in P2: <code>=INDEX({"A","B","C","D"},MATCH(MAX(L2:O2),L2:O2,0))</code>.</p>
+    <p><strong>A tie for the most wins?</strong> In Q2: <code>=IF(COUNTIF(H2:K2,MAX(H2:K2))&gt;1,1,0)</code>. Fill B2:Q2 down to row 1001, then count with SUM and COUNTIF.</p>
+  </details>
+  <details>
+    <summary>My figures: open when your team has tried tasks 5 to 8</summary>
+    <p><strong>6.</strong> About 0.500: A is champion in half the round robins, less often than in the knockout, with twice the games. The reason is ties. With only three games each, two or more teams tie for the most wins in about 39% of round robins, and then A has to win a lottery. So more games is not automatically fairer: the tie-break matters, and a paper must state it.</p>
+    <p><strong>7.</strong> With 1,000 runs the margin is about ±0.032 for both. The knockout's range, about 0.51 to 0.57, and the round robin's, about 0.47 to 0.53, overlap. Your team may say the knockout seems to favour A; it may not say it does. With 1,000 runs of each, a team would put the two formats in the wrong order about one time in 25; with 500 runs, about one time in 10. Four times as many runs halves the margin.</p>
+    <p><strong>8.</strong> With 200, A's chance rises to about 0.750 in the knockout and 0.694 in the round robin. The gap between the two formats stays at 4 to 6 points, but changing the constant moves A's chance by about 20 points. The assumption about how often upsets happen matters more than the choice of format, so it is the one a paper must defend. The football paper used the usual 400 with football's Elo ratings; the volleyball paper chose 200 from volleyball's own results.</p>
+    <p><strong>9.</strong> About 0.599, better than the knockout, for four times the games. Whether that is worth it is a judgement about what "best" means, as in Session 3.</p>
+  </details>
+
+  <div class="tile demo" id="demo">
+    <h3>Tournament machine</h3>
+    <p>The same four teams and the same rules, played by the computer. Each button plays that many tournaments in all three formats. The dot is the fraction of tournaments A has won; the line through it is the margin. The scale runs from 30% to 90%.</p>
+    <div id="tsim"></div>
+  </div>
+  <ol class="tasks">
+    <li>Press "Play 10" a few times, then "Start again". How far apart can two sets of 10 runs be?</li>
+    <li>Press "Play 1,000", then "Start again", several times. How often do the knockout and round-robin ranges overlap? Then keep pressing "Play 1,000" without starting again. About how many tournaments does it take before they stop overlapping for good?</li>
+    <li>Tick "Show the exact answers". Is every exact answer inside its range? Should it always be?</li>
+  </ol>
+
+  <div class="tile">
+    <span class="label">The method in one box</span>
+    <p><strong>State the rules</strong> as a numbered list, including every chance and every tie-break, so that a reader could repeat the simulation without your sheet.</p>
+    <p><strong>One row is one run.</strong> RAND() decides each chance event: <code>=IF(RAND()&lt;p,"yes","no")</code>. Fill down for many runs, and count with COUNTIF or AVERAGE.</p>
+    <p><strong>Report the spread.</strong> A fraction p from n runs has a margin of about 2 × √(p × (1 − p) ÷ n). Four times the runs halves it. Give the estimate, the margin and the number of runs, never one number alone.</p>
+    <p><strong>Test it.</strong> Check one case you can work out exactly, and change the assumption you trust least.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Use it</h2>
+  <ul>
+    <li><strong>The Hall Problem.</strong> Your counts at the doors were not all the same. If you can say how the rate varies, a simulation gives a range for the time the hall empties, not one number. The second part of the <a href="../senior.html">senior study pack</a> does exactly this for one stream of classes. In your Team Paper, state the rules as a numbered list, and give a middle value and a range.</li>
+    <li><strong>In a competition.</strong> Use a simulation when a quantity is uncertain, you can say how it varies, and the exact probability is too hard. If a tree diagram would do, use the tree.</li>
+  </ul>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Senior Team: go further</h2>
+  <p>About 20 minutes more.</p>
+  <ol class="tasks">
+    <li><span class="tag">Count</span> The round robin can also be worked out exactly. How many different sets of results can the six games have? Use the Python below to list them, and check that A's exact chance is 0.500 to three decimal places.</li>
+    <li><span class="tag">Prove</span> Each run scores 1 if A is champion and 0 if not. Show that one run has mean p and variance p(1 − p). The fraction from n independent runs therefore has standard deviation √(p(1 − p) ÷ n), and the margin is about two of these. Why must the runs be independent?</li>
+    <li><span class="tag">Plan</span> If a measure from a simulation is a fraction near 0.5, how many runs give a margin of ±0.01? Of ±0.005? The last question in the senior section of the <a href="../read-2025006.html">football guide</a> is about two formats that score 0.721 and 0.704 after 1,000 runs each. What would you need to know before you believed the gap?</li>
+    <li><span class="tag">Design</span> Replace "a tie is settled by lot" with a rule a real league would use, such as a play-off between the tied teams. Before you simulate it, predict whether A's chance rises or falls, and why.</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all four</summary>
+    <p><strong>1.</strong> 2<sup>6</sup> = 64 sets of results. The Python gives 0.500.</p>
+    <p><strong>2.</strong> The mean is 1 × p + 0 × (1 − p) = p, and the variance is p(1 − p)² + (1 − p)p² = p(1 − p). For independent runs the variances add, so the total of n runs has variance np(1 − p), and the fraction, the total divided by n, has variance p(1 − p) ÷ n. If runs shared their random numbers, they would move together and the spread would not shrink like this.</p>
+    <p><strong>3.</strong> For ±0.01, n = 0.25 × (2 ÷ 0.01)² = 10,000. For ±0.005, 40,000. You would need the spread of each format's score between repeated sets of 1,000 runs. If two sets of 1,000 differ by as much as 0.017, the gap means nothing.</p>
+    <p><strong>4.</strong> A play-off rewards the stronger of the tied teams, so A's chance should rise. How far is for your simulation to say.</p>
+  </details>
+  <p><strong>In Python.</strong> Optional. Paste this into a notebook at <a href="https://colab.research.google.com/">Google Colab</a>, signed in with your school account, and press Run. It plays 100,000 tournaments of each format in about a second. Try K = 200, and try adding teams.</p>
+<pre class="code">import random, itertools, math
+
+R = {"A": 1800, "B": 1700, "C": 1650, "D": 1550}
+K = 400                      # try 200, as the volleyball paper does
+
+def chance(x, y):            # chance that x beats y
+    return 1 / (1 + 10 ** ((R[y] - R[x]) / K))
+
+def match(x, y):
+    return x if random.random() &lt; chance(x, y) else y
+
+def knockout():
+    return match(match("A", "D"), match("B", "C"))
+
+def round_robin(legs=1):
+    wins = {t: 0 for t in R}
+    for leg in range(legs):
+        for x, y in itertools.combinations(R, 2):
+            wins[match(x, y)] += 1
+    top = max(wins.values())
+    return random.choice([t for t in R if wins[t] == top])   # a tie is settled by lot
+
+n = 100_000
+for name, play in [("knockout", knockout), ("round robin", round_robin),
+                   ("double round robin", lambda: round_robin(2))]:
+    p = sum(play() == "A" for _ in range(n)) / n
+    margin = 2 * math.sqrt(p * (1 - p) / n)
+    print("%-19s A is champion in %.3f of runs, give or take %.3f" % (name, p, margin))
+
+# The exact answer for the round robin: list all 2^6 = 64 sets of results
+exact = 0
+pairs = list(itertools.combinations(R, 2))
+for results in itertools.product([0, 1], repeat=len(pairs)):
+    wins, pr = {t: 0 for t in R}, 1
+    for (x, y), r in zip(pairs, results):
+        winner = x if r == 0 else y
+        wins[winner] += 1
+        pr *= chance(x, y) if r == 0 else 1 - chance(x, y)
+    top = max(wins.values())
+    tied = [t for t in R if wins[t] == top]
+    if "A" in tied:
+        exact += pr / len(tied)
+print("round robin, exact: %.3f" % exact)</pre>
+
+  <h2 class="wy-section-title" id="card"><span class="num">6</span>Contest card</h2>
+  <div class="tile">
+    <span class="label">Simulation in a competition</span>
+    <p><strong>Use it when</strong> something in the problem happens by chance, you can say how it varies, and the exact answer is too hard to work out.</p>
+    <p><strong>In the sheet:</strong> RAND and IF for each chance event, one row per run, filled down to 1,000 rows or more; COUNTIF or AVERAGE to count; a histogram of the results.</p>
+    <p><strong>What a judge wants to see:</strong> the rules as a numbered list, with every chance, its source and every tie-break; the number of runs; each result with its margin or range; one check against a case worked out exactly; and a test of the assumption the answer depends on most.</p>
+    <p><strong>What a judge distrusts:</strong> "we simulated it 1,000 times" with no rules and no range; a difference between two options smaller than its margin, reported as a winner; and a chance taken from another sport or another country with no reason.</p>
+  </div>
+
+  <p class="note">Back to <a href="../labs.html">all four labs</a>. Previous: <a href="02-curves.html">Skills Lab 2, Curves from data</a>. Next: <a href="04-optimisation.html">Skills Lab 4, The best of many plans</a>, after Session 6.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Skills Lab 3</span></div></footer>
+<script src="../assets/tournament-sim.js"></script>
+<script>TournamentSim(document.getElementById("tsim"));</script>
+</body>
+</html>
