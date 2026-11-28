@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a whole paper: the volleyball paper</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Reading a whole paper · 3 of 3</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Reading a whole paper · 3 of 3</p>
+  <h1>The volleyball paper, beside the football paper</h1>
+  <p class="lede">Same problem, same year, and both won. Team 2025017 chose a different sport, different countries, and a schedule that is never fixed in advance. Read it with your notes on the football paper beside you, and ask at every stop: which paper did this better? About 50 minutes. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> the 2025 problem, the paper of Team 2025017, and your task list and notes from the football paper. Read pages 1 to 28. Pages 29 to 43 are data tables and charts; one stop asks you to look at the charts. The page numbers are the ones printed at the top of each page ("Page 5 of 43"), which match the file.</p>
+    <p><strong>Borrow how the paper is built, never its sentences.</strong> Read it yourself. If a word stops you, use the lists below or a dictionary, not an AI summary: the point is what you notice.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Before you read: their list against yours</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 5 min</span> You already have a list of every task in the problem. Read the team's restatement on page 4, (a) to (d). <strong>Tick each task on your list that it covers.</strong> Which of your tasks are missing from it? Watch whether the paper does them anyway.</li>
+  </ol>
+  <details>
+    <summary>What I found: open when yours is ticked</summary>
+    <p>The restatement leaves out the trade-offs (task 1c), the evidence and the number of games (task 2), geography in task 3b, the changes to key constraints (3d), and the letter and visual graphic (5). The paper does most of these anyway. Three it never does: task 3d, the visual graphic, and geography for the four new teams. The pet paper had the same habit. What is missing from the restatement tends to go missing from the paper.</p>
+  </details>
+
+  <div class="tile">
+    <span class="label">Initials you will meet</span>
+    <p>This paper names its methods by their initials. Keep this list open.</p>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>Initials</th><th>Stands for</th><th>What it does</th></tr>
+      <tr><td>SCS</td><td>Sport Compatibility Score (page 8 calls it the Sport Suitability Score)</td><td>chooses the sport</td></tr>
+      <tr><td>SPP</td><td>Sport Potential Profile</td><td>chooses the 20 countries</td></tr>
+      <tr><td>E&#8209;BIMM</td><td>Entropy-Based Interactive Matchmaking Method</td><td>chooses each round's matches from the results so far</td></tr>
+      <tr><td>MCM</td><td>Match Compatibility Metric</td><td>breaks ties by travel and match appeal</td></tr>
+      <tr><td>AP</td><td>Arrival Plan</td><td>rest days after a flight</td></tr>
+      <tr><td>GTCM</td><td>Game Time Calculation Method</td><td>the kick-off time</td></tr>
+      <tr><td>FIVB</td><td>volleyball's world governing body</td><td>its world ranking is used for the countries</td></tr>
+      <tr><td>EPI</td><td>Environmental Performance Index</td><td>how green a country is</td></tr>
+      <tr><td>GSL</td><td>Global Sports League</td><td>misprinted "GLS" on page 11 and "DSL" on page 20</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means in this paper</th></tr>
+      <tr><td>win rate</td><td>勝率</td><td>the fraction of its games a country won</td></tr>
+      <tr><td>Gini coefficient</td><td>堅尼系數</td><td>how unequal the win rates are: 0 if every country wins equally often</td></tr>
+      <tr><td>proxy</td><td>替代指標</td><td>something you can measure standing in for something you cannot</td></tr>
+      <tr><td>entropy</td><td>熵</td><td>how uncertain a result is: 1 for a 50 : 50 match, 0 for a certain one</td></tr>
+      <tr><td>sigmoid curve</td><td>S 形曲線</td><td>a curve that starts flat, rises steeply, then levels off</td></tr>
+      <tr><td>fatigue</td><td>疲勞</td><td>tiredness</td></tr>
+      <tr><td>rivalry</td><td>宿敵關係</td><td>two countries whose matches people especially want to watch</td></tr>
+      <tr><td>jet lag</td><td>時差反應</td><td>tiredness after flying across time zones</td></tr>
+      <tr><td>time zone</td><td>時區</td><td>a region that shares one clock time</td></tr>
+      <tr><td>inequality</td><td>不等式</td><td>a statement with ≤ or ≥ instead of =</td></tr>
+      <tr><td>Gantt chart</td><td>甘特圖</td><td>bars along a time line showing who does what on which day</td></tr>
+      <tr><td>robust</td><td>穩健</td><td>the answer hardly moves when an input changes</td></tr>
+      <tr><td>detrimental</td><td>有害的</td><td>harmful. The paper uses it on page 9 where it means "essential": a slip</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Read side by side</h2>
+  <p>Eleven stops, about 30 minutes. Most stops ask one question about this paper and one about the football paper. Keep moving: if a task takes more than three minutes, write a question mark and go on. You may skip the formulas on pages 11–14, page 18, and pages 23–25 (the other sports).</p>
+  <ol class="tasks">
+    <li><span class="tag">p. 1</span> Count the results in this summary: decisions or numbers, not methods. <strong>Compare your count with the football paper's summary.</strong> Which would a busy director rather read?</li>
+    <li><span class="tag">p. 4–5, 17</span> Find a team number on page 4 that is not 2025017. Then Assumption 4: where are the matches played? <strong>Find, on page 17, which city the distances are measured from.</strong></li>
+    <li><span class="tag">p. 6–8</span> Which sport has the highest score in Table 4? What happens to it, and by which rule on page 6? <strong>Is the same rule applied to volleyball and basketball?</strong> Then look at your note on how the football paper dealt with the World Cup.</li>
+    <li><span class="tag">p. 9</span> The weights 40%, 40% and 20% are argued in words; the football paper used AHP. <strong>Which is easier to defend in front of a judge, and which is easier to attack?</strong></li>
+    <li><span class="tag">p. 10–11</span> E-BIMM in words. Explain to a teammate, in two sentences, how the next round's matches are chosen. Why does 1st against 20th teach the league little? Then: <strong>can this team give the IMMC a full season schedule before the season starts?</strong></li>
+    <li><span class="tag">p. 14, 28</span> The Arrival Plan gives extra rest above a jet-lag threshold. Write it beside the football paper's threshold. Then read the second question in the AI report on page 28. <strong>How many answers do you now have to one question?</strong></li>
+    <li><span class="tag">p. 19, 21</span> Figure 9 shows the schedule for rounds 1, 2 and 9, one row for each country that plays. Zoom in, and <strong>count the countries in each.</strong> Then read page 21: how many matches does each team play?</li>
+    <li><span class="tag">p. 21–22</span> Why nine rounds? <strong>Find the sentence that gives the reason.</strong> How does it compare with the way the football paper got its number of games?</li>
+    <li><span class="tag">p. 22–23</span> The four extra teams. Where are they from? <strong>Compare with the football paper's sentence about its four.</strong></li>
+    <li><span class="tag">p. 25–26</span> Put this weaknesses list beside the football paper's (its page 24). Which helps a reader more? Then: <strong>which weakness that you found today is on neither list?</strong></li>
+    <li><span class="tag">p. 28</span> The AI report. Compare its first line with the example in the problem's AI policy (the last page of the problem). The policy asks for the complete output: is it complete? <strong>How are the queries numbered?</strong></li>
+  </ol>
+  <details>
+    <summary>What I found: open when you have done all eleven</summary>
+    <ol>
+      <li>Two results: volleyball, and the 20 countries. No number of rounds, games or flight hours: those are on page 21. Most sentences name a method, usually by its initials. The football summary gave the format, the months and the sensitivity result. A director deciding whether to read on would get more from the football summary.</li>
+      <li>"Team 250048", probably left over from another document: a Paper Standards check would catch it. Assumption 4 says the largest city in each country. Page 17 measures from capital cities. For the United States, Brazil and Canada these differ: New York and Washington, São Paulo and Brasília, Toronto and Ottawa. The assumption is stated, then not used.</li>
+      <li>Football, with 1,318.69. It is then removed because the World Cup exists, by the rule on page 6. Volleyball and basketball have world championships too, but the rule is not applied to them. And the rule comes after the scoring: football was scored, won, and only then removed. The football paper argued the opposite: its league is new because it plays in every country. Two winning papers disagree about the World Cup, and both write their reason down. That is why a judge can accept either.</li>
+      <li>Yours to argue. Words are easy to read and easy to disagree with, which is Session 3's point. AHP looks more exact, but its comparisons are judgements too, written as numbers, and the football paper never checked its matrix for consistency.</li>
+      <li>After each round, every possible pairing is scored by how uncertain its result is, and the most uncertain pairings play next; travel and appeal break ties. A match everyone can predict tells you nothing new. No: each round depends on the last, so no full schedule can exist in advance. Task 2 asks for one, so the paper shows a simulated season instead (page 19). The football paper had the same problem after its group stage, and gave a sample (its page 21).</li>
+      <li>Three. 6 hours here; 5 hours in the football paper, from Heid &amp; Wu (2023); and "two or more time zones" in the part of the ChatGPT answer that this team logged. This paper credits its 6 hours to "research" and to reference [3]. To choose between them, you would have to read the sources, not the papers.</li>
+      <li>20, 18 and 20. In round 2, Cuba and Ivory Coast do not play. The full charts on pages 35–38 show the same thing in rounds 2, 3, 5 and 7. So this simulated season has 172 games, not 180, and Cuba plays 14 matches, not 18. Page 23 says the model "balances the number of matches each team plays". The paper's own charts say otherwise, and nobody counted.</li>
+      <li>"There is no logical flaw in choosing N=9", together with the nine months of the season. The graph of entropy against rounds is a straight line, so it shows no point where more rounds stop helping: the nine comes from the calendar. The football paper counted its games from the format it chose. Both can be defended; only one is worked out.</li>
+      <li>Belgium, Serbia and the Czech Republic in Europe, and the Dominican Republic in North America. Three of the four are European, and the paper says nothing about geography, which task 3b asks for. The football paper had the same result and said so.</li>
+      <li>This one: five weaknesses, each specific. The football paper gives two. Neither list has what you found by reading the whole paper, such as teams sitting out rounds, or an assumption about cities that is never used. That is what reading a whole paper adds.</li>
+      <li>"Nov 5, 2023 version, ChatGPT-4" is word for word the example in the policy, so it was probably copied rather than checked. The jet-lag answer stops at "…", so it is not complete. The queries are numbered 1 and 3: where is 2? The football paper gave its answer in full. Honest reporting means more than saying that AI was used.</li>
+    </ol>
+  </details>
+
+  <div class="tile">
+    <span class="label">Find a kick-off time · 6 min</span>
+    <p>The home country wants the match to start between 10:00 and 22:00 (page 15). The country watching on television wants 17:00 to 26:00, that is, 2 a.m. Δt is the number of hours the watching country is ahead of the home country. Page 16 ends with the window for the start, in home time: from max(10, 17 − Δt) to min(22, 24 − Δt, 23.5 − Δt).</p>
+    <ol class="tasks">
+      <li><span class="tag">Alone</span> Brazil at home, Japan watching. Japan is 12 hours ahead, so Δt = +12. <strong>When can the match start, in Brazil and in Japan?</strong></li>
+      <li><span class="tag">Alone</span> Japan at home, France watching. France is 7 hours behind, so Δt = −7. <strong>What goes wrong?</strong></li>
+      <li><span class="tag">Pair</span> On page 16, under "Full Watch Condition", the second line has a sign the wrong way round. <strong>Which, and how can you tell?</strong></li>
+    </ol>
+  </div>
+  <details>
+    <summary>My figures: open when you have tried all three</summary>
+    <p>Brazil and Japan: from max(10, 5) = 10 to min(22, 12, 11.5) = 11.5. The match starts between 10:00 and 11:30 in Brazil, which is 22:00 to 23:30 in Japan. Japan and France: from max(10, 24) = 24 to min(22, 31, 30.5) = 22. The window starts after it ends, so no time works. Page 15 says the home team wins a conflict, but the formula does not say what to do, and the reader is left to guess. On page 16, "T<sub>B</sub> + 2 ≥ 26" should be "≤ 26": the first two hours must be over by 2 a.m., and the line after it uses ≤.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>After reading: two papers, one table</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 4 min</span> In the second column of your task list, write <strong>answered</strong>, <strong>partly</strong> or <strong>missing</strong> for this paper, with the page.</li>
+    <li><span class="tag">Team</span> Write three sentences together: <span class="sentence">"The football paper is better at … The volleyball paper is better at … Our Team Paper will take … from one and … from the other."</span></li>
+  </ol>
+  <details>
+    <summary>My two columns: open when yours are written</summary>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>Task</th><th>Football (2025006)</th><th>Volleyball (2025017)</th></tr>
+      <tr><td>The sport</td><td>Answered, p. 6–7</td><td>Answered, p. 6–8</td></tr>
+      <tr><td>20 teams, criteria</td><td>Answered, p. 7–9</td><td>Answered, p. 8–10</td></tr>
+      <tr><td>Other components, trade-offs</td><td>Answered, p. 5–6</td><td>Partly: named and weighted (p. 10–13); trade-offs not discussed</td></tr>
+      <tr><td>A model for games, travel, matchups</td><td>Answered, p. 9–19</td><td>Answered, p. 10–17</td></tr>
+      <tr><td>Full season schedule</td><td>Partly: the group stage in full, then a sample</td><td>Partly: one simulated season (p. 19, 35–38); it cannot be fixed in advance</td></tr>
+      <tr><td>Evidence: fairness, sustainability, geography</td><td>Mostly: five measures, p. 12–13</td><td>Partly: argued, not measured; no travel totals</td></tr>
+      <tr><td>Games to declare a winner</td><td>Answered, p. 14</td><td>Answered, p. 21, though its own charts show fewer games for some teams</td></tr>
+      <tr><td>Four more teams</td><td>Answered, p. 21</td><td>Answered, p. 22</td></tr>
+      <tr><td>Effect of the four</td><td>Mostly, p. 21–22</td><td>Partly: games counted; travel "not excessive", with no number; geography not mentioned</td></tr>
+      <tr><td>Games needed now</td><td>Answered, p. 22</td><td>Answered, p. 22</td></tr>
+      <tr><td>Changes to key constraints</td><td>Partly: weights, not constraints</td><td>Missing</td></tr>
+      <tr><td>Other sports</td><td>Answered, p. 23–24</td><td>Answered, with data, p. 23–25</td></tr>
+      <tr><td>Letter</td><td>Answered, p. 2</td><td>Answered, p. 2</td></tr>
+      <tr><td>Visual graphic</td><td>Answered, p. 3</td><td>Missing</td></tr>
+      <tr><td>24 pages before the references</td><td>Yes: 24</td><td>No: 26</td></tr>
+    </table>
+    </div>
+  </details>
+  <p class="note">Both papers won, and neither answered everything. A judge must have valued each for something different. My guess: the football paper for answering nearly every task and checking its numbers; the volleyball paper for an original idea, explained in plain words before any formula. Do you agree? Neither is a template. Both are worth arguing with.</p>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Senior Team: go further</h2>
+  <p>About 30 minutes more. A sheet helps.</p>
+  <ol class="tasks">
+    <li><span class="tag">p. 7–8, 29</span> The equity score is 1 ÷ GC², and the paper never says why it squares. Using the Gini coefficients on page 29 and the popularity scores in Table 3, <strong>score each sport with 1 ÷ GC instead.</strong> Which sport wins once football is set aside?</li>
+    <li><span class="tag">p. 11</span> Work out the entropy H = −p log<sub>2</sub> p − (1 − p) log<sub>2</sub>(1 − p) for a match won with chance p = 0.5, 0.75 and 0.9.</li>
+    <li><span class="tag">p. 18, 21, 22</span> Page 18 says that once two countries have played, their entropy is set to 0. With 20 teams there are 190 pairs. If every team plays every round, how many pairs have met after 8 rounds, and after 9? <strong>What is the largest the average entropy could then be?</strong> Compare with page 21. Do the same for 24 teams (276 pairs, 12 a round) after 9 and 11 rounds, and compare with page 22. What is the average really measuring?</li>
+    <li><span class="tag">p. 19, 14</span> Find the USA in round 9 of Figure 9. The hatched part of its bar before the first solid block is its Arrival Plan: count those days. The formula on page 14 is AP = travel hours ÷ 24 + 1 + max(jet lag − 6, 0). <strong>Work back to the jet lag the model counted.</strong> Ignoring summer time, Washington is 17 hours behind Wellington one way round the clock, and 7 hours ahead the other way. Which did the model use, and which does the body feel?</li>
+    <li><span class="tag">p. 13</span> Page 13 says flights between the countries take about 2 to 7.5 hours at a Boeing 737's cruising speed, about 840 km/h. Paris to Tokyo is about 9,700 km; Ljubljana to Berlin about 720 km. <strong>Is the range believable?</strong></li>
+    <li><span class="tag">p. 23–25</span> For baseball the best constant is d = 11. With E = 1 ÷ (1 + 10<sup>−gap ÷ d</sup>), what chance of winning does a rating gap of 11 points give? Of 50 points? The 85% accuracy was measured on the same matches used to choose d. <strong>What would you do differently?</strong></li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all six</summary>
+    <ol>
+      <li>Basketball 20.79 ÷ 0.266 ≈ 78; volleyball 3.94 ÷ 0.099 ≈ 40. Basketball wins. The choice of volleyball rests on the square, which is never explained or tested.</li>
+      <li>1, about 0.81, and about 0.47.</li>
+      <li>80 and 90 pairs. Even if every remaining pair were exactly 50 : 50, the average could be at most 110 ÷ 190 ≈ 0.58 and 100 ÷ 190 ≈ 0.53. The paper's 0.5812 and 0.5121 sit right at these ceilings. (0.5812 is a shade above 0.579, which fits the charts: some teams sit out, so fewer pairs have met.) For 24 teams: 168 ÷ 276 ≈ 0.61 after 9 rounds ("around 0.6") and 144 ÷ 276 ≈ 0.52 after 11 ("reached 0.5"). So the average mostly counts the pairs that have already played. It would fall in a straight line, as in Figure 12, whatever happened in the matches, and it cannot show that "about 88% of match outcomes are biased toward the stronger team". This is my reading of the numbers. The simulation code is listed in the appendix but not printed, so it cannot be checked directly.</li>
+      <li>About 13 days, so jet lag − 6 ≈ 11 and the model counted about 17 hours: the long way round. The body adjusts by the shorter shift, 7 hours, which by the paper's own rule earns one extra day, not eleven. The USA and New Zealand spend most of round 9 resting for a jet lag that is mostly not there.</li>
+      <li>No. Paris to Tokyo is about 11.6 hours; Ljubljana to Berlin under one hour. The range fits neither end, and a 737 cannot fly the long routes without stopping. The paper prints no distances, so we cannot see where the slip is. But a reader with an atlas can tell that something is wrong, and a judge might be that reader.</li>
+      <li>A gap of 11 points gives 0.91; a gap of 50 gives 0.99997. With d = 11, almost any gap decides the match. Hold some matches back, choose d on the rest, and measure accuracy on the matches you held back (Session 6).</li>
+    </ol>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Bring to the next session</h2>
+  <ul>
+    <li>Your task list with both columns filled in.</li>
+    <li>Your team's three sentences.</li>
+    <li>One question for each team, as if they were defending their paper in front of you.</li>
+  </ul>
+  <p class="note">This is the last guide in the series. The Senior Team reads the IMMC 2026 papers after Phase One.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Reading a whole paper · 3 of 3</span></div></footer>
+</body>
+</html>

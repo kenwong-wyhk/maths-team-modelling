@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a whole paper: the pet paper</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Reading a whole paper · 1 of 3</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Reading a whole paper · 1 of 3</p>
+  <h1>The pet paper, from start to finish</h1>
+  <p class="lede">You have met this paper in three Paper Studies, one page at a time. Now read the whole of it, as a judge would: with the problem beside you, a pencil in your hand, and one question in your head. Is this enough? About 50 minutes. The Senior Team has more at the end.</p>
+
+  <div class="rule">
+    <p><strong>You need</strong> the problem and the paper I handed out in Session 3, on paper or on screen. The page numbers here are the ones printed at the top of each page of the paper; its page 1 is the third page of the file.</p>
+    <p><strong>Borrow how the paper is built, never its sentences.</strong> Read it yourself. If a word stops you, use the list below or a dictionary, not an AI summary: the point is what you notice.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">1</span>Before you read: what was asked?</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 5 min</span> Read the three numbered questions of the problem, and the list under "Your PDF submission should consist of". Skip the rules after it. <strong>Write a list of every task,</strong> including the small ones inside brackets. Aim for at least ten. You will use the list at the end.</li>
+  </ol>
+  <details>
+    <summary>My list: open when yours is written</summary>
+    <ol>
+      <li>Define "pet".</li>
+      <li>Build a model that decides whether a household is ready for a cat.</li>
+      <li>Use no more than ten inputs from a household.</li>
+      <li>Draw a diagram of how the model decides.</li>
+      <li>Give at least three households that qualify and three that do not, in one country or region.</li>
+      <li>Count the households ready for a cat now, in three countries or regions.</li>
+      <li>Extend the model to cats and four more species, still with ten inputs or fewer.</li>
+      <li>Review at least six households, in the same region as before.</li>
+      <li>Deal with households that have several pets.</li>
+      <li>Project pet ownership in 5, 10 and 15 years, by species.</li>
+      <li>Project retention (pets kept by their first household) at the same times.</li>
+      <li>A one-page summary.</li>
+      <li>A one-page letter to the directors.</li>
+      <li>Contents, references, and an AI report if AI was used.</li>
+    </ol>
+  </details>
+
+  <div class="tile">
+    <span class="label">Words you will meet</span>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>English</th><th>中文</th><th>What it means in this paper</th></tr>
+      <tr><td>household</td><td>住戶</td><td>the people who live in one home</td></tr>
+      <tr><td>readiness</td><td>準備程度</td><td>how ready a household is to keep a pet</td></tr>
+      <tr><td>threshold</td><td>門檻</td><td>the score a household must reach to pass</td></tr>
+      <tr><td>weight</td><td>權重</td><td>how much one factor counts (Session 3)</td></tr>
+      <tr><td>weighted sum</td><td>加權總和</td><td>multiply each score by its weight, then add (Session 3)</td></tr>
+      <tr><td>piecewise linear function</td><td>分段線性函數</td><td>a graph made of straight pieces (Session 2)</td></tr>
+      <tr><td>binary variable</td><td>二元變數</td><td>a variable that can only be 0 or 1</td></tr>
+      <tr><td>pairwise comparison</td><td>兩兩比較</td><td>comparing the factors two at a time</td></tr>
+      <tr><td>unsuitability</td><td>不適合程度</td><td>the paper's word for a deal-breaker: something that rules a household out</td></tr>
+      <tr><td>veto</td><td>否決</td><td>a rule that no score, however high, can outweigh</td></tr>
+      <tr><td>proportion</td><td>比例</td><td>a fraction of all households</td></tr>
+      <tr><td>independent</td><td>獨立</td><td>one does not affect the other</td></tr>
+      <tr><td>logistic growth</td><td>邏輯斯諦增長</td><td>growth that slows as it nears a ceiling (you meet it in Session 5)</td></tr>
+      <tr><td>carrying capacity</td><td>承載量</td><td>that ceiling</td></tr>
+      <tr><td>retention rate</td><td>保留率</td><td>the share of pets still with their first household</td></tr>
+      <tr><td>sensitivity analysis</td><td>敏感度分析</td><td>change one input and see how far the answer moves (you do it in Session 6)</td></tr>
+      <tr><td>perturb</td><td>輕微改動</td><td>change a little, on purpose</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">2</span>Read with a pencil</h2>
+  <p>Twelve stops, about 30 minutes. At each, read the pages, then do the task in the margin of your copy or in a note. Keep moving: if a task takes more than three minutes, write a question mark and go on. You may skip pages 7–9 (the matrix), pages 15–17 (the other pets) and everything after page 21.</p>
+  <ol class="tasks">
+    <li><span class="tag">Abstract</span> Read only the abstract, on the first page of the file. <strong>In one sentence, what does the team say it did?</strong> Keep the sentence. You will check it at the end.</li>
+    <li><span class="tag">p. 1–2</span> The team restates the problem as a list of tasks. Put it beside your list. <strong>Which task from the problem is missing from theirs?</strong> Watch whether the paper ever does it.</li>
+    <li><span class="tag">p. 2</span> The five assumptions, from Session 1. For Assumption 5, <strong>find a later page where it is used.</strong></li>
+    <li><span class="tag">p. 3–5</span> <strong>Count the inputs</strong> a household must give. Does the model keep to the problem's limit?</li>
+    <li><span class="tag">p. 6</span> Equation 4.1 scores space. Sketch its graph: score up the side, space along the bottom. Mark S<sub>min</sub> and S<sub>opt</sub>. <strong>Now put numbers on the space axis.</strong> Does the paper give you any?</li>
+    <li><span class="tag">p. 10–11</span> An allergy makes the unsuitability score infinite. <strong>Why infinite, and not just a large weight?</strong> Then follow one household through the flowchart on page 11. Could someone who has not read the paper do the same?</li>
+    <li><span class="tag">p. 12–13</span> The six families. Find the word "presumably" on page 12. <strong>What does it tell you about the money figures?</strong> Then find a family whose description contradicts itself. Which family is closest to the 0.6 line?</li>
+    <li><span class="tag">p. 14</span> Shanghai. Check equation 4.14 with a calculator. The formula multiplies the proportions, so it treats them as independent. <strong>Name two of them that probably go together.</strong></li>
+    <li><span class="tag">p. 18</span> Equation 6.2 gives next year's number of households, with a ceiling K. <strong>Where in the text is the value of K given?</strong></li>
+    <li><span class="tag">p. 19–20</span> Section 7 explains a sensitivity test. <strong>Find its result.</strong></li>
+    <li><span class="tag">p. 20</span> Strengths and weaknesses. <strong>Which strength has nothing in the paper to back it?</strong></li>
+    <li><span class="tag">p. 21</span> The letter. Could a director who has never seen the paper act on it? <strong>Underline the sentence you think a director would act on.</strong></li>
+  </ol>
+  <details>
+    <summary>What I found: open when you have done all twelve</summary>
+    <ol>
+      <li>Yours to keep.</li>
+      <li>The one that matters: their list leaves out "by species" from question 3, and the paper never does it. The predictions on page 19 are for all pets together. (Their list also leaves out defining "pet", which they do anyway on page 3, and naming the region of the example households, which they never do.)</li>
+      <li>The 0.6 threshold is used in the decision rules on page 11 and to sort the families on pages 12–13.</li>
+      <li>Eight: five for the readiness score and three deal-breakers. The limit is ten.</li>
+      <li>No. S<sub>min</sub> and S<sub>opt</sub> are never given, for space or for anything else. The families' scores were typed straight into the team's code (page 24), so the formula is never used with numbers.</li>
+      <li>It is a veto. No amount of space or money makes an allergy safe, so no score is allowed to make up for it. A weight, however large, can always be outweighed.</li>
+      <li>The team is not sure whether the money is per day or per month: it does not know its own unit. Family 6 is said to have "the most space", at 40 square metres, the least of the six. Family 2 scores 0.607, just above 0.6.</li>
+      <li>It is 9.8%. Space and money, for example: richer households tend to have bigger homes. If two proportions go together, more households have both than the product says, so the estimate comes out too low.</li>
+      <li>Nowhere. It is only in the code, on page 26: 30 million households for Shanghai, more than Shanghai's whole population of 24.2 million (page 14).</li>
+      <li>There is none. The section describes the test and stops: no table, no number, no conclusion.</li>
+      <li>"Inclusion of Sensitivity Analysis". See stop 10.</li>
+      <li>Yours. Compare with a teammate.</li>
+    </ol>
+  </details>
+
+  <div class="tile">
+    <span class="label">Run the test the team did not show · 5 min</span>
+    <p>Family 2's five scores, from the team's code on page 24: space 0.8, time 0.7, money 0.9, age 1, experience 0. The weights, from page 9: 0.125, 0.103, 0.426, 0.051, 0.295.</p>
+    <ol class="tasks">
+      <li><span class="tag">Alone</span> Check that Family 2's readiness score comes to about 0.607.</li>
+      <li><span class="tag">Alone</span> Make the money weight 20% smaller, as section 7 says. <strong>Work out the new score. Does Family 2 still pass?</strong></li>
+    </ol>
+  </div>
+  <details>
+    <summary>My figures: open when you have both numbers</summary>
+    <p>0.8 × 0.125 + 0.7 × 0.103 + 0.9 × 0.426 + 1 × 0.051 + 0 × 0.295 = 0.607. With the money weight at 0.341, the score is 0.530, and Family 2 fails. (If you noticed that the weights no longer add up to 1 and rescaled them, you get 0.579: still a fail.) The one result the team did not show is the one that changes an answer.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">3</span>After reading: be the judge</h2>
+  <ol class="tasks">
+    <li><span class="tag">Alone · 3 min</span> Go back to your task list. Beside each task write <strong>answered</strong>, <strong>partly</strong> or <strong>missing</strong>, with the page.</li>
+    <li><span class="tag">Alone · 1 min</span> Go back to your sentence from the abstract. Is every part of it true?</li>
+    <li><span class="tag">Team</span> Agree on one thing your Team Paper will borrow from this paper, and one thing it will do better. Write both at the top of your Team Paper's notes: <span class="sentence">"From the pet paper we borrow … We will do better at …"</span></li>
+  </ol>
+  <details>
+    <summary>My verdicts: open when yours are written</summary>
+    <div class="table-wrap">
+    <table class="left">
+      <tr><th>Task</th><th>Verdict</th></tr>
+      <tr><td>Define "pet"</td><td>Answered, page 3</td></tr>
+      <tr><td>Cat model, ten inputs or fewer, with a diagram</td><td>Answered, pages 3–11: eight inputs, diagram on page 11</td></tr>
+      <tr><td>Three that qualify and three that do not, in one region</td><td>Partly: no region is ever named (pages 12–13)</td></tr>
+      <tr><td>Ready households in three places</td><td>Answered, with slips (pages 13–15)</td></tr>
+      <tr><td>Four more species</td><td>Answered, pages 15–16</td></tr>
+      <tr><td>Six households, same region</td><td>Partly: four households (pages 16–17)</td></tr>
+      <tr><td>Several pets</td><td>Partly: a formula with nothing inside it (page 17)</td></tr>
+      <tr><td>5, 10 and 15 years, by species</td><td>Partly: all pets together (page 19)</td></tr>
+      <tr><td>Retention</td><td>Missing: the code sets it to 1, so no pet is ever given up (page 26)</td></tr>
+      <tr><td>Summary, letter, contents</td><td>Answered</td></tr>
+    </table>
+    </div>
+    <p>The abstract says the team conducted a sensitivity analysis. It described one.</p>
+  </details>
+  <p class="note">This paper won, and everything you found is still true. It has a clear structure, a good idea (the veto) and a letter anyone can read: those are worth borrowing. Your paper can have all three, and correct arithmetic too.</p>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Senior Team: go further</h2>
+  <p>About 30 minutes more. A sheet helps.</p>
+  <ol class="tasks">
+    <li><span class="tag">p. 8–9</span> Put the 5 × 5 matrix in a sheet. For each row, take the geometric mean of its five numbers (<code>=GEOMEAN</code>), then divide each mean by the total of all five. How close are your weights to the team's?</li>
+    <li><span class="tag">p. 9</span> The team gives the largest eigenvalue as 5.408, and the formula CI = (λ<sub>max</sub> − n) ÷ (n − 1). <strong>Work out CI from their own numbers,</strong> and compare it with the CI they print.</li>
+    <li><span class="tag">p. 8, 22</span> The comparisons are said to draw on reference [1]. Look it up. Does it support "money is more important than space"?</li>
+    <li><span class="tag">p. 15</span> Check equation 4.17 for Shenzhen. Is 12.59 million a number of households or of people?</li>
+    <li><span class="tag">p. 24</span> Find where the families' scores enter the code. What does that tell you about equations 4.1 to 4.4?</li>
+    <li><span class="tag">p. 26–27</span> Find the growth rate r, the ceilings K and the retention rate in the code. Which part of question 3 does the retention rate settle?</li>
+    <li><span class="tag">Sheet</span> Run all ten changes of section 7 for Family 2: each weight 20% up and 20% down, one at a time. <strong>In how many does the verdict change?</strong> Then do it again with the weights rescaled to add up to 1 after each change. Which way would you defend to a judge?</li>
+  </ol>
+  <details>
+    <summary>My figures: open when you have tried all seven</summary>
+    <ol>
+      <li>About 0.121, 0.106, 0.441, 0.050 and 0.282. The team's method gives 0.125, 0.103, 0.426, 0.051 and 0.295. Close, and money comes first either way.</li>
+      <li>(5.408 − 5) ÷ 4 = 0.102. The paper prints 0.147. Its consistency ratio, 0.09, matches 0.102, so 0.147 is a slip.</li>
+      <li>No. Reference [1] is an encyclopedia article on the history of domestication. The comparisons are the team's own judgement, which page 20 admits.</li>
+      <li>The text calls it households, then divides by 3 as if it were people. 12,590,000 ÷ 3 × 8.7% is about 365,000; the paper prints 594,000. The Shenzhen graph on page 19 starts near 365,000, so the code and the text disagree.</li>
+      <li>They are typed in by hand. The scoring formulas are never used with numbers.</li>
+      <li>r = 0.01; K = 30 million for Shanghai and 20 million for Shenzhen and New York; retention is 1. So retention, which question 3 asks for, is not modelled at all.</li>
+      <li>Without rescaling, cutting any weight lowers every score, and Family 2 fails in four of the ten changes (every cut except experience, where its score is 0). With rescaling it fails in two: money down (0.579) and experience up (0.573). Rescaling is easier to defend, because the weights should still add up to 1.</li>
+    </ol>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>Bring to the next session</h2>
+  <ul>
+    <li>Your task list, with a verdict and a page beside each task.</li>
+    <li>Your team's two sentences: what you borrow, and what you will do better.</li>
+    <li>One question you would ask Team 2024030 if they were defending this paper in front of you.</li>
+  </ul>
+  <p class="note">Next in this series: the two papers on the 2025 sports-league problem, which reached very different answers to the same question.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>Reading a whole paper · 1 of 3</span></div></footer>
+</body>
+</html>
