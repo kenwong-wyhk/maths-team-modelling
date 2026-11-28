@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sports Day Problem</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a href="index.html"><img class="wy-signature" src="assets/brand/signature-en-horizontal.svg" alt="Wah Yan College, Hong Kong"></a>
+  <div class="running"><a href="index.html">Maths Team · Mathematical Modelling</a><br>Junior Teams: the second local project</div>
+</div></header>
+
+<main class="wrap">
+  <p class="kicker">Second local project · Junior Teams</p>
+  <h1>The Sports Day Problem</h1>
+  <p class="lede">This year's Sports Day is over, and next year's has not been planned. Your client, the PE department, runs it. You test a model against the day that has just happened, then design a better programme for next year.</p>
+
+  <div class="tile">
+    <span class="label">Problem</span>
+    <p>Sports Day fits many events into one day, on one track and a few field areas. Some athletes are entered in several events, and each needs rest between them.</p>
+    <p><strong>What is the best programme for Sports Day?</strong></p>
+  </div>
+  <p>As with the Hall Problem, there is no answer key. You decide what "best" means and defend it. If the PE department finds your programme convincing, it may use it next year, and your predictions will be tested on that day.</p>
+  <p>This time your Team lead writes the team's time plan. You know the six steps from <a href="hall-trial.html">The Hall Problem, for real</a>; plan when you will do each.</p>
+
+  <h2 class="wy-section-title"><span class="num">1</span>What you are given</h2>
+  <ul>
+    <li><strong>This year's programme:</strong> every event, its grade, and the time it was planned to start.</li>
+    <li><strong>This year's results.</strong></li>
+    <li><strong>This year's entry list,</strong> with every name replaced by a number before you see it.</li>
+    <li><strong>What the client tells you</strong> at your first meeting: what went wrong, and what must not change.</li>
+  </ul>
+
+  <h2 class="wy-section-title"><span class="num">2</span>What you may change</h2>
+  <ul>
+    <li><strong>The order of events,</strong> and when each starts.</li>
+    <li><strong>The heats:</strong> how many each event has, and who runs in which.</li>
+    <li><strong>The field events:</strong> which run at the same time, and where.</li>
+    <li><strong>The rest</strong> an athlete must have between two events.</li>
+  </ul>
+  <p>You may not change the list of events, the rules of any event, the number of lanes, or the date and length of the day.</p>
+
+  <h2 class="wy-section-title"><span class="num">3</span>What you must find out yourselves</h2>
+  <ul>
+    <li><strong>How long one heat takes,</strong> from the call to the start line until the track is clear for the next heat. Not only the running time: the results give you that, and it is the smaller part.</li>
+    <li><strong>How long a field event takes</strong> for a given number of athletes.</li>
+    <li><strong>Which athletes are in more than one event,</strong> and how much rest they had this year.</li>
+    <li><strong>The date of next year's Sports Day,</strong> and whether anyone wrote down when each event really started this year. Ask the client at your first meeting. If nobody wrote the times down, you can test only the finishing time: say so in your paper.</li>
+    <li><strong>How late this year's day ran, and where it fell behind.</strong> Ask the client.</li>
+  </ul>
+  <div class="rule">
+    <p><strong>Numbers, not names.</strong> Work only with the numbered entry list. No names in your paper, no photographs, no film. If you time anything on the track or the field, stay off it and away from the officials, and ask me first.</p>
+  </div>
+
+  <h2 class="wy-section-title"><span class="num">4</span>Three tools</h2>
+  <div class="tile">
+    <span class="label">The timeline</span>
+    <p>Draw one row for the track and one for each field area, with time running across. Each event is a bar. Draw this year's programme first. Gaps show time wasted; bars that overlap in one row show a clash.</p>
+  </div>
+  <div class="tile">
+    <span class="label">The clash graph</span>
+    <p>Draw each event as a dot. Join two dots with a line when at least one athlete is in both. Joined events may not run at the same time, and if they are both on the track, they need a rest between them. Events that are not joined can go anywhere.</p>
+  </div>
+  <div class="tile">
+    <span class="label">The track sets the length of the day</span>
+    <p>An event with n athletes, on a track with k lanes, needs at least n ÷ k heats, rounded up. Add up the heats of every track event, and multiply by the time one heat takes. However you arrange the day, the track cannot finish sooner than that. Field events fit around the track. This is the Hall Problem's slowest stage again.</p>
+  </div>
+  <p><strong>Go further.</strong></p>
+  <ol class="tasks">
+    <li>Four track events, A, B, C and D, run one after another, ten minutes each. Some athletes are in both A and B, and some in both B and C; nobody else is in two of them. An athlete in two of them needs at least one other event between them, as rest. Which orders work? How many of the 24 orders is that? Use the clash graph.</li>
+    <li>19 runners and 8 lanes. What is the fewest heats? Prove that no programme can use fewer. How should the runners be shared out between the heats, and why does that matter?</li>
+    <li>In this year's entries, which track event needs the most heats? Is it the one that made the day late?</li>
+    <li>An athlete is in a field event and a track event that overlap. Is that a clash? What would your model need to know to decide?</li>
+  </ol>
+  <details>
+    <summary>My answers to 1 and 2: open only when you have your own</summary>
+    <p><strong>1.</strong> B is joined to A and to C, so B may sit next to neither. In a row of four, B must then be at one end with D beside it; A and C, which are not joined, fill the other two places in either order. That gives four orders: B D A C, B D C A, A C D B and C A D B. Four of the 24.</p>
+    <p><strong>2.</strong> 19 ÷ 8 = 2.375, so at least 3 heats: two heats hold at most 16 runners. Three heats can be 7, 6 and 6. Even heats matter if the final is chosen by time: a runner in a full heat and a runner in a near-empty one have not raced the same race.</p>
+  </details>
+
+  <h2 class="wy-section-title"><span class="num">5</span>The six steps, for this problem</h2>
+  <div class="table-wrap">
+  <table class="left">
+    <tr><th>Step</th><th>What you do</th></tr>
+    <tr><td>1. Meet the client</td><td>Questions to the PE department: what went wrong this year, what must not change, how they would judge a better day.</td></tr>
+    <tr><td>2. Predict, then compare</td><td>Put this year's programme into your model and predict when the day ended, with a range. Hand it to me sealed. Then the client tells you what happened. Find your percentage error, and the event where the day fell behind.</td></tr>
+    <tr><td>3. A programme the school can run</td><td>Your programme for next year: the timeline, the heats, and what the officials do if it runs late. Another team checks it against the clash graph.</td></tr>
+    <tr><td>4. The pitch</td><td>Five minutes to the PE department: what you recommend, when the day ends with a range, the least rest any athlete gets, and what could go wrong.</td></tr>
+    <tr><td>5. Predict, then try</td><td>Your predictions for next year's day, sealed with me until then. If the PE department uses your programme, we time each event on the day.</td></tr>
+    <tr><td>6. Report back</td><td>Now: a section in your paper testing your model against this year's day. Next year: the same against the day you planned.</td></tr>
+  </table>
+  </div>
+  <p>The Senior Team is working on the <a href="league.html">League Problem</a> for the same client. Both are problems of fitting events into time. Compare your timelines with their fixture lists when the teams report back.</p>
+</main>
+
+<footer class="site"><div class="wrap"><span>Wah Yan College, Hong Kong · Maths Team</span><span>The Sports Day Problem</span></div></footer>
+</body>
+</html>
